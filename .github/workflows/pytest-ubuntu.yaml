@@ -18,8 +18,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pytest
+        pip install pytest numpy functools32 
 
     - name: Run tests
       run: |
-        pytest
+        pytest 

@@ -6,11 +6,11 @@ import numpy as np
 import pytest
 from numpy.testing import assert_equal
 
-import brian2
-from brian2.core.preferences import prefs
-from brian2.tests.utils import assert_allclose
-from brian2.units.allunits import *
-from brian2.units.fundamentalunits import (
+import brian2units
+from brian2units.core.preferences import prefs
+from brian2units.tests.utils import assert_allclose
+from brian2units.units.allunits import *
+from brian2units.units.fundamentalunits import (
     DIMENSIONLESS,
     UFUNCS_DIMENSIONLESS,
     UFUNCS_DIMENSIONLESS_TWOARGS,
@@ -29,7 +29,7 @@ from brian2.units.fundamentalunits import (
     is_dimensionless,
     is_scalar_type,
 )
-from brian2.units.stdunits import Hz, cm, kHz, mM, ms, mV, nA, nS
+from brian2units.units.stdunits import Hz, cm, kHz, mM, ms, mV, nA, nS
 
 # To work around an issue in matplotlib 1.3.1 (see
 # https://github.com/matplotlib/matplotlib/pull/2591), we make `ravel`
@@ -163,7 +163,7 @@ def test_display():
 @pytest.mark.codegen_independent
 def test_scale():
     # Check that unit scaling is implemented correctly
-    from brian2.core.namespace import DEFAULT_UNITS
+    from brian2units.core.namespace import DEFAULT_UNITS
 
     siprefixes = {
         "y": 1e-24,
@@ -803,7 +803,7 @@ def test_unit_discarding_functions():
     """
     Test functions that discard units.
     """
-    from brian2.units.unitsafefunctions import ones_like, zeros_like
+    from brian2units.units.unitsafefunctions import ones_like, zeros_like
 
     values = [3 * mV, np.array([1, 2]) * mV, np.arange(12).reshape(3, 4) * mV]
     for value in values:
@@ -820,7 +820,7 @@ def test_unitsafe_functions():
     """
     Test the unitsafe functions wrapping their numpy counterparts.
     """
-    from brian2.units.unitsafefunctions import (
+    from brian2units.units.unitsafefunctions import (
         arccos,
         arccosh,
         arcsin,
@@ -887,7 +887,7 @@ def test_special_case_numpy_functions():
     """
     Test a couple of functions/methods that need special treatment.
     """
-    from brian2.units.unitsafefunctions import diagonal, dot, ravel, trace, where
+    from brian2units.units.unitsafefunctions import diagonal, dot, ravel, trace, where
 
     quadratic_matrix = np.reshape(np.arange(9), (3, 3)) * mV
 
@@ -1010,7 +1010,7 @@ def test_numpy_functions_same_dimensions():
     values = [np.array([1, 2]), np.ones((3, 3))]
     units = [volt, second, siemens, mV, kHz]
 
-    from brian2.units.unitsafefunctions import ptp
+    from brian2units.units.unitsafefunctions import ptp
 
     # numpy functions
     keep_dim_funcs = [
@@ -1229,53 +1229,53 @@ def test_numpy_functions_logical():
 @pytest.mark.codegen_independent
 def test_arange_linspace():
     # For dimensionless values, the unit-safe functions should give the same results
-    assert_equal(brian2.arange(5), np.arange(5))
-    assert_equal(brian2.arange(1, 5), np.arange(1, 5))
-    assert_equal(brian2.arange(10, step=2), np.arange(10, step=2))
-    assert_equal(brian2.arange(0, 5, 0.5), np.arange(0, 5, 0.5))
-    assert_equal(brian2.linspace(0, 1), np.linspace(0, 1))
-    assert_equal(brian2.linspace(0, 1, 10), np.linspace(0, 1, 10))
+    assert_equal(brian2units.arange(5), np.arange(5))
+    assert_equal(brian2units.arange(1, 5), np.arange(1, 5))
+    assert_equal(brian2units.arange(10, step=2), np.arange(10, step=2))
+    assert_equal(brian2units.arange(0, 5, 0.5), np.arange(0, 5, 0.5))
+    assert_equal(brian2units.linspace(0, 1), np.linspace(0, 1))
+    assert_equal(brian2units.linspace(0, 1, 10), np.linspace(0, 1, 10))
 
     # Make sure units are checked
     with pytest.raises(DimensionMismatchError):
-        brian2.arange(1 * mV, 5)
+        brian2units.arange(1 * mV, 5)
     with pytest.raises(DimensionMismatchError):
-        brian2.arange(1 * mV, 5 * mV)
+        brian2units.arange(1 * mV, 5 * mV)
     with pytest.raises(DimensionMismatchError):
-        brian2.arange(1, 5 * mV)
+        brian2units.arange(1, 5 * mV)
     with pytest.raises(DimensionMismatchError):
-        brian2.arange(1 * mV, 5 * ms)
+        brian2units.arange(1 * mV, 5 * ms)
     with pytest.raises(DimensionMismatchError):
-        brian2.arange(1 * mV, 5 * mV, step=1 * ms)
+        brian2units.arange(1 * mV, 5 * mV, step=1 * ms)
     with pytest.raises(DimensionMismatchError):
-        brian2.arange(1 * ms, 5 * mV)
+        brian2units.arange(1 * ms, 5 * mV)
 
     # Check correct functioning with units
     assert_quantity(
-        brian2.arange(5 * mV, step=1 * mV), float(mV) * np.arange(5, step=1), mV
+        brian2units.arange(5 * mV, step=1 * mV), float(mV) * np.arange(5, step=1), mV
     )
     assert_quantity(
-        brian2.arange(1 * mV, 5 * mV, 1 * mV), float(mV) * np.arange(1, 5, 1), mV
+        brian2units.arange(1 * mV, 5 * mV, 1 * mV), float(mV) * np.arange(1, 5, 1), mV
     )
-    assert_quantity(brian2.linspace(1 * mV, 2 * mV), float(mV) * np.linspace(1, 2), mV)
+    assert_quantity(brian2units.linspace(1 * mV, 2 * mV), float(mV) * np.linspace(1, 2), mV)
 
     # Check errors for arange with incorrect numbers of arguments/duplicate arguments
     with pytest.raises(TypeError):
-        brian2.arange()
+        brian2units.arange()
     with pytest.raises(TypeError):
-        brian2.arange(0, 5, 1, 0)
+        brian2units.arange(0, 5, 1, 0)
     with pytest.raises(TypeError):
-        brian2.arange(0, stop=1)
+        brian2units.arange(0, stop=1)
     with pytest.raises(TypeError):
-        brian2.arange(0, 5, stop=1)
+        brian2units.arange(0, 5, stop=1)
     with pytest.raises(TypeError):
-        brian2.arange(0, 5, start=1)
+        brian2units.arange(0, 5, start=1)
     with pytest.raises(TypeError):
-        brian2.arange(0, 5, 1, start=1)
+        brian2units.arange(0, 5, 1, start=1)
     with pytest.raises(TypeError):
-        brian2.arange(0, 5, 1, stop=2)
+        brian2units.arange(0, 5, 1, stop=2)
     with pytest.raises(TypeError):
-        brian2.arange(0, 5, 1, step=2)
+        brian2units.arange(0, 5, 1, step=2)
 
 
 @pytest.mark.codegen_independent
@@ -1398,7 +1398,7 @@ def test_switching_off_unit_checks():
     """
     Check switching off unit checks (used for external functions).
     """
-    import brian2.units.fundamentalunits as fundamentalunits
+    import brian2units.units.fundamentalunits as fundamentalunits
 
     x = 3 * second
     y = 5 * volt
@@ -1505,7 +1505,7 @@ def test_units_vs_quantities():
 
 @pytest.mark.codegen_independent
 def test_all_units_list():
-    from brian2.units.allunits import all_units
+    from brian2units.units.allunits import all_units
 
     assert meter in all_units
     assert volt in all_units
@@ -1516,7 +1516,7 @@ def test_all_units_list():
 
 @pytest.mark.codegen_independent
 def test_constants():
-    import brian2.units.constants as constants
+    import brian2units.units.constants as constants
 
     # Check that the expected names exist and have the correct dimensions
     assert constants.avogadro_constant.dim == (1 / mole).dim
