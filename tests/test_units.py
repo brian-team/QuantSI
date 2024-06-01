@@ -7,7 +7,6 @@ import pytest
 from numpy.testing import assert_equal
 
 import brian2units
-from brian2units.core.preferences import prefs
 from brian2units.tests.utils import assert_allclose
 from brian2units.units.allunits import *
 from brian2units.units.fundamentalunits import (
