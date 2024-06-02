@@ -7,7 +7,7 @@ import collections
 import inspect
 import itertools
 
-from brian2.core.functions import DEFAULT_CONSTANTS, DEFAULT_FUNCTIONS
+from brian2units.core.functions import DEFAULT_CONSTANTS, DEFAULT_FUNCTIONS
 from brian2units.units.fundamentalunits import (
     additional_unit_register,
     standard_unit_register,
