@@ -13,7 +13,7 @@ from brian2units.units.fundamentalunits import (
     standard_unit_register,
 )
 from brian2units.units.stdunits import stdunits
-from brian2.utils.logger import get_logger
+from brian2units.utils.logger import get_logger
 
 __all__ = [
     "get_local_namespace",
