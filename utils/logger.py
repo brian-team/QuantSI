@@ -25,7 +25,6 @@ except ImportError:
     scipy = None
 import sympy
 
-import brian2
 from brian2units.core.preferences import BrianPreference, prefs
 
 from .environment import running_from_ipython

@@ -13,8 +13,8 @@ from sympy.codegen import cfunctions as sympy_cfunctions
 import brian2units.units.unitsafefunctions as unitsafe
 from brian2units.core.preferences import prefs
 from brian2units.core.variables import Constant
-from brian2.units.allunits import second
-from brian2.units.fundamentalunits import (
+from brian2units.units.allunits import second
+from brian2units.units.fundamentalunits import (
     DIMENSIONLESS,
     Quantity,
     fail_for_dimension_mismatch,

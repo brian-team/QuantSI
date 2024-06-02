@@ -159,8 +159,8 @@ class BrianGlobalPreferences(MutableMapping):
             deindent(
                 """
             from numpy import *
-            from brian2.units import *
-            from brian2.units.stdunits import *
+            from brian2units.units import *
+            from brian2units.units.stdunits import *
             """
             ),
             self.eval_namespace,
@@ -505,7 +505,7 @@ class BrianGlobalPreferences(MutableMapping):
         basedir = os.path.normpath(os.path.join(curdir, ".."))
         default_prefs = os.path.join(basedir, "default_preferences")
         if os.path.exists(default_prefs):
-            from brian2.utils.logger import get_logger
+            from brian2units.utils.logger import get_logger
 
             logger = get_logger(__name__)
             logger.warn(
@@ -604,7 +604,7 @@ class BrianGlobalPreferences(MutableMapping):
         key Brian functions.
         """
         if len(self.prefs_unvalidated):
-            from brian2.utils.logger import get_logger
+            from brian2units.utils.logger import get_logger
 
             logger = get_logger(__name__)
             logger.warn(

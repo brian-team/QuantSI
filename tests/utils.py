@@ -1,8 +1,9 @@
 import numpy as np
 from numpy.testing import assert_allclose as numpy_allclose
 
-from brian2 import prefs
-from brian2.units.fundamentalunits import have_same_dimensions
+import brian2units.core.core_preferences
+from brian2units.core.preferences import prefs
+from brian2units.units.fundamentalunits import have_same_dimensions
 
 
 def assert_allclose(actual, desired, rtol=4.5e8, atol=1e-9, **kwds):
