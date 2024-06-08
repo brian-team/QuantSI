@@ -16,5 +16,6 @@ sphinx:
   configuration: docs_sphinx/conf.py
 
 python:
-  - requirements:  rtd-requirements.txt
+  install:
+    requirements:  rtd-requirements.txt
 
