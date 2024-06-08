@@ -15,7 +15,6 @@ build:
 sphinx:
   configuration: docs_sphinx/conf.py
 
-post_install:
-    - python -m pip install .
-    - python -m pip install -r rtd-requirements.txt
+python:
+  - requirements:  rtd-requirements.txt
 
