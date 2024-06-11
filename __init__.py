@@ -1,3 +1,0 @@
-"""
-brian2units
-"""
