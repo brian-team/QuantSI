@@ -8,6 +8,7 @@ requires-python = '>=3.11'
 dependencies = [
     'numpy>=1.23.5',
     'sympy>=1.2',
+    'setuptools>=61'
 ]
 dynamic = ["version", "readme"]
 description = 'unit system as used by the Brian2 simulator'
@@ -51,16 +52,16 @@ include = ["brian2units*"]
 [tool.setuptools.dynamic]
 readme = {file = 'README.md', content-type = "text/markdown"}
 
-[tool.setuptools_scm]
-version_scheme = 'pre-release'
-local_scheme = 'no-local-version'
-write_to = 'brian2units/_version.py'
-tag_regex = '^(?P<version>\d+(?:\.\d+){0,2}[^\+]*(?:\+.*)?)$'
-fallback_version = 'unknown'
+#[tool.setuptools_scm]
+#version_scheme = 'pre-release'
+#local_scheme = 'no-local-version'
+#write_to = 'brian2units/_version.py'
+#tag_regex = '^(?P<version>\d+(?:\.\d+){0,2}[^\+]*(?:\+.*)?)$'
+#fallback_version = 'unknown'
 
 [tool.black]
 target-version = ['py310']
-include = '^/brian2/.*\.pyi?$'
+include = '^/brian2units/.*\.pyi?$'
 
 [tool.isort]
 atomic = true
