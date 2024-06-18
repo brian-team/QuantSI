@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Units &#8212; brian2units 0.1 documentation</title>
+    <title>Units &#8212; brian2units 1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=61cd365c" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
-    <script src="../_static/documentation_options.js?v=2709fde1"></script>
+    <script src="../_static/documentation_options.js?v=f2a433a1"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -80,12 +80,10 @@ expression like <code class="docutils literal notranslate"><span class="pre">v</
 <p>All methods that make sense on quantities should work, i.e. they check for the
 correct units of their arguments and return quantities with units were
 appropriate. Most of the methods are overwritten using thin function wrappers:</p>
-<dl class="simple">
+<dl>
 <dt><code class="docutils literal notranslate"><span class="pre">wrap_function_keep_dimension</span></code>:</dt><dd><p>Strips away the units before giving the array to the method of <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>,
 then reattaches the unit to the result (examples: sum, mean, max)</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">wrap_function_change_dimension</span></code>:</dt><dd><p>Changes the dimensions in a simple way that is independent of function
-arguments, the shape of the array, etc. (examples: sqrt, var, power)</p>
+<p>arguments, the shape of the array, etc. (examples: sqrt, var, power)</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">wrap_function_dimensionless</span></code>:</dt><dd><p>Raises an error if the method is called on a quantity with dimensions (i.e.
 it works on dimensionless quantities).</p>
@@ -207,12 +205,6 @@ they are only using functions/methods that work with quantities:</p>
 <p><strong>other unsupported functions</strong>
 Functions in <code class="docutils literal notranslate"><span class="pre">numpy</span></code>’s subpackages such as <code class="docutils literal notranslate"><span class="pre">linalg</span></code> are not supported and will
 either not work with units, or remove units from their inputs.</p>
-</section>
-<section id="user-defined-functions-and-units">
-<h3>User-defined functions and units<a class="headerlink" href="#user-defined-functions-and-units" title="Link to this heading">¶</a></h3>
-<p>For performance and simplicity reasons, code within the Brian core does not use
-Quantity objects but unitless numpy arrays instead. See <span class="xref std std-doc">functions</span> for
-details on how to make use user-defined functions with Brian’s unit system.</p>
 </section>
 </section>
 </section>

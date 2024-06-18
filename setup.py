@@ -7,5 +7,9 @@ setup(
     },
     setup_requires=['setuptools_scm'],
     packages=find_packages(),
+
+    extras_require={
+        'test': ['pytest','numpy','sympy'],
+        },
     # other arguments...
 )

@@ -56,7 +56,6 @@ readme = {file = 'README.md', content-type = "text/markdown"}
 version_scheme = 'post-release'
 local_scheme = 'no-local-version'
 write_to = 'brian2units/_version.py'
-#tag_regex = '^(?P<version>\d+(?:\.\d+){0,2}[^\+]*(?:\+.*)?)$'
 fallback_version = 'unknown'
 
 [tool.black]
