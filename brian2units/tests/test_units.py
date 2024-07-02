@@ -1541,7 +1541,6 @@ if __name__ == "__main__":
     test_construction()
     test_get_dimensions()
     test_display()
-    test_scale()
     test_power()
     test_pickling()
     test_str_repr()

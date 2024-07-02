@@ -15,6 +15,7 @@ Welcome to brian2units's documentation!
    user/units
    developer/units     
 
+   modules
 .. Indices and tables
 .. ==================
 

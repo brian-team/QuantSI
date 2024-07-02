@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>brian2units.constants module &#8212; brian2units 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=61cd365c" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="brian2units.fundamentalunits module" href="brian2units.fundamentalunits.html" />
+    <link rel="prev" title="brian2units.allunits module" href="brian2units.allunits.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-brian2units.constants">
+<span id="brian2units-constants-module"></span><h1>brian2units.constants module<a class="headerlink" href="#module-brian2units.constants" title="Link to this heading">¶</a></h1>
+<p>A module providing some physical units as <cite>Quantity</cite> objects. Note that these
+units are not imported by wildcard imports (e.g. <cite>from brian2 import *</cite>), they
+have to be imported explicitly. You can use <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">...</span> <span class="pre">as</span> <span class="pre">...</span></code> to import them
+with shorter names, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">brian2.units.constants</span> <span class="kn">import</span> <span class="n">faraday_constant</span> <span class="k">as</span> <span class="n">F</span>
+</pre></div>
+</div>
+<p>The available constants are:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Constant</p></th>
+<th class="head"><p>Symbol(s)</p></th>
+<th class="head"><p>Brian name</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Avogadro constant</p></td>
+<td><p><span class="math notranslate nohighlight">\(N_A, L\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">avogadro_constant</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(6.022140857\times 10^{23}\,\mathrm{mol}^{-1}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Boltzmann constant</p></td>
+<td><p><span class="math notranslate nohighlight">\(k\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">boltzmann_constant</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(1.38064852\times 10^{-23}\,\mathrm{J}\,\mathrm{K}^{-1}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Electric constant</p></td>
+<td><p><span class="math notranslate nohighlight">\(\epsilon_0\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">electric_constant</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(8.854187817\times 10^{-12}\,\mathrm{F}\,\mathrm{m}^{-1}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Electron mass</p></td>
+<td><p><span class="math notranslate nohighlight">\(m_e\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">electron_mass</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(9.10938356\times 10^{-31}\,\mathrm{kg}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Elementary charge</p></td>
+<td><p><span class="math notranslate nohighlight">\(e\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">elementary_charge</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(1.6021766208\times 10^{-19}\,\mathrm{C}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Faraday constant</p></td>
+<td><p><span class="math notranslate nohighlight">\(F\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">faraday_constant</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(96485.33289\,\mathrm{C}\,\mathrm{mol}^{-1}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Gas constant</p></td>
+<td><p><span class="math notranslate nohighlight">\(R\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gas_constant</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(8.3144598\,\mathrm{J}\,\mathrm{mol}^{-1}\,\mathrm{K}^{-1}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Magnetic constant</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mu_0\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">magnetic_constant</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(12.566370614\times 10^{-7}\,\mathrm{N}\,\mathrm{A}^{-2}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Molar mass constant</p></td>
+<td><p><span class="math notranslate nohighlight">\(M_u\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">molar_mass_constant</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\times 10^{-3}\,\mathrm{kg}\,\mathrm{mol}^{-1}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>0°C</p></td>
+<td></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">zero_celsius</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(273.15\,\mathrm{K}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="brian2units.constants.avogadro_constant">
+<span class="sig-prename descclassname"><span class="pre">brian2units.constants.</span></span><span class="sig-name descname"><span class="pre">avogadro_constant</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6.02214086e+23</span> <span class="pre">*</span> <span class="pre">mole</span> <span class="pre">**</span> <span class="pre">-1</span></em><a class="headerlink" href="#brian2units.constants.avogadro_constant" title="Link to this definition">¶</a></dt>
+<dd><p>Avogadro constant (<a class="reference external" href="http://physics.nist.gov/cgi-bin/cuu/Value?na">http://physics.nist.gov/cgi-bin/cuu/Value?na</a>)</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="brian2units.constants.boltzmann_constant">
+<span class="sig-prename descclassname"><span class="pre">brian2units.constants.</span></span><span class="sig-name descname"><span class="pre">boltzmann_constant</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.38064852e-23</span> <span class="pre">*</span> <span class="pre">joule</span> <span class="pre">/</span> <span class="pre">kelvin</span></em><a class="headerlink" href="#brian2units.constants.boltzmann_constant" title="Link to this definition">¶</a></dt>
+<dd><p>Boltzmann constant (physics.nist.gov/cgi-bin/cuu/Value?k)</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="brian2units.constants.electric_constant">
+<span class="sig-prename descclassname"><span class="pre">brian2units.constants.</span></span><span class="sig-name descname"><span class="pre">electric_constant</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8.85418782e-12</span> <span class="pre">*</span> <span class="pre">farad</span> <span class="pre">/</span> <span class="pre">metre</span></em><a class="headerlink" href="#brian2units.constants.electric_constant" title="Link to this definition">¶</a></dt>
+<dd><p>electric constant (<a class="reference external" href="http://physics.nist.gov/cgi-bin/cuu/Value?ep0">http://physics.nist.gov/cgi-bin/cuu/Value?ep0</a>)</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="brian2units.constants.electron_mass">
+<span class="sig-prename descclassname"><span class="pre">brian2units.constants.</span></span><span class="sig-name descname"><span class="pre">electron_mass</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.00091094</span> <span class="pre">*</span> <span class="pre">ygram</span></em><a class="headerlink" href="#brian2units.constants.electron_mass" title="Link to this definition">¶</a></dt>
+<dd><p>Electron rest mass (physics.nist.gov/cgi-bin/cuu/Value?me)</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="brian2units.constants.elementary_charge">
+<span class="sig-prename descclassname"><span class="pre">brian2units.constants.</span></span><span class="sig-name descname"><span class="pre">elementary_charge</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">160.21766208</span> <span class="pre">*</span> <span class="pre">zcoulomb</span></em><a class="headerlink" href="#brian2units.constants.elementary_charge" title="Link to this definition">¶</a></dt>
+<dd><p>Elementary charge (physics.nist.gov/cgi-bin/cuu/Value?e)</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="brian2units.constants.faraday_constant">
+<span class="sig-prename descclassname"><span class="pre">brian2units.constants.</span></span><span class="sig-name descname"><span class="pre">faraday_constant</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">96485.33289</span> <span class="pre">*</span> <span class="pre">second</span> <span class="pre">*</span> <span class="pre">amp</span> <span class="pre">*</span> <span class="pre">mole</span> <span class="pre">**</span> <span class="pre">-1</span></em><a class="headerlink" href="#brian2units.constants.faraday_constant" title="Link to this definition">¶</a></dt>
+<dd><p>Faraday constant (<a class="reference external" href="http://physics.nist.gov/cgi-bin/cuu/Value?f">http://physics.nist.gov/cgi-bin/cuu/Value?f</a>)</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="brian2units.constants.gas_constant">
+<span class="sig-prename descclassname"><span class="pre">brian2units.constants.</span></span><span class="sig-name descname"><span class="pre">gas_constant</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8.3144598</span> <span class="pre">*</span> <span class="pre">joule</span> <span class="pre">/</span> <span class="pre">(mole</span> <span class="pre">*</span> <span class="pre">kelvin)</span></em><a class="headerlink" href="#brian2units.constants.gas_constant" title="Link to this definition">¶</a></dt>
+<dd><p>gas constant (<a class="reference external" href="http://physics.nist.gov/cgi-bin/cuu/Value?r">http://physics.nist.gov/cgi-bin/cuu/Value?r</a>)</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="brian2units.constants.magnetic_constant">
+<span class="sig-prename descclassname"><span class="pre">brian2units.constants.</span></span><span class="sig-name descname"><span class="pre">magnetic_constant</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.25663706e-06</span> <span class="pre">*</span> <span class="pre">henry</span> <span class="pre">/</span> <span class="pre">metre</span></em><a class="headerlink" href="#brian2units.constants.magnetic_constant" title="Link to this definition">¶</a></dt>
+<dd><p>Magnetic constant (<a class="reference external" href="http://physics.nist.gov/cgi-bin/cuu/Value?mu0">http://physics.nist.gov/cgi-bin/cuu/Value?mu0</a>)</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="brian2units.constants.molar_mass_constant">
+<span class="sig-prename descclassname"><span class="pre">brian2units.constants.</span></span><span class="sig-name descname"><span class="pre">molar_mass_constant</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.001</span> <span class="pre">*</span> <span class="pre">kilogram</span> <span class="pre">*</span> <span class="pre">mole</span> <span class="pre">**</span> <span class="pre">-1</span></em><a class="headerlink" href="#brian2units.constants.molar_mass_constant" title="Link to this definition">¶</a></dt>
+<dd><p>Molar mass constant (<a class="reference external" href="http://physics.nist.gov/cgi-bin/cuu/Value?mu">http://physics.nist.gov/cgi-bin/cuu/Value?mu</a>)</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="brian2units.constants.zero_celsius">
+<span class="sig-prename descclassname"><span class="pre">brian2units.constants.</span></span><span class="sig-name descname"><span class="pre">zero_celsius</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">273.15</span> <span class="pre">*</span> <span class="pre">kelvin</span></em><a class="headerlink" href="#brian2units.constants.zero_celsius" title="Link to this definition">¶</a></dt>
+<dd><p>zero degree Celsius</p>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">brian2units</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user/units.html">Physical units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/units.html">Units</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">brian2units</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="brian2units.html">brian2units package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">brian2units</a><ul>
+  <li><a href="brian2units.html">brian2units package</a><ul>
+      <li>Previous: <a href="brian2units.allunits.html" title="previous chapter">brian2units.allunits module</a></li>
+      <li>Next: <a href="brian2units.fundamentalunits.html" title="next chapter">brian2units.fundamentalunits module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Sorin Birchi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/brian2units.constants.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

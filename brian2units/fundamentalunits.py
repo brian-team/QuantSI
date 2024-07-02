@@ -981,7 +981,7 @@ def quantity_with_dimensions(floatval, dims):
     return Quantity(floatval, get_or_create_dimension(dims._dims))
 
 
-class Quantity(np.ndarray):
+class Quantity:
     """
     A number with an associated physical dimension. In most cases, it is not
     necessary to create a Quantity object by hand, instead use multiplication
@@ -1058,50 +1058,56 @@ class Quantity(np.ndarray):
     # ==========================================================================
     # Construction and handling of numpy ufuncs
     # ==========================================================================
-    def __new__(cls, arr, dim=None, dtype=None, copy=False, force_quantity=False):
-        # Do not create dimensionless quantities, use pure numpy arrays instead
+    def __init__(self, arr, dim=None, copy=False, force_quantity=False):
+        # Do not create dimensionless quantities, use pure lists instead
         if dim is DIMENSIONLESS and not force_quantity:
             if copy:
-                arr = np.array(arr, dtype=dtype)
+                self.arr = list(arr)
             else:
-                arr = np.asarray(arr, dtype=dtype)
-            if arr.shape == ():
+                self.arr = arr if isinstance(arr, list) else list(arr)
+            if len(self.arr) == 1 and isinstance(self.arr[0], (int, float)):
                 # For scalar values, return a simple Python object instead of
-                # a numpy scalar
-                return arr.item()
-            return arr
-
-        # All np.ndarray subclasses need something like this, see
-        # http://www.scipy.org/Subclasses
+                # a list scalar
+                self.arr = self.arr[0]
+                return
+            return
+        
         if copy:
-            subarr = np.array(arr, dtype=dtype).view(cls)
+            self.arr = list(arr)
         else:
-            subarr = np.asarray(arr, dtype=dtype).view(cls)
+            if isinstance(arr,list):
+                self.arr = arr
+            else:
+                try:
+                    self.arr = list(arr)
+                except TypeError:
+                    self.arr = [arr]
+
         # We only want numerical datatypes
-        if not issubclass(np.dtype(subarr.dtype).type, (np.number, np.bool_)):
+        if not all(isinstance(x, (int, float, bool)) for x in self.arr):
             raise TypeError("Quantities can only be created from numerical data.")
 
         # If a dimension is given, force this dimension
         if dim is not None:
-            subarr.dim = dim
-            return subarr
+            self.dim = dim
+            return
 
         # Use the given dimension or the dimension of the given array (if any)
         try:
-            subarr.dim = arr.dim
+            self.dim = arr.dim
         except AttributeError:
-            if not isinstance(arr, (np.ndarray, np.number, numbers.Number)):
+            if not isinstance(arr, (list, int, float)):
                 # check whether it is an iterable containing Quantity objects
                 try:
-                    is_quantity = [isinstance(x, Quantity) for x in _flatten(arr)]
+                    is_quantity = [isinstance(x, Quantity) for x in self._flatten(arr)]
                 except TypeError:
                     # Not iterable
                     is_quantity = [False]
                 if len(is_quantity) == 0:
                     # Empty list
-                    subarr.dim = DIMENSIONLESS
+                    self.dim = DIMENSIONLESS
                 elif all(is_quantity):
-                    dims = [x.dim for x in _flatten(arr)]
+                    dims = [x.dim for x in self._flatten(arr)]
                     one_dim = dims[0]
                     for d in dims:
                         if d != one_dim:
@@ -1113,13 +1119,76 @@ class Quantity(np.ndarray):
                                 d,
                                 one_dim,
                             )
-                    subarr.dim = dims[0]
+                    self.dim = dims[0]
                 elif any(is_quantity):
                     raise TypeError(
                         "Mixing quantities and non-quantities is not allowed."
                     )
 
-        return subarr
+
+        
+    # def __new__(cls, arr, dim=None, dtype=None, copy=False, force_quantity=False):
+    #     # Do not create dimensionless quantities, use pure numpy arrays instead
+    #     if dim is DIMENSIONLESS and not force_quantity:
+    #         if copy:
+    #             arr = np.array(arr, dtype=dtype)
+    #         else:
+    #             arr = np.asarray(arr, dtype=dtype)
+    #         if arr.shape == ():
+    #             # For scalar values, return a simple Python object instead of
+    #             # a numpy scalar
+    #             return arr.item()
+    #         return arr
+
+    #     # All np.ndarray subclasses need something like this, see
+    #     # http://www.scipy.org/Subclasses
+    #     if copy:
+    #         subarr = np.array(arr, dtype=dtype).view(cls)
+    #     else:
+    #         subarr = np.asarray(arr, dtype=dtype).view(cls)
+    #     # We only want numerical datatypes
+    #     if not issubclass(np.dtype(subarr.dtype).type, (np.number, np.bool_)):
+    #         raise TypeError("Quantities can only be created from numerical data.")
+
+    #     # If a dimension is given, force this dimension
+    #     if dim is not None:
+    #         subarr.dim = dim
+    #         return subarr
+
+    #     # Use the given dimension or the dimension of the given array (if any)
+    #     try:
+    #         subarr.dim = arr.dim
+    #     except AttributeError:
+    #         if not isinstance(arr, (np.ndarray, np.number, numbers.Number)):
+    #             # check whether it is an iterable containing Quantity objects
+    #             try:
+    #                 is_quantity = [isinstance(x, Quantity) for x in _flatten(arr)]
+    #             except TypeError:
+    #                 # Not iterable
+    #                 is_quantity = [False]
+    #             if len(is_quantity) == 0:
+    #                 # Empty list
+    #                 subarr.dim = DIMENSIONLESS
+    #             elif all(is_quantity):
+    #                 dims = [x.dim for x in _flatten(arr)]
+    #                 one_dim = dims[0]
+    #                 for d in dims:
+    #                     if d != one_dim:
+    #                         raise DimensionMismatchError(
+    #                             "Mixing quantities "
+    #                             "with different "
+    #                             "dimensions is not "
+    #                             "allowed",
+    #                             d,
+    #                             one_dim,
+    #                         )
+    #                 subarr.dim = dims[0]
+    #             elif any(is_quantity):
+    #                 raise TypeError(
+    #                     "Mixing quantities and non-quantities is not allowed."
+    #                 )
+
+    #     return subarr
 
     def __array_finalize__(self, orig):
         self.dim = getattr(orig, "dim", DIMENSIONLESS)
@@ -1490,11 +1559,16 @@ class Quantity(np.ndarray):
         """Overwritten to assure that single elements (i.e., indexed with a
         single integer or a tuple of integers) retain their unit.
         """
-        return Quantity(np.ndarray.__getitem__(self, key), self.dim)
+        return Quantity(self.arr[key], self.dim)
 
     def item(self, *args):
         """Overwritten to assure that the returned element retains its unit."""
-        return Quantity(np.ndarray.item(self, *args), self.dim)
+        if isinstance(self.arr, list):
+            arr = self.arr
+            for arg in args:
+                arr = arr[arg]
+        return Quantity(arr, self.dim)
+
 
     def __setitem__(self, key, value):
         fail_for_dimension_mismatch(self, value, "Inconsistent units in assignment")
@@ -1529,22 +1603,25 @@ class Quantity(np.ndarray):
                     else:
                         yield type(i)(top_replace(i))
 
-            return type(seq)(top_replace(seq))
+            return list(top_replace(seq))
 
-        return replace_with_quantity(np.asarray(self).tolist(), self.dim)
+        return replace_with_quantity(self.arr, self.dim)
 
     #### COMPARISONS ####
     def _comparison(self, other, operator_str, operation):
         is_scalar = is_scalar_type(other)
-        if not is_scalar and not isinstance(other, np.ndarray):
+        if not is_scalar and not isinstance(other, list):
             return NotImplemented
-        if not is_scalar or not np.isinf(other):
+        if not is_scalar or not (isinstance(other, (int, float)) and float('inf') == other):
             message = (
                 "Cannot perform comparison {value1} %s {value2}, units do not match"
                 % operator_str
             )
             fail_for_dimension_mismatch(self, other, message, value1=self, value2=other)
-        return operation(np.asarray(self), np.asarray(other))
+        if isinstance(other,list):
+            return operation(self.array, other)
+        else:
+            return operation(self.array, list(other))
 
     def __lt__(self, other):
         return self._comparison(other, "<", operator.lt)
@@ -1566,7 +1643,7 @@ class Quantity(np.ndarray):
 
     #### MAKE QUANTITY PICKABLE ####
     def __reduce__(self):
-        return quantity_with_dimensions, (np.asarray(self), self.dim)
+        return quantity_with_dimensions, (self.arr, self.dim)
 
     #### REPRESENTATION ####
     def __repr__(self):
@@ -1901,8 +1978,8 @@ class Unit(Quantity):
     ):
         if dim is None:
             dim = DIMENSIONLESS
-        obj = super().__new__(
-            cls, arr, dim=dim, dtype=dtype, copy=copy, force_quantity=True
+        obj = super().__init__(
+            cls, arr, dim=dim, copy=copy, force_quantity=True
         )
         return obj
 
