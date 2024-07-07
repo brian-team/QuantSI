@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>unitSI.fundamentalunits module &mdash; unitSI v1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=e160b93e"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="unitSI.stdunits module" href="unitSI.stdunits.html" />
+    <link rel="prev" title="unitSI.constants module" href="unitSI.constants.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            unitSI
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">unitSI</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="unitSI.html">unitSI package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="unitSI.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="unitSI.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="unitSI.allunits.html">unitSI.allunits module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unitSI.constants.html">unitSI.constants module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">unitSI.fundamentalunits module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unitSI.stdunits.html">unitSI.stdunits module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unitSI.unitsafefunctions.html">unitSI.unitsafefunctions module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="unitSI.html#module-unitSI">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">unitSI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">unitSI</a></li>
+          <li class="breadcrumb-item"><a href="unitSI.html">unitSI package</a></li>
+      <li class="breadcrumb-item active">unitSI.fundamentalunits module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/unitSI.fundamentalunits.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-unitSI.fundamentalunits">
+<span id="unitsi-fundamentalunits-module"></span><h1>unitSI.fundamentalunits module<a class="headerlink" href="#module-unitSI.fundamentalunits" title="Link to this heading"></a></h1>
+<p>Defines physical units and quantities</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Quantity</p></td>
+<td><p>Unit</p></td>
+<td><p>Symbol</p></td>
+</tr>
+<tr class="row-even"><td><p>Length</p></td>
+<td><p>metre</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mass</p></td>
+<td><p>kilogram</p></td>
+<td><p>kg</p></td>
+</tr>
+<tr class="row-even"><td><p>Time</p></td>
+<td><p>second</p></td>
+<td><p>s</p></td>
+</tr>
+<tr class="row-odd"><td><p>Electric current</p></td>
+<td><p>ampere</p></td>
+<td><p>A</p></td>
+</tr>
+<tr class="row-even"><td><p>Temperature</p></td>
+<td><p>kelvin</p></td>
+<td><p>K</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantity of substance</p></td>
+<td><p>mole</p></td>
+<td><p>mol</p></td>
+</tr>
+<tr class="row-even"><td><p>Luminosity</p></td>
+<td><p>candle</p></td>
+<td><p>cd</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py exception">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.DimensionMismatchError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">unitSI.fundamentalunits.</span></span><span class="sig-name descname"><span class="pre">DimensionMismatchError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">dims</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#DimensionMismatchError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.DimensionMismatchError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Exception class for attempted operations with inconsistent dimensions.</p>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">3*mvolt</span> <span class="pre">+</span> <span class="pre">2*amp</span></code> raises this exception. The purpose of this
+class is to help catch errors based on incorrect units. The exception will
+print a representation of the dimensions of the two inconsistent objects
+that were operated on.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<dl>
+<dt>description<span class="classifier"><code class="docutils literal notranslate"><span class="pre">str</span></code></span></dt><dd><p>A description of the type of operation being performed, e.g. Addition,
+Multiplication, etc.</p>
+</dd>
+<dt>dims<span class="classifier"><cite>Dimension</cite></span></dt><dd><p>The physical dimensions of the objects involved in the operation, any
+number of them is possible</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">unitSI.fundamentalunits.</span></span><span class="sig-name descname"><span class="pre">Quantity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_quantity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Quantity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Quantity" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></p>
+<p>A number with an associated physical dimension. In most cases, it is not
+necessary to create a Quantity object by hand, instead use multiplication
+and division of numbers with the constant unit names <code class="docutils literal notranslate"><span class="pre">second</span></code>,
+<code class="docutils literal notranslate"><span class="pre">kilogram</span></code>, etc.</p>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<p>The <cite>Quantity</cite> class defines arithmetic operations which check for
+consistency of dimensions and raise the DimensionMismatchError exception
+if they are inconsistent. It also defines default and other representations
+for a number for printing purposes.</p>
+<p>See the documentation on the Unit class for more details
+about the available unit names like mvolt, etc.</p>
+<p><em>Casting rules</em></p>
+<p>The rules that define the casting operations for
+Quantity object are:</p>
+<ol class="arabic simple">
+<li><p>Quantity op Quantity = Quantity
+Performs dimension checking if appropriate</p></li>
+<li><p>(Scalar or Array) op Quantity = Quantity
+Assumes that the scalar or array is dimensionless</p></li>
+</ol>
+<p>There is one exception to the above rule, the number <code class="docutils literal notranslate"><span class="pre">0</span></code> is interpreted
+as having “any dimension”.</p>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">brian2</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">I</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">amp</span> <span class="c1"># I is a Quantity object</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">R</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">ohm</span> <span class="c1"># same for R</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">I</span> <span class="o">*</span> <span class="n">R</span>
+<span class="go">6. * volt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">I</span> <span class="o">*</span> <span class="n">R</span><span class="p">)</span><span class="o">.</span><span class="n">in_unit</span><span class="p">(</span><span class="n">mvolt</span><span class="p">)</span>
+<span class="go">&#39;6000. mV&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">I</span> <span class="o">*</span> <span class="n">R</span><span class="p">)</span> <span class="o">/</span> <span class="n">mvolt</span>
+<span class="go">6000.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">I</span> <span class="o">+</span> <span class="n">R</span>  
+<span class="gt">Traceback (most recent call last):</span>
+<span class="w">    </span><span class="o">...</span>
+<span class="gr">DimensionMismatchError</span>: <span class="n">Addition, dimensions were (A) (m^2 kg s^-3 A^-2)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Is</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span> <span class="o">*</span> <span class="n">amp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Is</span> <span class="o">*</span> <span class="n">R</span>
+<span class="go">array([ 2.,  4.,  6.]) * volt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">Is</span> <span class="o">*</span> <span class="n">R</span><span class="p">)</span> <span class="c1"># gets rid of units</span>
+<span class="go">array([ 2.,  4.,  6.])</span>
+</pre></div>
+</div>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<p>Unit</p>
+</section>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading"></a></h2>
+<p>dimensions
+is_dimensionless
+dim : Dimensions</p>
+<blockquote>
+<div><p>The physical dimensions of this quantity.</p>
+</div></blockquote>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Link to this heading"></a></h2>
+<p>with_dimensions
+has_same_dimensions
+in_unit
+in_best_unit</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.all">
+<span class="sig-name descname"><span class="pre">all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">where</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.all" title="Link to this definition"></a></dt>
+<dd><p>Returns True if all elements evaluate to True.</p>
+<p>Refer to <cite>numpy.all</cite> for full documentation.</p>
+<section id="id1">
+<h3>See Also<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>numpy.all : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.any">
+<span class="sig-name descname"><span class="pre">any</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">where</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.any" title="Link to this definition"></a></dt>
+<dd><p>Returns True if any of the elements of <cite>a</cite> evaluate to True.</p>
+<p>Refer to <cite>numpy.any</cite> for full documentation.</p>
+<section id="id2">
+<h3>See Also<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>numpy.any : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.argmax">
+<span class="sig-name descname"><span class="pre">argmax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.argmax" title="Link to this definition"></a></dt>
+<dd><p>Return indices of the maximum values along the given axis.</p>
+<p>Refer to <cite>numpy.argmax</cite> for full documentation.</p>
+<section id="id3">
+<h3>See Also<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>numpy.argmax : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.argmin">
+<span class="sig-name descname"><span class="pre">argmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.argmin" title="Link to this definition"></a></dt>
+<dd><p>Return indices of the minimum values along the given axis.</p>
+<p>Refer to <cite>numpy.argmin</cite> for detailed documentation.</p>
+<section id="id4">
+<h3>See Also<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>numpy.argmin : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.argsort">
+<span class="sig-name descname"><span class="pre">argsort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.argsort" title="Link to this definition"></a></dt>
+<dd><p>Returns the indices that would sort this array.</p>
+<p>Refer to <cite>numpy.argsort</cite> for full documentation.</p>
+<section id="id5">
+<h3>See Also<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>numpy.argsort : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.clip">
+<span class="sig-name descname"><span class="pre">clip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Quantity.clip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.clip" title="Link to this definition"></a></dt>
+<dd><p>Return an array whose values are limited to <code class="docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max]</span></code>.
+One of max or min must be given.</p>
+<p>Refer to <cite>numpy.clip</cite> for full documentation.</p>
+<section id="id6">
+<h3>See Also<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>numpy.clip : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.cumprod">
+<span class="sig-name descname"><span class="pre">cumprod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Quantity.cumprod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.cumprod" title="Link to this definition"></a></dt>
+<dd><p>Return the cumulative product of the elements along the given axis.</p>
+<p>Refer to <cite>numpy.cumprod</cite> for full documentation.</p>
+<section id="id7">
+<h3>See Also<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<p>numpy.cumprod : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.cumsum">
+<span class="sig-name descname"><span class="pre">cumsum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.cumsum" title="Link to this definition"></a></dt>
+<dd><p>Return the cumulative sum of the elements along the given axis.</p>
+<p>Refer to <cite>numpy.cumsum</cite> for full documentation.</p>
+<section id="id8">
+<h3>See Also<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<p>numpy.cumsum : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.diagonal">
+<span class="sig-name descname"><span class="pre">diagonal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.diagonal" title="Link to this definition"></a></dt>
+<dd><p>Return specified diagonals. In NumPy 1.9 the returned array is a
+read-only view instead of a copy as in previous NumPy versions.  In
+a future version the read-only restriction will be removed.</p>
+<p>Refer to <code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.diagonal()</span></code> for full documentation.</p>
+<section id="id9">
+<h3>See Also<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<p>numpy.diagonal : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.dim">
+<span class="sig-name descname"><span class="pre">dim</span></span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.dim" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.dimensions">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dimensions</span></span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.dimensions" title="Link to this definition"></a></dt>
+<dd><p>The physical dimensions of this quantity.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.dot">
+<span class="sig-name descname"><span class="pre">dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Quantity.dot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.dot" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.fill">
+<span class="sig-name descname"><span class="pre">fill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Quantity.fill"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.fill" title="Link to this definition"></a></dt>
+<dd><p>Fill the array with a scalar value.</p>
+<section id="id10">
+<h3>Parameters<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>value<span class="classifier">scalar</span></dt><dd><p>All elements of <cite>a</cite> will be assigned this value.</p>
+</dd>
+</dl>
+</section>
+<section id="id11">
+<h3>Examples<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([0, 0])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([1.,  1.])</span>
+</pre></div>
+</div>
+<p>Fill expects a scalar value and always behaves the same as assigning
+to a single array element.  The following is a rare example where this
+distinction is important:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([array(3), None], dtype=object)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([array(3), array(3)], dtype=object)</span>
+</pre></div>
+</div>
+<p>Where other forms of assignments will unpack the array being assigned:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([3, 3], dtype=object)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.get_best_unit">
+<span class="sig-name descname"><span class="pre">get_best_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">regs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Quantity.get_best_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.get_best_unit" title="Link to this definition"></a></dt>
+<dd><p>Return the best unit for this <cite>Quantity</cite>.</p>
+<section id="id12">
+<h3>Parameters<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<dl>
+<dt>regs<span class="classifier">any number of <cite>UnitRegistry</cite> objects</span></dt><dd><p>The registries that are searched for units. If none are provided, it
+will check the standard, user and additional unit registers in turn.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading"></a></h3>
+<blockquote>
+<div><dl>
+<dt>u<span class="classifier"><cite>Quantity</cite> or <cite>Unit</cite></span></dt><dd><p>The best-fitting unit for the quantity <cite>x</cite>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.has_same_dimensions">
+<span class="sig-name descname"><span class="pre">has_same_dimensions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Quantity.has_same_dimensions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.has_same_dimensions" title="Link to this definition"></a></dt>
+<dd><p>Return whether this object has the same dimensions as another.</p>
+<section id="id13">
+<h3>Parameters<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<dl>
+<dt>other<span class="classifier">{<cite>Quantity</cite>, array-like, number}</span></dt><dd><p>The object to compare the dimensions against.</p>
+</dd>
+</dl>
+</section>
+<section id="id14">
+<h3>Returns<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<dl>
+<dt>same<span class="classifier"><cite>bool</cite></span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if <cite>other</cite> has the same dimensions.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.in_best_unit">
+<span class="sig-name descname"><span class="pre">in_best_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">python_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">regs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Quantity.in_best_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.in_best_unit" title="Link to this definition"></a></dt>
+<dd><p>Represent the quantity in the “best” unit.</p>
+<section id="id15">
+<h3>Parameters<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<dl>
+<dt>python_code<span class="classifier"><cite>bool</cite>, optional</span></dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">False</span></code> (the default), will return a string like
+<code class="docutils literal notranslate"><span class="pre">5.0</span> <span class="pre">um^2</span></code> which is not a valid Python expression. If set to
+<code class="docutils literal notranslate"><span class="pre">True</span></code>, it will return <code class="docutils literal notranslate"><span class="pre">5.0</span> <span class="pre">*</span> <span class="pre">um</span> <span class="pre">**</span> <span class="pre">2</span></code> instead.</p>
+</dd>
+<dt>precision<span class="classifier"><cite>int</cite>, optional</span></dt><dd><p>The number of digits of precision (in the best unit, see
+Examples). If no value is given, numpy’s
+<cite>get_printoptions</cite> value is used.</p>
+</dd>
+<dt>regs<span class="classifier"><cite>UnitRegistry</cite> objects</span></dt><dd><p>The registries where to search for units. If none are given, the
+standard, user-defined and additional registries are searched in
+that order.</p>
+</dd>
+</dl>
+</section>
+<section id="id16">
+<h3>Returns<a class="headerlink" href="#id16" title="Link to this heading"></a></h3>
+<dl>
+<dt>representation<span class="classifier"><cite>str</cite></span></dt><dd><p>A string representation of this <cite>Quantity</cite>.</p>
+</dd>
+</dl>
+</section>
+<section id="id17">
+<h3>Examples<a class="headerlink" href="#id17" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">brian2.units</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.00123456</span> <span class="o">*</span> <span class="n">volt</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">in_best_unit</span><span class="p">()</span>
+<span class="go">&#39;1.23456 mV&#39;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">in_best_unit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">&#39;1.235 mV&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id18">
+<h3>See Also<a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
+<p>in_best_unit</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.in_unit">
+<span class="sig-name descname"><span class="pre">in_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">python_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Quantity.in_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.in_unit" title="Link to this definition"></a></dt>
+<dd><p>Represent the quantity in a given unit. If <cite>python_code</cite> is <code class="docutils literal notranslate"><span class="pre">True</span></code>,
+this will return valid python code, i.e. a string like <code class="docutils literal notranslate"><span class="pre">5.0</span> <span class="pre">*</span> <span class="pre">um</span> <span class="pre">**</span> <span class="pre">2</span></code>
+instead of <code class="docutils literal notranslate"><span class="pre">5.0</span> <span class="pre">um^2</span></code></p>
+<section id="id19">
+<h3>Parameters<a class="headerlink" href="#id19" title="Link to this heading"></a></h3>
+<dl>
+<dt>u<span class="classifier">{<cite>Quantity</cite>, <cite>Unit</cite>}</span></dt><dd><p>The unit in which to show the quantity.</p>
+</dd>
+<dt>precision<span class="classifier"><cite>int</cite>, optional</span></dt><dd><p>The number of digits of precision (in the given unit, see Examples).
+If no value is given, numpy’s <cite>get_printoptions</cite> value is used.</p>
+</dd>
+<dt>python_code<span class="classifier"><cite>bool</cite>, optional</span></dt><dd><p>Whether to return valid python code (<code class="docutils literal notranslate"><span class="pre">True</span></code>) or a human readable
+string (<code class="docutils literal notranslate"><span class="pre">False</span></code>, the default).</p>
+</dd>
+</dl>
+</section>
+<section id="id20">
+<h3>Returns<a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
+<dl>
+<dt>s<span class="classifier"><cite>str</cite></span></dt><dd><p>String representation of the object in unit <cite>u</cite>.</p>
+</dd>
+</dl>
+</section>
+<section id="id21">
+<h3>Examples<a class="headerlink" href="#id21" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">brian2.units</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">brian2.units.stdunits</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mf">25.123456</span> <span class="o">*</span> <span class="n">mV</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">in_unit</span><span class="p">(</span><span class="n">volt</span><span class="p">)</span>
+<span class="go">&#39;0.02512346 V&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">in_unit</span><span class="p">(</span><span class="n">volt</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">&#39;0.025 V&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">in_unit</span><span class="p">(</span><span class="n">mV</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">&#39;25.123 mV&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id22">
+<h3>See Also<a class="headerlink" href="#id22" title="Link to this heading"></a></h3>
+<p>in_unit</p>
+</section>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.is_dimensionless">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_dimensionless</span></span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.is_dimensionless" title="Link to this definition"></a></dt>
+<dd><p>Whether this is a dimensionless quantity.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.item">
+<span class="sig-name descname"><span class="pre">item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Quantity.item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.item" title="Link to this definition"></a></dt>
+<dd><p>Overwritten to assure that the returned element retains its unit.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.matplotlib">
+<span class="sig-name descname"><span class="pre">matplotlib</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;module</span> <span class="pre">'matplotlib'</span> <span class="pre">from</span> <span class="pre">'/home/sorin-wsl/anaconda3/lib/python3.11/site-packages/matplotlib/__init__.py'&gt;</span></em><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.matplotlib" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.max">
+<span class="sig-name descname"><span class="pre">max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial=&lt;no</span> <span class="pre">value&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">where=True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.max" title="Link to this definition"></a></dt>
+<dd><p>Return the maximum along a given axis.</p>
+<p>Refer to <cite>numpy.amax</cite> for full documentation.</p>
+<section id="id23">
+<h3>See Also<a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
+<p>numpy.amax : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.mean">
+<span class="sig-name descname"><span class="pre">mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">where</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.mean" title="Link to this definition"></a></dt>
+<dd><p>Returns the average of the array elements along given axis.</p>
+<p>Refer to <cite>numpy.mean</cite> for full documentation.</p>
+<section id="id24">
+<h3>See Also<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
+<p>numpy.mean : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.min">
+<span class="sig-name descname"><span class="pre">min</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial=&lt;no</span> <span class="pre">value&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">where=True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.min" title="Link to this definition"></a></dt>
+<dd><p>Return the minimum along a given axis.</p>
+<p>Refer to <cite>numpy.amin</cite> for full documentation.</p>
+<section id="id25">
+<h3>See Also<a class="headerlink" href="#id25" title="Link to this heading"></a></h3>
+<p>numpy.amin : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.nonzero">
+<span class="sig-name descname"><span class="pre">nonzero</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.nonzero" title="Link to this definition"></a></dt>
+<dd><p>Return the indices of the elements that are non-zero.</p>
+<p>Refer to <cite>numpy.nonzero</cite> for full documentation.</p>
+<section id="id26">
+<h3>See Also<a class="headerlink" href="#id26" title="Link to this heading"></a></h3>
+<p>numpy.nonzero : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.prod">
+<span class="sig-name descname"><span class="pre">prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">where</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Quantity.prod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.prod" title="Link to this definition"></a></dt>
+<dd><p>Return the product of the array elements over the given axis</p>
+<p>Refer to <cite>numpy.prod</cite> for full documentation.</p>
+<section id="id27">
+<h3>See Also<a class="headerlink" href="#id27" title="Link to this heading"></a></h3>
+<p>numpy.prod : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.ptp">
+<span class="sig-name descname"><span class="pre">ptp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.ptp" title="Link to this definition"></a></dt>
+<dd><p>Peak to peak (maximum - minimum) value along a given axis.</p>
+<p>Refer to <cite>numpy.ptp</cite> for full documentation.</p>
+<section id="id28">
+<h3>See Also<a class="headerlink" href="#id28" title="Link to this heading"></a></h3>
+<p>numpy.ptp : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.put">
+<span class="sig-name descname"><span class="pre">put</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Quantity.put"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.put" title="Link to this definition"></a></dt>
+<dd><p>Set <code class="docutils literal notranslate"><span class="pre">a.flat[n]</span> <span class="pre">=</span> <span class="pre">values[n]</span></code> for all <cite>n</cite> in indices.</p>
+<p>Refer to <cite>numpy.put</cite> for full documentation.</p>
+<section id="id29">
+<h3>See Also<a class="headerlink" href="#id29" title="Link to this heading"></a></h3>
+<p>numpy.put : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.ravel">
+<span class="sig-name descname"><span class="pre">ravel</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">order</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Quantity.ravel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.ravel" title="Link to this definition"></a></dt>
+<dd><p>Return a flattened array.</p>
+<p>Refer to <cite>numpy.ravel</cite> for full documentation.</p>
+<section id="id30">
+<h3>See Also<a class="headerlink" href="#id30" title="Link to this heading"></a></h3>
+<p>numpy.ravel : equivalent function</p>
+<p>ndarray.flat : a flat iterator on the array.</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.round">
+<span class="sig-name descname"><span class="pre">round</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">decimals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.round" title="Link to this definition"></a></dt>
+<dd><p>Return <cite>a</cite> with each element rounded to the given number of decimals.</p>
+<p>Refer to <cite>numpy.around</cite> for full documentation.</p>
+<section id="id31">
+<h3>See Also<a class="headerlink" href="#id31" title="Link to this heading"></a></h3>
+<p>numpy.around : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.searchsorted">
+<span class="sig-name descname"><span class="pre">searchsorted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'left'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sorter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Quantity.searchsorted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.searchsorted" title="Link to this definition"></a></dt>
+<dd><p>Find indices where elements of v should be inserted in a to maintain order.</p>
+<p>For full documentation, see <cite>numpy.searchsorted</cite></p>
+<section id="id32">
+<h3>See Also<a class="headerlink" href="#id32" title="Link to this heading"></a></h3>
+<p>numpy.searchsorted : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.std">
+<span class="sig-name descname"><span class="pre">std</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">where</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.std" title="Link to this definition"></a></dt>
+<dd><p>Returns the standard deviation of the array elements along given axis.</p>
+<p>Refer to <cite>numpy.std</cite> for full documentation.</p>
+<section id="id33">
+<h3>See Also<a class="headerlink" href="#id33" title="Link to this heading"></a></h3>
+<p>numpy.std : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.sum">
+<span class="sig-name descname"><span class="pre">sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">where</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.sum" title="Link to this definition"></a></dt>
+<dd><p>Return the sum of the array elements over the given axis.</p>
+<p>Refer to <cite>numpy.sum</cite> for full documentation.</p>
+<section id="id34">
+<h3>See Also<a class="headerlink" href="#id34" title="Link to this heading"></a></h3>
+<p>numpy.sum : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.tolist">
+<span class="sig-name descname"><span class="pre">tolist</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Quantity.tolist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.tolist" title="Link to this definition"></a></dt>
+<dd><p>Convert the array into a list.</p>
+<section id="id35">
+<h3>Returns<a class="headerlink" href="#id35" title="Link to this heading"></a></h3>
+<dl>
+<dt>l<span class="classifier">list of <cite>Quantity</cite></span></dt><dd><p>A (possibly nested) list equivalent to the original array.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.trace">
+<span class="sig-name descname"><span class="pre">trace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.trace" title="Link to this definition"></a></dt>
+<dd><p>Return the sum along diagonals of the array.</p>
+<p>Refer to <cite>numpy.trace</cite> for full documentation.</p>
+<section id="id36">
+<h3>See Also<a class="headerlink" href="#id36" title="Link to this heading"></a></h3>
+<p>numpy.trace : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.use_matplotlib_units_fix">
+<span class="sig-name descname"><span class="pre">use_matplotlib_units_fix</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.use_matplotlib_units_fix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.var">
+<span class="sig-name descname"><span class="pre">var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">where</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.var" title="Link to this definition"></a></dt>
+<dd><p>Returns the variance of the array elements, along given axis.</p>
+<p>Refer to <cite>numpy.var</cite> for full documentation.</p>
+<section id="id37">
+<h3>See Also<a class="headerlink" href="#id37" title="Link to this heading"></a></h3>
+<p>numpy.var : equivalent function</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Quantity.with_dimensions">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">with_dimensions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">keywords</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Quantity.with_dimensions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Quantity.with_dimensions" title="Link to this definition"></a></dt>
+<dd><p>Create a <cite>Quantity</cite> object with dim.</p>
+<section id="id38">
+<h3>Parameters<a class="headerlink" href="#id38" title="Link to this heading"></a></h3>
+<dl>
+<dt>value<span class="classifier">{array_like, number}</span></dt><dd><p>The value of the dimension</p>
+</dd>
+<dt>args<span class="classifier">{<cite>Dimension</cite>, sequence of float}</span></dt><dd><p>Either a single argument (a <cite>Dimension</cite>) or a sequence of 7 values.</p>
+</dd>
+<dt>kwds</dt><dd><p>Keywords defining the dim, see <cite>Dimension</cite> for details.</p>
+</dd>
+</dl>
+</section>
+<section id="id39">
+<h3>Returns<a class="headerlink" href="#id39" title="Link to this heading"></a></h3>
+<dl>
+<dt>q<span class="classifier"><cite>Quantity</cite></span></dt><dd><p>A <cite>Quantity</cite> object with the given dim</p>
+</dd>
+</dl>
+</section>
+<section id="id40">
+<h3>Examples<a class="headerlink" href="#id40" title="Link to this heading"></a></h3>
+<p>All of these define an equivalent <cite>Quantity</cite> object:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">brian2</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Quantity</span><span class="o">.</span><span class="n">with_dimensions</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">get_or_create_dimension</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="go">2. * metre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Quantity</span><span class="o">.</span><span class="n">with_dimensions</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">2. * metre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="o">*</span> <span class="n">metre</span>
+<span class="go">2. * metre</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Unit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">unitSI.fundamentalunits.</span></span><span class="sig-name descname"><span class="pre">Unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dispname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latexname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iscompound</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Unit" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#unitSI.fundamentalunits.Quantity" title="unitSI.fundamentalunits.Quantity"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code></a></p>
+<blockquote>
+<div><p>A physical unit.</p>
+<p>Normally, you do not need to worry about the implementation of
+units. They are derived from the <cite>Quantity</cite> object with
+some additional information (name and string representation).</p>
+<p>Basically, a unit is just a number with given dimensions, e.g.
+mvolt = 0.001 with the dimensions of voltage. The units module
+defines a large number of standard units, and you can also define
+your own (see below).</p>
+<p>The unit class also keeps track of various things that were used
+to define it so as to generate a nice string representation of it.
+See below.</p>
+<p>When creating scaled units, you can use the following prefixes:</p>
+<blockquote>
+<div><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Factor</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Prefix</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>10^24</p></td>
+<td><p>yotta</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-odd"><td><p>10^21</p></td>
+<td><p>zetta</p></td>
+<td><p>Z</p></td>
+</tr>
+<tr class="row-even"><td><p>10^18</p></td>
+<td><p>exa</p></td>
+<td><p>E</p></td>
+</tr>
+<tr class="row-odd"><td><p>10^15</p></td>
+<td><p>peta</p></td>
+<td><p>P</p></td>
+</tr>
+<tr class="row-even"><td><p>10^12</p></td>
+<td><p>tera</p></td>
+<td><p>T</p></td>
+</tr>
+<tr class="row-odd"><td><p>10^9</p></td>
+<td><p>giga</p></td>
+<td><p>G</p></td>
+</tr>
+<tr class="row-even"><td><p>10^6</p></td>
+<td><p>mega</p></td>
+<td><p>M</p></td>
+</tr>
+<tr class="row-odd"><td><p>10^3</p></td>
+<td><p>kilo</p></td>
+<td><p>k</p></td>
+</tr>
+<tr class="row-even"><td><p>10^2</p></td>
+<td><p>hecto</p></td>
+<td><p>h</p></td>
+</tr>
+<tr class="row-odd"><td><p>10^1</p></td>
+<td><p>deka</p></td>
+<td><p>da</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>10^-1</p></td>
+<td><p>deci</p></td>
+<td><p>d</p></td>
+</tr>
+<tr class="row-even"><td><p>10^-2</p></td>
+<td><p>centi</p></td>
+<td><p>c</p></td>
+</tr>
+<tr class="row-odd"><td><p>10^-3</p></td>
+<td><p>milli</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>10^-6</p></td>
+<td><p>micro</p></td>
+<td><p>u (mu in SI)</p></td>
+</tr>
+<tr class="row-odd"><td><p>10^-9</p></td>
+<td><p>nano</p></td>
+<td><p>n</p></td>
+</tr>
+<tr class="row-even"><td><p>10^-12</p></td>
+<td><p>pico</p></td>
+<td><p>p</p></td>
+</tr>
+<tr class="row-odd"><td><p>10^-15</p></td>
+<td><p>femto</p></td>
+<td><p>f</p></td>
+</tr>
+<tr class="row-even"><td><p>10^-18</p></td>
+<td><p>atto</p></td>
+<td><p>a</p></td>
+</tr>
+<tr class="row-odd"><td><p>10^-21</p></td>
+<td><p>zepto</p></td>
+<td><p>z</p></td>
+</tr>
+<tr class="row-even"><td><p>10^-24</p></td>
+<td><p>yocto</p></td>
+<td><p>y</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div></blockquote>
+<p><strong>Defining your own</strong></p>
+<blockquote>
+<div><p>It can be useful to define your own units for printing
+purposes. So for example, to define the newton metre, you
+write</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">brian2</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">brian2.units.allunits</span> <span class="kn">import</span> <span class="n">newton</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm</span> <span class="o">=</span> <span class="n">newton</span> <span class="o">*</span> <span class="n">metre</span>
+</pre></div>
+</div>
+<p>You can then do</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">Nm</span><span class="p">)</span><span class="o">.</span><span class="n">in_unit</span><span class="p">(</span><span class="n">Nm</span><span class="p">)</span>
+<span class="go">&#39;1. N m&#39;</span>
+</pre></div>
+</div>
+<p>New “compound units”, i.e. units that are composed of other units will be
+automatically registered and from then on used for display. For example,
+imagine you define total conductance for a membrane, and the total area of
+that membrane:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">conductance</span> <span class="o">=</span> <span class="mf">10.</span><span class="o">*</span><span class="n">nS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">area</span> <span class="o">=</span> <span class="mi">20000</span><span class="o">*</span><span class="n">um</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>If you now ask for the conductance density, you will get an “ugly” display
+in basic SI dimensions, as Brian does not know of a corresponding unit:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">conductance</span><span class="o">/</span><span class="n">area</span>
+<span class="go">0.5 * metre ** -4 * kilogram ** -1 * second ** 3 * amp ** 2</span>
+</pre></div>
+</div>
+<p>By using an appropriate unit once, it will be registered and from then on
+used for display when appropriate:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">usiemens</span><span class="o">/</span><span class="n">cm</span><span class="o">**</span><span class="mi">2</span>
+<span class="go">usiemens / (cmetre ** 2)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conductance</span><span class="o">/</span><span class="n">area</span>  <span class="c1"># same as before, but now Brian knows about uS/cm^2</span>
+<span class="go">50. * usiemens / (cmetre ** 2)</span>
+</pre></div>
+</div>
+<p>Note that user-defined units cannot override the standard units (<cite>volt</cite>,
+<cite>second</cite>, etc.) that are predefined by Brian. For example, the unit
+<code class="docutils literal notranslate"><span class="pre">Nm</span></code> has the dimensions “length²·mass/time²”, and therefore the same
+dimensions as the standard unit <cite>joule</cite>. The latter will be used for display
+purposes:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span><span class="o">*</span><span class="n">joule</span>
+<span class="go">3. * joule</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span><span class="o">*</span><span class="n">Nm</span>
+<span class="go">3. * joule</span>
+</pre></div>
+</div>
+</div></blockquote>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Unit.automatically_register_units">
+<span class="sig-name descname"><span class="pre">automatically_register_units</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#unitSI.fundamentalunits.Unit.automatically_register_units" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Unit.create">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dispname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latexname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Unit.create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Unit.create" title="Link to this definition"></a></dt>
+<dd><p>Create a new named unit.</p>
+<section id="id41">
+<h2>Parameters<a class="headerlink" href="#id41" title="Link to this heading"></a></h2>
+<dl>
+<dt>dim<span class="classifier"><cite>Dimension</cite></span></dt><dd><p>The dimensions of the unit.</p>
+</dd>
+<dt>name<span class="classifier"><cite>str</cite></span></dt><dd><p>The full name of the unit, e.g. <code class="docutils literal notranslate"><span class="pre">'volt'</span></code></p>
+</dd>
+<dt>dispname<span class="classifier"><cite>str</cite></span></dt><dd><p>The display name, e.g. <code class="docutils literal notranslate"><span class="pre">'V'</span></code></p>
+</dd>
+<dt>latexname<span class="classifier">str, optional</span></dt><dd><p>The name as a LaTeX expression (math mode is assumed, do not add
+$ signs or similar), e.g. <code class="docutils literal notranslate"><span class="pre">'\omega'</span></code>. If no <cite>latexname</cite> is
+specified, <cite>dispname</cite> will be used.</p>
+</dd>
+<dt>scale<span class="classifier">int, optional</span></dt><dd><p>The scale of this unit as an exponent of 10, e.g. -3 for a unit that
+is 1/1000 of the base scale. Defaults to 0 (i.e. a base unit).</p>
+</dd>
+</dl>
+</section>
+<section id="id42">
+<h2>Returns<a class="headerlink" href="#id42" title="Link to this heading"></a></h2>
+<dl>
+<dt>u<span class="classifier"><cite>Unit</cite></span></dt><dd><p>The new unit.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Unit.create_scaled_unit">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_scaled_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baseunit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scalefactor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Unit.create_scaled_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Unit.create_scaled_unit" title="Link to this definition"></a></dt>
+<dd><p>Create a scaled unit from a base unit.</p>
+<section id="id43">
+<h2>Parameters<a class="headerlink" href="#id43" title="Link to this heading"></a></h2>
+<dl>
+<dt>baseunit<span class="classifier"><cite>Unit</cite></span></dt><dd><p>The unit of which to create a scaled version, e.g. <code class="docutils literal notranslate"><span class="pre">volt</span></code>,
+<code class="docutils literal notranslate"><span class="pre">amp</span></code>.</p>
+</dd>
+<dt>scalefactor<span class="classifier"><cite>str</cite></span></dt><dd><p>The scaling factor, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;m&quot;</span></code> for mvolt, mamp</p>
+</dd>
+</dl>
+</section>
+<section id="id44">
+<h2>Returns<a class="headerlink" href="#id44" title="Link to this heading"></a></h2>
+<dl>
+<dt>u<span class="classifier"><cite>Unit</cite></span></dt><dd><p>The new unit.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Unit.dim">
+<span class="sig-name descname"><span class="pre">dim</span></span><a class="headerlink" href="#unitSI.fundamentalunits.Unit.dim" title="Link to this definition"></a></dt>
+<dd><p>The Dimensions of this unit</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Unit.dispname">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dispname</span></span><a class="headerlink" href="#unitSI.fundamentalunits.Unit.dispname" title="Link to this definition"></a></dt>
+<dd><p>The display name of the unit</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Unit.iscompound">
+<span class="sig-name descname"><span class="pre">iscompound</span></span><a class="headerlink" href="#unitSI.fundamentalunits.Unit.iscompound" title="Link to this definition"></a></dt>
+<dd><p>Whether this unit is a combination of other units.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Unit.latexname">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">latexname</span></span><a class="headerlink" href="#unitSI.fundamentalunits.Unit.latexname" title="Link to this definition"></a></dt>
+<dd><p>The LaTeX name of the unit</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Unit.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#unitSI.fundamentalunits.Unit.name" title="Link to this definition"></a></dt>
+<dd><p>The name of the unit</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Unit.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><a class="headerlink" href="#unitSI.fundamentalunits.Unit.scale" title="Link to this definition"></a></dt>
+<dd><p>The scale for this unit (as the integer exponent of 10), i.e.
+a scale of 3 means 10^3, e.g. for a “k” prefix.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Unit.set_display_name">
+<span class="sig-name descname"><span class="pre">set_display_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Unit.set_display_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Unit.set_display_name" title="Link to this definition"></a></dt>
+<dd><p>Sets the display name for the unit.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.1: </span>Create a new unit with <cite>Unit.create</cite> instead.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Unit.set_latex_name">
+<span class="sig-name descname"><span class="pre">set_latex_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Unit.set_latex_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Unit.set_latex_name" title="Link to this definition"></a></dt>
+<dd><p>Sets the LaTeX name for the unit.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.1: </span>Create a new unit with <cite>Unit.create</cite> instead.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.Unit.set_name">
+<span class="sig-name descname"><span class="pre">set_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#Unit.set_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.Unit.set_name" title="Link to this definition"></a></dt>
+<dd><p>Sets the name for the unit.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.1: </span>Create a new unit with <cite>Unit.create</cite> instead.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.check_units">
+<span class="sig-prename descclassname"><span class="pre">unitSI.fundamentalunits.</span></span><span class="sig-name descname"><span class="pre">check_units</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">au</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#check_units"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.check_units" title="Link to this definition"></a></dt>
+<dd><p>Decorator to check units of arguments passed to a function</p>
+<section id="id45">
+<h2>Examples<a class="headerlink" href="#id45" title="Link to this heading"></a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">brian2.units</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nd">@check_units</span><span class="p">(</span><span class="n">I</span><span class="o">=</span><span class="n">amp</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="n">ohm</span><span class="p">,</span> <span class="n">wibble</span><span class="o">=</span><span class="n">metre</span><span class="p">,</span> <span class="n">result</span><span class="o">=</span><span class="n">volt</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">def</span> <span class="nf">getvoltage</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">I</span><span class="o">*</span><span class="n">R</span>
+</pre></div>
+</div>
+<p>You don’t have to check the units of every variable in the function, and
+you can define what the units should be for variables that aren’t
+explicitly named in the definition of the function. For example, the code
+above checks that the variable wibble should be a length, so writing</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getvoltage</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">amp</span><span class="p">,</span> <span class="mi">1</span><span class="o">*</span><span class="n">ohm</span><span class="p">,</span> <span class="n">wibble</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  
+<span class="gt">Traceback (most recent call last):</span>
+<span class="c">...</span>
+<span class="gr">DimensionMismatchError</span>: <span class="n">Function &quot;getvoltage&quot; variable &quot;wibble&quot; has wrong dimensions, dimensions were (1) (m)</span>
+</pre></div>
+</div>
+<p>fails, but</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getvoltage</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">amp</span><span class="p">,</span> <span class="mi">1</span><span class="o">*</span><span class="n">ohm</span><span class="p">,</span> <span class="n">wibble</span><span class="o">=</span><span class="mi">1</span><span class="o">*</span><span class="n">metre</span><span class="p">)</span>
+<span class="go">1. * volt</span>
+</pre></div>
+</div>
+<p>passes. String arguments or <code class="docutils literal notranslate"><span class="pre">None</span></code> are not checked</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getvoltage</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">amp</span><span class="p">,</span> <span class="mi">1</span><span class="o">*</span><span class="n">ohm</span><span class="p">,</span> <span class="n">wibble</span><span class="o">=</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+<span class="go">1. * volt</span>
+</pre></div>
+</div>
+<p>By using the special name <code class="docutils literal notranslate"><span class="pre">result</span></code>, you can check the return value of the
+function.</p>
+<p>You can also use <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">bool</span></code> as a special value to check for a
+unitless number or a boolean value, respectively:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@check_units</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">absolute</span><span class="o">=</span><span class="nb">bool</span><span class="p">,</span> <span class="n">result</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">def</span> <span class="nf">is_high</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">absolute</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">absolute</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">5</span>
+<span class="gp">... </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p>This will then again raise an error if the argument if not of the expected
+type:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">is_high</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_high</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_high</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>  
+<span class="gt">Traceback (most recent call last):</span>
+<span class="c">...</span>
+<span class="gr">TypeError</span>: <span class="n">Function &quot;is_high&quot; expected a boolean value for argument &quot;absolute&quot; but got 4.</span>
+</pre></div>
+</div>
+<p>If the return unit depends on the unit of an argument, you can also pass
+a function that takes the units of all the arguments as its inputs (in the
+order specified in the function header):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@check_units</span><span class="p">(</span><span class="n">result</span><span class="o">=</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">value</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>If several arguments take arbitrary units but they have to be
+consistent among each other, you can state the name of another argument as
+a string to state that it uses the same unit as that argument.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@check_units</span><span class="p">(</span><span class="n">summand_1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">summand_2</span><span class="o">=</span><span class="s1">&#39;summand_1&#39;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">def</span> <span class="nf">multiply_sum</span><span class="p">(</span><span class="n">multiplicand</span><span class="p">,</span> <span class="n">summand_1</span><span class="p">,</span> <span class="n">summand_2</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="s2">&quot;Calculates multiplicand*(summand_1 + summand_2)&quot;</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">multiplicand</span><span class="o">*</span><span class="p">(</span><span class="n">summand_1</span> <span class="o">+</span> <span class="n">summand_2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multiply_sum</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">mV</span><span class="p">,</span> <span class="mi">5</span><span class="o">*</span><span class="n">mV</span><span class="p">)</span>
+<span class="go">27. * mvolt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multiply_sum</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">nA</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">mV</span><span class="p">,</span> <span class="mi">5</span><span class="o">*</span><span class="n">mV</span><span class="p">)</span>
+<span class="go">27. * pwatt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multiply_sum</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">nA</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">mV</span><span class="p">,</span> <span class="mi">5</span><span class="o">*</span><span class="n">nA</span><span class="p">)</span>  
+<span class="gt">Traceback (most recent call last):</span>
+<span class="c">...</span>
+<span class="gr">brian2.units.fundamentalunits.DimensionMismatchError</span>: <span class="n">Function &#39;multiply_sum&#39; expected the same arguments for arguments &#39;summand_1&#39;, &#39;summand_2&#39;, but argument &#39;summand_1&#39; has unit V, while argument &#39;summand_2&#39; has unit A.</span>
+</pre></div>
+</div>
+</section>
+<section id="raises">
+<h2>Raises<a class="headerlink" href="#raises" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>DimensionMismatchError</dt><dd><p>In case the input arguments or the return value do not have the
+expected dimensions.</p>
+</dd>
+<dt>TypeError</dt><dd><p>If an input argument or return value was expected to be a boolean but
+is not.</p>
+</dd>
+</dl>
+</section>
+<section id="id46">
+<h2>Notes<a class="headerlink" href="#id46" title="Link to this heading"></a></h2>
+<p>This decorator will destroy the signature of the original function, and
+replace it with the signature <code class="docutils literal notranslate"><span class="pre">(*args,</span> <span class="pre">**kwds)</span></code>. Other decorators will
+do the same thing, and this decorator critically needs to know the signature
+of the function it is acting on, so it is important that it is the first
+decorator to act on a function. It cannot be used in combination with
+another decorator that also needs to know the signature of the function.</p>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">bool</span></code> type is “strict”, i.e. it expects a proper
+boolean value and does not accept 0 or 1. This is not the case the other
+way round, declaring an argument or return value as “1” <em>does</em> allow for a
+<code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> value.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.get_dimensions">
+<span class="sig-prename descclassname"><span class="pre">unitSI.fundamentalunits.</span></span><span class="sig-name descname"><span class="pre">get_dimensions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#get_dimensions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.get_dimensions" title="Link to this definition"></a></dt>
+<dd><p>Return the dimensions of any object that has them.</p>
+<p>Slightly more general than <cite>Quantity.dimensions</cite> because it will
+return <cite>DIMENSIONLESS</cite> if the object is of number type but not a <cite>Quantity</cite>
+(e.g. a <cite>float</cite> or <cite>int</cite>).</p>
+<section id="id47">
+<h2>Parameters<a class="headerlink" href="#id47" title="Link to this heading"></a></h2>
+<dl>
+<dt>obj<span class="classifier"><cite>object</cite></span></dt><dd><p>The object to check.</p>
+</dd>
+</dl>
+</section>
+<section id="id48">
+<h2>Returns<a class="headerlink" href="#id48" title="Link to this heading"></a></h2>
+<dl>
+<dt>dim<span class="classifier"><cite>Dimension</cite></span></dt><dd><p>The physical dimensions of the <cite>obj</cite>.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.get_or_create_dimension">
+<span class="sig-prename descclassname"><span class="pre">unitSI.fundamentalunits.</span></span><span class="sig-name descname"><span class="pre">get_or_create_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#get_or_create_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.get_or_create_dimension" title="Link to this definition"></a></dt>
+<dd><p>Create a new Dimension object or get a reference to an existing one.
+This function takes care of only creating new objects if they were not
+created before and otherwise returning a reference to an existing object.
+This allows to compare dimensions very efficiently using <code class="docutils literal notranslate"><span class="pre">is</span></code>.</p>
+<section id="id49">
+<h2>Parameters<a class="headerlink" href="#id49" title="Link to this heading"></a></h2>
+<dl>
+<dt>args<span class="classifier">sequence of <cite>float</cite></span></dt><dd><p>A sequence with the indices of the 7 elements of an SI dimension.</p>
+</dd>
+<dt>kwds<span class="classifier">keyword arguments</span></dt><dd><p>a sequence of <code class="docutils literal notranslate"><span class="pre">keyword=value</span></code> pairs where the keywords are the names of
+the SI dimensions, or the standard unit.</p>
+</dd>
+</dl>
+</section>
+<section id="id50">
+<h2>Examples<a class="headerlink" href="#id50" title="Link to this heading"></a></h2>
+<p>The following are all definitions of the dimensions of force</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">brian2</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_or_create_dimension</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">time</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">metre * kilogram * second ** -2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_or_create_dimension</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kg</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">metre * kilogram * second ** -2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_or_create_dimension</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="go">metre * kilogram * second ** -2</span>
+</pre></div>
+</div>
+</section>
+<section id="id51">
+<h2>Notes<a class="headerlink" href="#id51" title="Link to this heading"></a></h2>
+<p>The 7 units are (in order):</p>
+<p>Length, Mass, Time, Electric Current, Temperature,
+Quantity of Substance, Luminosity</p>
+<p>and can be referred to either by these names or their SI unit names,
+e.g. length, metre, and m all refer to the same thing here.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.get_unit">
+<span class="sig-prename descclassname"><span class="pre">unitSI.fundamentalunits.</span></span><span class="sig-name descname"><span class="pre">get_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#get_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.get_unit" title="Link to this definition"></a></dt>
+<dd><p>Find an unscaled unit (e.g. <cite>volt</cite> but not <cite>mvolt</cite>) for a <cite>Dimension</cite>.</p>
+<section id="id52">
+<h2>Parameters<a class="headerlink" href="#id52" title="Link to this heading"></a></h2>
+<dl>
+<dt>d<span class="classifier"><cite>Dimension</cite></span></dt><dd><p>The dimension to find a unit for.</p>
+</dd>
+</dl>
+</section>
+<section id="id53">
+<h2>Returns<a class="headerlink" href="#id53" title="Link to this heading"></a></h2>
+<dl>
+<dt>u<span class="classifier"><cite>Unit</cite></span></dt><dd><p>A registered unscaled <cite>Unit</cite> for the dimensions <code class="docutils literal notranslate"><span class="pre">d</span></code>, or a new <cite>Unit</cite>
+if no unit was found.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.have_same_dimensions">
+<span class="sig-prename descclassname"><span class="pre">unitSI.fundamentalunits.</span></span><span class="sig-name descname"><span class="pre">have_same_dimensions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#have_same_dimensions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.have_same_dimensions" title="Link to this definition"></a></dt>
+<dd><p>Test if two values have the same dimensions.</p>
+<section id="id54">
+<h2>Parameters<a class="headerlink" href="#id54" title="Link to this heading"></a></h2>
+<dl>
+<dt>obj1, obj2<span class="classifier">{<cite>Quantity</cite>, array-like, number}</span></dt><dd><p>The values of which to compare the dimensions.</p>
+</dd>
+</dl>
+</section>
+<section id="id55">
+<h2>Returns<a class="headerlink" href="#id55" title="Link to this heading"></a></h2>
+<dl>
+<dt>same<span class="classifier"><cite>bool</cite></span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if <cite>obj1</cite> and <cite>obj2</cite> have the same dimensions.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.in_best_unit">
+<span class="sig-prename descclassname"><span class="pre">unitSI.fundamentalunits.</span></span><span class="sig-name descname"><span class="pre">in_best_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#in_best_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.in_best_unit" title="Link to this definition"></a></dt>
+<dd><p>Represent the value in the “best” unit.</p>
+<section id="id56">
+<h2>Parameters<a class="headerlink" href="#id56" title="Link to this heading"></a></h2>
+<dl>
+<dt>x<span class="classifier">{<cite>Quantity</cite>, array-like, number}</span></dt><dd><p>The value to display</p>
+</dd>
+<dt>precision<span class="classifier"><cite>int</cite>, optional</span></dt><dd><p>The number of digits of precision (in the best unit, see Examples).
+If no value is given, numpy’s <cite>get_printoptions</cite> value is used.</p>
+</dd>
+</dl>
+</section>
+<section id="id57">
+<h2>Returns<a class="headerlink" href="#id57" title="Link to this heading"></a></h2>
+<dl>
+<dt>representation<span class="classifier"><cite>str</cite></span></dt><dd><p>A string representation of this <cite>Quantity</cite>.</p>
+</dd>
+</dl>
+</section>
+<section id="id58">
+<h2>Examples<a class="headerlink" href="#id58" title="Link to this heading"></a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">brian2.units</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">in_best_unit</span><span class="p">(</span><span class="mf">0.00123456</span> <span class="o">*</span> <span class="n">volt</span><span class="p">)</span>
+<span class="go">&#39;1.23456 mV&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">in_best_unit</span><span class="p">(</span><span class="mf">0.00123456</span> <span class="o">*</span> <span class="n">volt</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">&#39;1.23 mV&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">in_best_unit</span><span class="p">(</span><span class="mf">0.123456</span><span class="p">)</span>
+<span class="go">&#39;0.123456&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">in_best_unit</span><span class="p">(</span><span class="mf">0.123456</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">&#39;0.12&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id59">
+<h2>See Also<a class="headerlink" href="#id59" title="Link to this heading"></a></h2>
+<p>Quantity.in_best_unit</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.in_unit">
+<span class="sig-prename descclassname"><span class="pre">unitSI.fundamentalunits.</span></span><span class="sig-name descname"><span class="pre">in_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#in_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.in_unit" title="Link to this definition"></a></dt>
+<dd><p>Display a value in a certain unit with a given precision.</p>
+<section id="id60">
+<h2>Parameters<a class="headerlink" href="#id60" title="Link to this heading"></a></h2>
+<dl>
+<dt>x<span class="classifier">{<cite>Quantity</cite>, array-like, number}</span></dt><dd><p>The value to display</p>
+</dd>
+<dt>u<span class="classifier">{<cite>Quantity</cite>, <cite>Unit</cite>}</span></dt><dd><p>The unit to display the value <cite>x</cite> in.</p>
+</dd>
+<dt>precision<span class="classifier"><cite>int</cite>, optional</span></dt><dd><p>The number of digits of precision (in the given unit, see Examples).
+If no value is given, numpy’s <cite>get_printoptions</cite> value is used.</p>
+</dd>
+</dl>
+</section>
+<section id="id61">
+<h2>Returns<a class="headerlink" href="#id61" title="Link to this heading"></a></h2>
+<dl>
+<dt>s<span class="classifier"><cite>str</cite></span></dt><dd><p>A string representation of <cite>x</cite> in units of <cite>u</cite>.</p>
+</dd>
+</dl>
+</section>
+<section id="id62">
+<h2>Examples<a class="headerlink" href="#id62" title="Link to this heading"></a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">brian2</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">in_unit</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">volt</span><span class="p">,</span> <span class="n">mvolt</span><span class="p">)</span>
+<span class="go">&#39;3000. mV&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">in_unit</span><span class="p">(</span><span class="mi">123123</span> <span class="o">*</span> <span class="n">msecond</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">&#39;123.12 s&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">in_unit</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">uA</span><span class="o">/</span><span class="n">cm</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">nA</span><span class="o">/</span><span class="n">um</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">&#39;1.00000000e-04 nA/(um^2)&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">in_unit</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">mV</span><span class="p">,</span> <span class="n">ohm</span> <span class="o">*</span> <span class="n">amp</span><span class="p">)</span>
+<span class="go">&#39;0.01 ohm A&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">in_unit</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">nS</span><span class="p">,</span> <span class="n">ohm</span><span class="p">)</span> 
+<span class="gp">... </span>                      
+<span class="gt">Traceback (most recent call last):</span>
+<span class="w">    </span><span class="o">...</span>
+<span class="gr">DimensionMismatchError</span>: <span class="n">Non-matching unit for method &quot;in_unit&quot;,</span>
+<span class="x">dimensions were (m^-2 kg^-1 s^3 A^2) (m^2 kg s^-3 A^-2)</span>
+</pre></div>
+</div>
+</section>
+<section id="id63">
+<h2>See Also<a class="headerlink" href="#id63" title="Link to this heading"></a></h2>
+<p>Quantity.in_unit</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.is_dimensionless">
+<span class="sig-prename descclassname"><span class="pre">unitSI.fundamentalunits.</span></span><span class="sig-name descname"><span class="pre">is_dimensionless</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#is_dimensionless"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.is_dimensionless" title="Link to this definition"></a></dt>
+<dd><p>Test if a value is dimensionless or not.</p>
+<section id="id64">
+<h2>Parameters<a class="headerlink" href="#id64" title="Link to this heading"></a></h2>
+<dl>
+<dt>obj<span class="classifier"><cite>object</cite></span></dt><dd><p>The object to check.</p>
+</dd>
+</dl>
+</section>
+<section id="id65">
+<h2>Returns<a class="headerlink" href="#id65" title="Link to this heading"></a></h2>
+<dl>
+<dt>dimensionless<span class="classifier"><cite>bool</cite></span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if <cite>obj</cite> is dimensionless.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.is_scalar_type">
+<span class="sig-prename descclassname"><span class="pre">unitSI.fundamentalunits.</span></span><span class="sig-name descname"><span class="pre">is_scalar_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#is_scalar_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.is_scalar_type" title="Link to this definition"></a></dt>
+<dd><p>Tells you if the object is a 1d number type.</p>
+<section id="id66">
+<h2>Parameters<a class="headerlink" href="#id66" title="Link to this heading"></a></h2>
+<dl>
+<dt>obj<span class="classifier"><cite>object</cite></span></dt><dd><p>The object to check.</p>
+</dd>
+</dl>
+</section>
+<section id="id67">
+<h2>Returns<a class="headerlink" href="#id67" title="Link to this heading"></a></h2>
+<dl>
+<dt>scalar<span class="classifier"><cite>bool</cite></span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if <cite>obj</cite> is a scalar that can be interpreted as a
+dimensionless <cite>Quantity</cite>.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unitSI.fundamentalunits.register_new_unit">
+<span class="sig-prename descclassname"><span class="pre">unitSI.fundamentalunits.</span></span><span class="sig-name descname"><span class="pre">register_new_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/unitSI/fundamentalunits.html#register_new_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#unitSI.fundamentalunits.register_new_unit" title="Link to this definition"></a></dt>
+<dd><p>Register a new unit for automatic displaying of quantities</p>
+<section id="id68">
+<h2>Parameters<a class="headerlink" href="#id68" title="Link to this heading"></a></h2>
+<dl>
+<dt>u<span class="classifier"><cite>Unit</cite></span></dt><dd><p>The unit that should be registered.</p>
+</dd>
+</dl>
+</section>
+<section id="id69">
+<h2>Examples<a class="headerlink" href="#id69" title="Link to this heading"></a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">brian2</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">2.0</span><span class="o">*</span><span class="n">farad</span><span class="o">/</span><span class="n">metre</span><span class="o">**</span><span class="mi">2</span>
+<span class="go">2. * metre ** -4 * kilogram ** -1 * second ** 4 * amp ** 2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">register_new_unit</span><span class="p">(</span><span class="n">pfarad</span> <span class="o">/</span> <span class="n">mmetre</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">2.0</span><span class="o">*</span><span class="n">farad</span><span class="o">/</span><span class="n">metre</span><span class="o">**</span><span class="mi">2</span>
+<span class="go">2000000. * pfarad / (mmetre ** 2)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="unitSI.constants.html" class="btn btn-neutral float-left" title="unitSI.constants module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="unitSI.stdunits.html" class="btn btn-neutral float-right" title="unitSI.stdunits module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sorin Birchi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -6,9 +6,9 @@ import numpy as np
 import pytest
 from numpy.testing import assert_equal
 
-from brian2units.unitsafefunctions import arange, linspace 
-from brian2units.allunits import *
-from brian2units.fundamentalunits import (
+from unitSI.unitsafefunctions import arange, linspace 
+from unitSI.allunits import *
+from unitSI.fundamentalunits import (
     DIMENSIONLESS,
     UFUNCS_DIMENSIONLESS,
     UFUNCS_DIMENSIONLESS_TWOARGS,
@@ -27,7 +27,7 @@ from brian2units.fundamentalunits import (
     is_dimensionless,
     is_scalar_type,
 )
-from brian2units.stdunits import Hz, cm, kHz, mM, ms, mV, nA, nS
+from unitSI.stdunits import Hz, cm, kHz, mM, ms, mV, nA, nS
 
 # To work around an issue in matplotlib 1.3.1 (see
 # https://github.com/matplotlib/matplotlib/pull/2591), we make `ravel`
@@ -799,7 +799,7 @@ def test_unit_discarding_functions():
     """
     Test functions that discard units.
     """
-    from brian2units.unitsafefunctions import ones_like, zeros_like
+    from unitSI.unitsafefunctions import ones_like, zeros_like
 
     values = [3 * mV, np.array([1, 2]) * mV, np.arange(12).reshape(3, 4) * mV]
     for value in values:
@@ -816,7 +816,7 @@ def test_unitsafe_functions():
     """
     Test the unitsafe functions wrapping their numpy counterparts.
     """
-    from brian2units.unitsafefunctions import (
+    from unitSI.unitsafefunctions import (
         arccos,
         arccosh,
         arcsin,
@@ -883,7 +883,7 @@ def test_special_case_numpy_functions():
     """
     Test a couple of functions/methods that need special treatment.
     """
-    from brian2units.unitsafefunctions import diagonal, dot, ravel, trace, where
+    from unitSI.unitsafefunctions import diagonal, dot, ravel, trace, where
 
     quadratic_matrix = np.reshape(np.arange(9), (3, 3)) * mV
 
@@ -1006,7 +1006,7 @@ def test_numpy_functions_same_dimensions():
     values = [np.array([1, 2]), np.ones((3, 3))]
     units = [volt, second, siemens, mV, kHz]
 
-    from brian2units.unitsafefunctions import ptp
+    from unitSI.unitsafefunctions import ptp
 
     # numpy functions
     keep_dim_funcs = [
@@ -1394,7 +1394,7 @@ def test_switching_off_unit_checks():
     """
     Check switching off unit checks (used for external functions).
     """
-    import brian2units.fundamentalunits as fundamentalunits
+    import unitSI.fundamentalunits as fundamentalunits
 
     x = 3 * second
     y = 5 * volt
@@ -1501,7 +1501,7 @@ def test_units_vs_quantities():
 
 
 def test_all_units_list():
-    from brian2units.allunits import all_units
+    from unitSI.allunits import all_units
 
     assert meter in all_units
     assert volt in all_units
@@ -1512,7 +1512,7 @@ def test_all_units_list():
 
 
 def test_constants():
-    import brian2units.constants as constants
+    import unitSI.constants as constants
 
     # Check that the expected names exist and have the correct dimensions
     assert constants.avogadro_constant.dim == (1 / mole).dim
