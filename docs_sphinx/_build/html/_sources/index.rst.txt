@@ -9,7 +9,9 @@ Welcome to unitSI's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
+         
+   user/units
+   developer/units
 
    modules
 

@@ -23,8 +23,3 @@ Submodules
 
 Module contents
 ---------------
-
-.. automodule:: unitSI
-   :members:
-   :undoc-members:
-   :show-inheritance:

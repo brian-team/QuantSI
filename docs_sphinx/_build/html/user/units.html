@@ -21,7 +21,9 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Units" href="../developer/units.html" />
+    <link rel="prev" title="Welcome to unitSI’s documentation!" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,7 +46,17 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Physical units</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-units">Using units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#removing-units">Removing units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#temperatures">Temperatures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#constants">Constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#importing-units">Importing units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#in-place-operations-on-quantities">In-place operations on quantities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/units.html">Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules.html">unitSI</a></li>
 </ul>
 
@@ -84,10 +96,10 @@
 <li><p><a class="reference internal" href="#in-place-operations-on-quantities" id="id8">In-place operations on quantities</a></p></li>
 </ul>
 </nav>
-<p>Brian includes a system for physical units. The base units are defined by their
+<p>unitSI is a system for physical units. The base units are defined by their
 standard SI unit names: <code class="docutils literal notranslate"><span class="pre">amp</span></code>/<code class="docutils literal notranslate"><span class="pre">ampere</span></code>, <code class="docutils literal notranslate"><span class="pre">kilogram</span></code>/<code class="docutils literal notranslate"><span class="pre">kilogramme</span></code>,
 <code class="docutils literal notranslate"><span class="pre">second</span></code>, <code class="docutils literal notranslate"><span class="pre">metre</span></code>/<code class="docutils literal notranslate"><span class="pre">meter</span></code>, <code class="docutils literal notranslate"><span class="pre">mole</span></code>/<code class="docutils literal notranslate"><span class="pre">mol</span></code>, <code class="docutils literal notranslate"><span class="pre">kelvin</span></code>, and <code class="docutils literal notranslate"><span class="pre">candela</span></code>.
-In addition to these base units, Brian defines a set of derived units:
+In addition to these base units, unitSI defines a set of derived units:
 <code class="docutils literal notranslate"><span class="pre">coulomb</span></code>, <code class="docutils literal notranslate"><span class="pre">farad</span></code>, <code class="docutils literal notranslate"><span class="pre">gram</span></code>/<code class="docutils literal notranslate"><span class="pre">gramme</span></code>, <code class="docutils literal notranslate"><span class="pre">hertz</span></code>, <code class="docutils literal notranslate"><span class="pre">joule</span></code>, <code class="docutils literal notranslate"><span class="pre">liter</span></code>/
 <code class="docutils literal notranslate"><span class="pre">litre</span></code>, <code class="docutils literal notranslate"><span class="pre">molar</span></code>, <code class="docutils literal notranslate"><span class="pre">pascal</span></code>, <code class="docutils literal notranslate"><span class="pre">ohm</span></code>,  <code class="docutils literal notranslate"><span class="pre">siemens</span></code>, <code class="docutils literal notranslate"><span class="pre">volt</span></code>, <code class="docutils literal notranslate"><span class="pre">watt</span></code>,
 together with prefixed versions (e.g. <code class="docutils literal notranslate"><span class="pre">msiemens</span> <span class="pre">=</span> <span class="pre">0.001*siemens</span></code>) using the
@@ -112,7 +124,7 @@ with its physical unit:</p>
 <span class="go">[ 10.  20.  30.] Hz</span>
 </pre></div>
 </div>
-<p>Brian will check the consistency of operations on units and raise an error for
+<p>unitSI will check the consistency of operations on units and raise an error for
 dimensionality mismatches:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tau</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># ms? second?  </span>
 <span class="gt">Traceback (most recent call last):</span>
@@ -124,7 +136,7 @@ dimensionality mismatches:</p>
 <span class="gr">DimensionMismatchError</span>: <span class="n">Cannot calculate 3. kg + 3. A, units do not match (units are kilogram and amp).</span>
 </pre></div>
 </div>
-<p>Most Brian functions will also complain about non-specified or incorrect units:</p>
+<p>In Brian functions will also complain about non-specified or incorrect units:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">NeuronGroup</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;dv/dt = -v/tau: volt&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>   
 <span class="gt">Traceback (most recent call last):</span>
 <span class="c">...</span>
@@ -164,8 +176,8 @@ to the name</p></li>
 </section>
 <section id="temperatures">
 <h2><a class="toc-backref" href="#id5" role="doc-backlink">Temperatures</a><a class="headerlink" href="#temperatures" title="Link to this heading"></a></h2>
-<p>Brian only supports temperatures defined in °K, using the provided <code class="docutils literal notranslate"><span class="pre">kelvin</span></code>
-unit object. Other conventions such as °C, or °F are not compatible with Brian’s
+<p>unitSI only supports temperatures defined in °K, using the provided <code class="docutils literal notranslate"><span class="pre">kelvin</span></code>
+unit object. Other conventions such as °C, or °F are not compatible with unitSI
 unit system, because they cannot be expressed as a multiplicative scaling of the
 SI base unit kelvin (their zero point is different). However, in biological
 experiments and modeling, temperatures are typically reported in °C. How to use
@@ -181,9 +193,9 @@ Celsius and Kelvin are identical.</p>
 <dt>absolute temperatures</dt><dd><p>Equations such as the <a class="reference external" href="https://en.wikipedia.org/wiki/Goldman_equation">Goldman–Hodgkin–Katz voltage equation</a>
 have a factor that depends on the absolute temperature measured in Kelvin.
 To get this temperature from a temperature reported in °C, you can use the
-<code class="docutils literal notranslate"><span class="pre">zero_celsius</span></code> constant from the <cite>brian2.units.constants</cite> package (see
+<code class="docutils literal notranslate"><span class="pre">zero_celsius</span></code> constant from the <cite>unitSI.constants</cite> package (see
 below):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">brian2.units.constants</span> <span class="kn">import</span> <span class="n">zero_celsius</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span>  <span class="nn">unitSI.constants</span> <span class="kn">import</span> <span class="n">zero_celsius</span>
 
 <span class="n">celsius_temp</span> <span class="o">=</span> <span class="mi">27</span>
 <span class="n">abs_temp</span> <span class="o">=</span> <span class="n">celsius_temp</span><span class="o">*</span><span class="n">kelvin</span> <span class="o">+</span> <span class="n">zero_celsius</span>
@@ -193,7 +205,7 @@ below):</p>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Earlier versions of Brian had a <code class="docutils literal notranslate"><span class="pre">celsius</span></code> unit which was in fact
+<p>Earlier versions of unitSI had a <code class="docutils literal notranslate"><span class="pre">celsius</span></code> unit which was in fact
 identical to <code class="docutils literal notranslate"><span class="pre">kelvin</span></code>. While this gave the correct results for
 temperature differences, it did not correctly work for absolute
 temperatures. To avoid confusion and possible misinterpretation,
@@ -202,14 +214,14 @@ the <code class="docutils literal notranslate"><span class="pre">celsius</span><
 </section>
 <section id="constants">
 <span id="id1"></span><h2><a class="toc-backref" href="#id6" role="doc-backlink">Constants</a><a class="headerlink" href="#constants" title="Link to this heading"></a></h2>
-<p>The <cite>brian2.units.constants</cite> package provides a range of physical constants that
-can be useful for detailed biological models. Brian provides the following
+<p>The <cite>unitSI.constants</cite> package provides a range of physical constants that
+can be useful for detailed biological models. UnitSI provides the following
 constants:</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Constant</p></th>
 <th class="head"><p>Symbol(s)</p></th>
-<th class="head"><p>Brian name</p></th>
+<th class="head"><p>unitSI name</p></th>
 <th class="head"><p>Value</p></th>
 </tr>
 </thead>
@@ -267,13 +279,13 @@ constants:</p>
 </tbody>
 </table>
 <p>Note that these constants are not imported by default, you will have to
-explicitly import them from <cite>brian2.units.constants</cite>. During the import, you
+explicitly import them from <cite>unitSI.constants</cite>. During the import, you
 can also give them shorter names using Python’s <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">...</span> <span class="pre">import</span> <span class="pre">...</span> <span class="pre">as</span> <span class="pre">...</span></code>
 syntax. For example, to calculate the <span class="math notranslate nohighlight">\(\frac{RT}{F}\)</span> factor that appears
 in the <a class="reference external" href="https://en.wikipedia.org/wiki/Goldman_equation">Goldman–Hodgkin–Katz voltage equation</a>
 you can use:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">brian2</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">brian2.units.constants</span> <span class="kn">import</span> <span class="n">zero_celsius</span><span class="p">,</span> <span class="n">gas_constant</span> <span class="k">as</span> <span class="n">R</span><span class="p">,</span> <span class="n">faraday_constant</span> <span class="k">as</span> <span class="n">F</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">unitSI</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">unitSI.constants</span> <span class="kn">import</span> <span class="n">zero_celsius</span><span class="p">,</span> <span class="n">gas_constant</span> <span class="k">as</span> <span class="n">R</span><span class="p">,</span> <span class="n">faraday_constant</span> <span class="k">as</span> <span class="n">F</span>
 
 <span class="n">celsius_temp</span> <span class="o">=</span> <span class="mi">27</span>
 <span class="n">T</span> <span class="o">=</span> <span class="n">celsius_temp</span><span class="o">*</span><span class="n">kelvin</span> <span class="o">+</span> <span class="n">zero_celsius</span>
@@ -289,15 +301,14 @@ you can use:</p>
 </section>
 <section id="importing-units">
 <h2><a class="toc-backref" href="#id7" role="doc-backlink">Importing units</a><a class="headerlink" href="#importing-units" title="Link to this heading"></a></h2>
-<p>Brian generates standard names for units, combining the unit name (e.g.
+<p>unitSI generates standard names for units, combining the unit name (e.g.
 “siemens”) with a prefixes (e.g. “m”), and also generates squared and cubed
 versions by appending a number. For example, the units “msiemens”, “siemens2”,
 “usiemens3” are all predefined. You can import these units from the package
 <code class="docutils literal notranslate"><span class="pre">brian2.units.allunits</span></code> – accordingly, an
 <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">brian2.units.allunits</span> <span class="pre">import</span> <span class="pre">*</span></code> will result in everything from
 <code class="docutils literal notranslate"><span class="pre">Ylumen3</span></code> (cubed yotta lumen) to <code class="docutils literal notranslate"><span class="pre">ymol</span></code> (yocto mole) being imported.</p>
-<p>A better choice is normally to do <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">brian2.units</span> <span class="pre">import</span> <span class="pre">*</span></code> or import
-everything <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">brian2</span> <span class="pre">import</span> <span class="pre">*</span></code> which only imports the units mentioned in
+<p>A better choice is normally to do <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">unitSI</span> <span class="pre">import</span> <span class="pre">*</span></code> which only imports the units mentioned in
 the introductory paragraph (base units, derived units, and some standard
 abbreviations).</p>
 </section>
@@ -332,7 +343,10 @@ instead return a new value (in the same way as standard Python scalars):</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to unitSI’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../developer/units.html" class="btn btn-neutral float-right" title="Units" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

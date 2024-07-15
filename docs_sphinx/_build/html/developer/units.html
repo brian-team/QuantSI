@@ -20,7 +20,9 @@
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="unitSI" href="../modules.html" />
+    <link rel="prev" title="Physical units" href="../user/units.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,7 +45,18 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/units.html">Physical units</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Units</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#casting-rules">Casting rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#functions-and-units">Functions and units</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ndarray-methods">ndarray methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#numpy-ufuncs">Numpy ufuncs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#numpy-functions">Numpy functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../modules.html">unitSI</a></li>
 </ul>
 
@@ -75,15 +88,8 @@
 <h1>Units<a class="headerlink" href="#units" title="Link to this heading"></a></h1>
 <section id="casting-rules">
 <h2>Casting rules<a class="headerlink" href="#casting-rules" title="Link to this heading"></a></h2>
-<p>In Brian 1, a distinction is made between scalars and numpy arrays (including
-scalar arrays): Scalars could be multiplied with a unit, resulting in a Quantity
-object whereas the multiplication of an array with a unit resulted in a
-(unitless) array. Accordingly, scalars were considered as dimensionless
-quantities for the purpose of unit checking (e.g.. 1 + 1 * mV raised an error)
-whereas arrays were not (e.g. array(1) + 1 * mV resulted in 1.001 without any
-errors). Brian 2 no longer makes this distinction and treats both scalars and
-arrays as dimensionless for unit checking and make all operations involving
-quantities return a quantity.:</p>
+<p>unitSI treats both scalars and arrays as dimensionless for unit checking
+and make all operations involving quantities return a quantity.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="o">*</span><span class="n">second</span>   
 <span class="gt">Traceback (most recent call last):</span>
 <span class="c">...</span>
@@ -252,7 +258,10 @@ either not work with units, or remove units from their inputs.</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../user/units.html" class="btn btn-neutral float-left" title="Physical units" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../modules.html" class="btn btn-neutral float-right" title="unitSI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
