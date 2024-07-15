@@ -28,9 +28,9 @@ test = ['pytest', 'pytest-xdist>=1.22.3']
 docs = ['sphinx>=7', 'ipython>=5', 'sphinx-tabs']
 
 [project.urls]
-Documentation ='https://brian2units.readthedocs.io/en/latest/'
-Source = 'https://github.com/brian-team/brian2units'
-Tracker = 'https://github.com/brian-team/brian2units/issues'
+Documentation ='https://unitSI.readthedocs.io/en/latest/'
+Source = 'https://github.com/brian-team/unitSI'
+Tracker = 'https://github.com/brian-team/unitSI/issues'
 
 [build-system]
 requires = [

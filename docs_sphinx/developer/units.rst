@@ -3,15 +3,8 @@ Units
 
 Casting rules
 -------------
-In Brian 1, a distinction is made between scalars and numpy arrays (including
-scalar arrays): Scalars could be multiplied with a unit, resulting in a Quantity
-object whereas the multiplication of an array with a unit resulted in a
-(unitless) array. Accordingly, scalars were considered as dimensionless
-quantities for the purpose of unit checking (e.g.. 1 + 1 * mV raised an error)
-whereas arrays were not (e.g. array(1) + 1 * mV resulted in 1.001 without any
-errors). Brian 2 no longer makes this distinction and treats both scalars and
-arrays as dimensionless for unit checking and make all operations involving
-quantities return a quantity.::
+unitSI treats both scalars and arrays as dimensionless for unit checking
+and make all operations involving quantities return a quantity.::
 
     >>> 1 + 1*second   # doctest: +ELLIPSIS +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):
