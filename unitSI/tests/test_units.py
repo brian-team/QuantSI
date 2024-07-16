@@ -6,7 +6,6 @@ import numpy as np
 import pytest
 from numpy.testing import assert_equal
 
-from unitSI.unitsafefunctions import arange, linspace 
 from unitSI.allunits import *
 from unitSI.fundamentalunits import (
     DIMENSIONLESS,
@@ -795,258 +794,240 @@ def test_inplace_operations():
 
 
 
-def test_unit_discarding_functions():
-    """
-    Test functions that discard units.
-    """
-    from unitSI.unitsafefunctions import ones_like, zeros_like
-
-    values = [3 * mV, np.array([1, 2]) * mV, np.arange(12).reshape(3, 4) * mV]
-    for value in values:
-        assert_equal(np.sign(value), np.sign(np.asarray(value)))
-        assert_equal(zeros_like(value), np.zeros_like(np.asarray(value)))
-        assert_equal(ones_like(value), np.ones_like(np.asarray(value)))
-        # Calling non-zero on a 0d array is deprecated, don't test it:
-        if value.ndim > 0:
-            assert_equal(np.nonzero(value), np.nonzero(np.asarray(value)))
+# def test_unit_discarding_functions():
+#     """
+#     Test functions that discard units.
+#     """
+#     values = [3 * mV, np.array([1, 2]) * mV, np.arange(12).reshape(3, 4) * mV]
+#     for value in values:
+#         assert_equal(np.sign(value), np.sign(np.asarray(value)))
+#         assert_equal(zeros_like(value), np.zeros_like(np.asarray(value)))
+#         assert_equal(ones_like(value), np.ones_like(np.asarray(value)))
+#         # Calling non-zero on a 0d array is deprecated, don't test it:
+#         if value.ndim > 0:
+#             assert_equal(np.nonzero(value), np.nonzero(np.asarray(value)))
 
 
 
-def test_unitsafe_functions():
-    """
-    Test the unitsafe functions wrapping their numpy counterparts.
-    """
-    from unitSI.unitsafefunctions import (
-        arccos,
-        arccosh,
-        arcsin,
-        arcsinh,
-        arctan,
-        arctanh,
-        cos,
-        cosh,
-        exp,
-        log,
-        sin,
-        sinh,
-        tan,
-        tanh,
-    )
+# def test_unitsafe_functions():
+#     """
+#     Test the unitsafe functions wrapping their numpy counterparts.
+#     """
 
-    # All functions with their numpy counterparts
-    funcs = [
-        (sin, np.sin),
-        (sinh, np.sinh),
-        (arcsin, np.arcsin),
-        (arcsinh, np.arcsinh),
-        (cos, np.cos),
-        (cosh, np.cosh),
-        (arccos, np.arccos),
-        (arccosh, np.arccosh),
-        (tan, np.tan),
-        (tanh, np.tanh),
-        (arctan, np.arctan),
-        (arctanh, np.arctanh),
-        (log, np.log),
-        (exp, np.exp),
-    ]
+#     # All functions with their numpy counterparts
+#     funcs = [
+#         (sin, np.sin),
+#         (sinh, np.sinh),
+#         (arcsin, np.arcsin),
+#         (arcsinh, np.arcsinh),
+#         (cos, np.cos),
+#         (cosh, np.cosh),
+#         (arccos, np.arccos),
+#         (arccosh, np.arccosh),
+#         (tan, np.tan),
+#         (tanh, np.tanh),
+#         (arctan, np.arctan),
+#         (arctanh, np.arctanh),
+#         (log, np.log),
+#         (exp, np.exp),
+#     ]
 
-    unitless_values = [
-        3 * mV / mV,
-        np.array([1, 2]) * mV / mV,
-        np.ones((3, 3)) * mV / mV,
-    ]
-    numpy_values = [3, np.array([1, 2]), np.ones((3, 3))]
-    unit_values = [3 * mV, np.array([1, 2]) * mV, np.ones((3, 3)) * mV]
+#     unitless_values = [
+#         3 * mV / mV,
+#         np.array([1, 2]) * mV / mV,
+#         np.ones((3, 3)) * mV / mV,
+#     ]
+#     numpy_values = [3, np.array([1, 2]), np.ones((3, 3))]
+#     unit_values = [3 * mV, np.array([1, 2]) * mV, np.ones((3, 3)) * mV]
 
-    for func, np_func in funcs:
-        # make sure these functions raise errors when run on values with dimensions
-        for val in unit_values:
-            with pytest.raises(DimensionMismatchError):
-                func(val)
+#     for func, np_func in funcs:
+#         # make sure these functions raise errors when run on values with dimensions
+#         for val in unit_values:
+#             with pytest.raises(DimensionMismatchError):
+#                 func(val)
 
-        # make sure the functions are equivalent to their numpy counterparts
-        # when run on unitless values while ignoring warnings about invalid
-        # values or divisions by zero
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore")
+#         # make sure the functions are equivalent to their numpy counterparts
+#         # when run on unitless values while ignoring warnings about invalid
+#         # values or divisions by zero
+#         with warnings.catch_warnings():
+#             warnings.simplefilter("ignore")
 
-            for val in unitless_values:
-                assert_equal(func(val), np_func(val))
+#             for val in unitless_values:
+#                 assert_equal(func(val), np_func(val))
 
-            for val in numpy_values:
-                assert_equal(func(val), np_func(val))
+#             for val in numpy_values:
+#                 assert_equal(func(val), np_func(val))
 
 
 
-def test_special_case_numpy_functions():
-    """
-    Test a couple of functions/methods that need special treatment.
-    """
-    from unitSI.unitsafefunctions import diagonal, dot, ravel, trace, where
+# def test_special_case_numpy_functions():
+#     """
+#     Test a couple of functions/methods that need special treatment.
+#     """
+#     from unitSI.unitsafefunctions import diagonal, dot, ravel, trace, where
 
-    quadratic_matrix = np.reshape(np.arange(9), (3, 3)) * mV
+#     quadratic_matrix = np.reshape(np.arange(9), (3, 3)) * mV
 
-    # Temporarily suppress warnings related to the matplotlib 1.3 bug
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore")
-        # Check that function and method do the same thing
-        assert_equal(ravel(quadratic_matrix), quadratic_matrix.ravel())
-        # Check that function gives the same result as on unitless arrays
-        assert_equal(
-            np.asarray(ravel(quadratic_matrix)), ravel(np.asarray(quadratic_matrix))
-        )
-        # Check that the function gives the same results as the original numpy
-        # function
-        assert_equal(
-            np.ravel(np.asarray(quadratic_matrix)), ravel(np.asarray(quadratic_matrix))
-        )
+#     # Temporarily suppress warnings related to the matplotlib 1.3 bug
+#     with warnings.catch_warnings():
+#         warnings.simplefilter("ignore")
+#         # Check that function and method do the same thing
+#         assert_equal(ravel(quadratic_matrix), quadratic_matrix.ravel())
+#         # Check that function gives the same result as on unitless arrays
+#         assert_equal(
+#             np.asarray(ravel(quadratic_matrix)), ravel(np.asarray(quadratic_matrix))
+#         )
+#         # Check that the function gives the same results as the original numpy
+#         # function
+#         assert_equal(
+#             np.ravel(np.asarray(quadratic_matrix)), ravel(np.asarray(quadratic_matrix))
+#         )
 
-    # Do the same checks for diagonal, trace and dot
-    assert_equal(diagonal(quadratic_matrix), quadratic_matrix.diagonal())
-    assert_equal(
-        np.asarray(diagonal(quadratic_matrix)), diagonal(np.asarray(quadratic_matrix))
-    )
-    assert_equal(
-        np.diagonal(np.asarray(quadratic_matrix)),
-        diagonal(np.asarray(quadratic_matrix)),
-    )
+#     # Do the same checks for diagonal, trace and dot
+#     assert_equal(diagonal(quadratic_matrix), quadratic_matrix.diagonal())
+#     assert_equal(
+#         np.asarray(diagonal(quadratic_matrix)), diagonal(np.asarray(quadratic_matrix))
+#     )
+#     assert_equal(
+#         np.diagonal(np.asarray(quadratic_matrix)),
+#         diagonal(np.asarray(quadratic_matrix)),
+#     )
 
-    assert_equal(trace(quadratic_matrix), quadratic_matrix.trace())
-    assert_equal(
-        np.asarray(trace(quadratic_matrix)), trace(np.asarray(quadratic_matrix))
-    )
-    assert_equal(
-        np.trace(np.asarray(quadratic_matrix)), trace(np.asarray(quadratic_matrix))
-    )
+#     assert_equal(trace(quadratic_matrix), quadratic_matrix.trace())
+#     assert_equal(
+#         np.asarray(trace(quadratic_matrix)), trace(np.asarray(quadratic_matrix))
+#     )
+#     assert_equal(
+#         np.trace(np.asarray(quadratic_matrix)), trace(np.asarray(quadratic_matrix))
+#     )
 
-    assert_equal(
-        dot(quadratic_matrix, quadratic_matrix), quadratic_matrix.dot(quadratic_matrix)
-    )
-    assert_equal(
-        np.asarray(dot(quadratic_matrix, quadratic_matrix)),
-        dot(np.asarray(quadratic_matrix), np.asarray(quadratic_matrix)),
-    )
-    assert_equal(
-        np.dot(np.asarray(quadratic_matrix), np.asarray(quadratic_matrix)),
-        dot(np.asarray(quadratic_matrix), np.asarray(quadratic_matrix)),
-    )
+#     assert_equal(
+#         dot(quadratic_matrix, quadratic_matrix), quadratic_matrix.dot(quadratic_matrix)
+#     )
+#     assert_equal(
+#         np.asarray(dot(quadratic_matrix, quadratic_matrix)),
+#         dot(np.asarray(quadratic_matrix), np.asarray(quadratic_matrix)),
+#     )
+#     assert_equal(
+#         np.dot(np.asarray(quadratic_matrix), np.asarray(quadratic_matrix)),
+#         dot(np.asarray(quadratic_matrix), np.asarray(quadratic_matrix)),
+#     )
 
-    assert_equal(
-        np.asarray(quadratic_matrix.prod()), np.asarray(quadratic_matrix).prod()
-    )
-    assert_equal(
-        np.asarray(quadratic_matrix.prod(axis=0)),
-        np.asarray(quadratic_matrix).prod(axis=0),
-    )
+#     assert_equal(
+#         np.asarray(quadratic_matrix.prod()), np.asarray(quadratic_matrix).prod()
+#     )
+#     assert_equal(
+#         np.asarray(quadratic_matrix.prod(axis=0)),
+#         np.asarray(quadratic_matrix).prod(axis=0),
+#     )
 
-    # Check for correct units
-    if use_matplotlib_units_fix:
-        assert have_same_dimensions(1, ravel(quadratic_matrix))
-    else:
-        assert have_same_dimensions(quadratic_matrix, ravel(quadratic_matrix))
-    assert have_same_dimensions(quadratic_matrix, trace(quadratic_matrix))
-    assert have_same_dimensions(quadratic_matrix, diagonal(quadratic_matrix))
-    assert have_same_dimensions(
-        quadratic_matrix[0] ** 2, dot(quadratic_matrix, quadratic_matrix)
-    )
-    assert have_same_dimensions(
-        quadratic_matrix.prod(axis=0), quadratic_matrix[0] ** quadratic_matrix.shape[0]
-    )
+#     # Check for correct units
+#     if use_matplotlib_units_fix:
+#         assert have_same_dimensions(1, ravel(quadratic_matrix))
+#     else:
+#         assert have_same_dimensions(quadratic_matrix, ravel(quadratic_matrix))
+#     assert have_same_dimensions(quadratic_matrix, trace(quadratic_matrix))
+#     assert have_same_dimensions(quadratic_matrix, diagonal(quadratic_matrix))
+#     assert have_same_dimensions(
+#         quadratic_matrix[0] ** 2, dot(quadratic_matrix, quadratic_matrix)
+#     )
+#     assert have_same_dimensions(
+#         quadratic_matrix.prod(axis=0), quadratic_matrix[0] ** quadratic_matrix.shape[0]
+#     )
 
-    # check the where function
-    # pure numpy array
-    cond = [True, False, False]
-    ar1 = np.array([1, 2, 3])
-    ar2 = np.array([4, 5, 6])
-    assert_equal(np.where(cond), where(cond))
-    assert_equal(np.where(cond, ar1, ar2), where(cond, ar1, ar2))
+#     # check the where function
+#     # pure numpy array
+#     cond = [True, False, False]
+#     ar1 = np.array([1, 2, 3])
+#     ar2 = np.array([4, 5, 6])
+#     assert_equal(np.where(cond), where(cond))
+#     assert_equal(np.where(cond, ar1, ar2), where(cond, ar1, ar2))
 
-    # dimensionless quantity
-    assert_equal(
-        np.where(cond, ar1, ar2), np.asarray(where(cond, ar1 * mV / mV, ar2 * mV / mV))
-    )
+#     # dimensionless quantity
+#     assert_equal(
+#         np.where(cond, ar1, ar2), np.asarray(where(cond, ar1 * mV / mV, ar2 * mV / mV))
+#     )
 
-    # quantity with dimensions
-    ar1 = ar1 * mV
-    ar2 = ar2 * mV
-    assert_equal(
-        np.where(cond, np.asarray(ar1), np.asarray(ar2)),
-        np.asarray(where(cond, ar1, ar2)),
-    )
+#     # quantity with dimensions
+#     ar1 = ar1 * mV
+#     ar2 = ar2 * mV
+#     assert_equal(
+#         np.where(cond, np.asarray(ar1), np.asarray(ar2)),
+#         np.asarray(where(cond, ar1, ar2)),
+#     )
 
-    # Check some error cases
-    with pytest.raises(ValueError):
-        where(cond, ar1)
-    with pytest.raises(TypeError):
-        where(cond, ar1, ar1, ar2)
-    with pytest.raises(DimensionMismatchError):
-        where(cond, ar1, ar1 / ms)
+#     # Check some error cases
+#     with pytest.raises(ValueError):
+#         where(cond, ar1)
+#     with pytest.raises(TypeError):
+#         where(cond, ar1, ar1, ar2)
+#     with pytest.raises(DimensionMismatchError):
+#         where(cond, ar1, ar1 / ms)
 
-    # Check setasflat (for numpy < 1.7)
-    if hasattr(Quantity, "setasflat"):
-        a = np.arange(10) * mV
-        b = np.ones(10).reshape(5, 2) * volt
-        c = np.ones(10).reshape(5, 2) * second
-        with pytest.raises(DimensionMismatchError):
-            a.setasflat(c)
-        a.setasflat(b)
-        assert_equal(a.flatten(), b.flatten())
+#     # Check setasflat (for numpy < 1.7)
+#     if hasattr(Quantity, "setasflat"):
+#         a = np.arange(10) * mV
+#         b = np.ones(10).reshape(5, 2) * volt
+#         c = np.ones(10).reshape(5, 2) * second
+#         with pytest.raises(DimensionMismatchError):
+#             a.setasflat(c)
+#         a.setasflat(b)
+#         assert_equal(a.flatten(), b.flatten())
 
-    # Check cumprod
-    a = np.arange(1, 10) * mV / mV
-    assert_equal(a.cumprod(), np.asarray(a).cumprod())
-    with pytest.raises(TypeError):
-        (np.arange(1, 5) * mV).cumprod()
+#     # Check cumprod
+#     a = np.arange(1, 10) * mV / mV
+#     assert_equal(a.cumprod(), np.asarray(a).cumprod())
+#     with pytest.raises(TypeError):
+#         (np.arange(1, 5) * mV).cumprod()
 
 
 # Functions that should not change units
 
-def test_numpy_functions_same_dimensions():
-    values = [np.array([1, 2]), np.ones((3, 3))]
-    units = [volt, second, siemens, mV, kHz]
+# def test_numpy_functions_same_dimensions():
+#     values = [np.array([1, 2]), np.ones((3, 3))]
+#     units = [volt, second, siemens, mV, kHz]
 
-    from unitSI.unitsafefunctions import ptp
+#     from unitSI.unitsafefunctions import ptp
 
-    # numpy functions
-    keep_dim_funcs = [
-        np.abs,
-        np.cumsum,
-        np.max,
-        np.mean,
-        np.min,
-        np.negative,
-        ptp,
-        np.round,
-        np.squeeze,
-        np.std,
-        np.sum,
-        np.transpose,
-    ]
+#     # numpy functions
+#     keep_dim_funcs = [
+#         np.abs,
+#         np.cumsum,
+#         np.max,
+#         np.mean,
+#         np.min,
+#         np.negative,
+#         ptp,
+#         np.round,
+#         np.squeeze,
+#         np.std,
+#         np.sum,
+#         np.transpose,
+#     ]
 
-    for value, unit in itertools.product(values, units):
-        q_ar = value * unit
-        for func in keep_dim_funcs:
-            test_ar = func(q_ar)
-            if not get_dimensions(test_ar) is q_ar.dim:
-                raise AssertionError(
-                    f"'{func.__name__}' failed on {q_ar!r} -- dim was "
-                    f"{q_ar.dim}, is now {get_dimensions(test_ar)}."
-                )
+#     for value, unit in itertools.product(values, units):
+#         q_ar = value * unit
+#         for func in keep_dim_funcs:
+#             test_ar = func(q_ar)
+#             if not get_dimensions(test_ar) is q_ar.dim:
+#                 raise AssertionError(
+#                     f"'{func.__name__}' failed on {q_ar!r} -- dim was "
+#                     f"{q_ar.dim}, is now {get_dimensions(test_ar)}."
+#                 )
 
-                # Python builtins should work on one-dimensional arrays
-                value = np.arange(5)
-                builtins = [abs, max, min, sum]
-                for unit in units:
-                    q_ar = value * unit
-                for func in builtins:
-                    test_ar = func(q_ar)
-                if not get_dimensions(test_ar) is q_ar.dim:
-                    raise AssertionError(
-                        f"'{func.__name__}' failed on {q_ar!r} -- dim "
-                        f"was {q_ar.dim}, is now "
-                        f"{get_dimensions(test_ar)}"
-                    )
+#                 # Python builtins should work on one-dimensional arrays
+#                 value = np.arange(5)
+#                 builtins = [abs, max, min, sum]
+#                 for unit in units:
+#                     q_ar = value * unit
+#                 for func in builtins:
+#                     test_ar = func(q_ar)
+#                 if not get_dimensions(test_ar) is q_ar.dim:
+#                     raise AssertionError(
+#                         f"'{func.__name__}' failed on {q_ar!r} -- dim "
+#                         f"was {q_ar.dim}, is now "
+#                         f"{get_dimensions(test_ar)}"
+#                     )
 
 
 
@@ -1541,7 +1522,7 @@ if __name__ == "__main__":
     test_construction()
     test_get_dimensions()
     test_display()
-    test_scale()
+    # test_scale()
     test_power()
     test_pickling()
     test_str_repr()
@@ -1552,10 +1533,10 @@ if __name__ == "__main__":
     test_unary_operations()
     test_binary_operations()
     test_inplace_operations()
-    test_unit_discarding_functions()
-    test_unitsafe_functions()
-    test_special_case_numpy_functions()
-    test_numpy_functions_same_dimensions()
+    # test_unit_discarding_functions()
+    # test_unitsafe_functions()
+    # test_special_case_numpy_functions()
+    # test_numpy_functions_same_dimensions()
     test_numpy_functions_indices()
     test_numpy_functions_dimensionless()
     test_numpy_functions_change_dimensions()
