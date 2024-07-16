@@ -1,8 +1,7 @@
 [project]
-name = "brian2units"
+name = "unitSI"
 authors = [
     {name = 'Sorin Birchi'},
-    {name = 'Marcel Stimberg'}
 ]
 requires-python = '>=3.11'
 dependencies = [
@@ -29,9 +28,9 @@ test = ['pytest', 'pytest-xdist>=1.22.3']
 docs = ['sphinx>=7', 'ipython>=5', 'sphinx-tabs']
 
 [project.urls]
-Documentation ='https://brian2units.readthedocs.io/en/latest/'
-Source = 'https://github.com/brian-team/brian2units'
-Tracker = 'https://github.com/brian-team/brian2units/issues'
+Documentation ='https://unitSI.readthedocs.io/en/latest/'
+Source = 'https://github.com/brian-team/unitSI'
+Tracker = 'https://github.com/brian-team/unitSI/issues'
 
 [build-system]
 requires = [
@@ -47,7 +46,7 @@ zip-safe = false
 include-package-data = true
 
 [tool.setuptools.packages.find]
-include = ["brian2units*"]
+include = ["unitSI*"]
 
 [tool.setuptools.dynamic]
 readme = {file = 'README.md', content-type = "text/markdown"}
@@ -55,12 +54,12 @@ readme = {file = 'README.md', content-type = "text/markdown"}
 [tool.setuptools_scm]
 version_scheme = 'post-release'
 local_scheme = 'no-local-version'
-write_to = 'brian2units/_version.py'
+write_to = 'unitSI/_version.py'
 fallback_version = 'unknown'
 
 [tool.black]
 target-version = ['py310']
-include = '^/brian2units/.*\.pyi?$'
+include = '^/unitSI/.*\.pyi?$'
 
 [tool.isort]
 atomic = true

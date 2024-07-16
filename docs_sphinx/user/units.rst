@@ -5,10 +5,10 @@ Physical units
     :local:
     :depth: 1
 
-Brian includes a system for physical units. The base units are defined by their
+unitSI is a system for physical units. The base units are defined by their
 standard SI unit names: ``amp``/``ampere``, ``kilogram``/``kilogramme``,
 ``second``, ``metre``/``meter``, ``mole``/``mol``, ``kelvin``, and ``candela``.
-In addition to these base units, Brian defines a set of derived units:
+In addition to these base units, unitSI defines a set of derived units:
 ``coulomb``, ``farad``, ``gram``/``gramme``, ``hertz``, ``joule``, ``liter``/
 ``litre``, ``molar``, ``pascal``, ``ohm``,  ``siemens``, ``volt``, ``watt``,
 together with prefixed versions (e.g. ``msiemens = 0.001*siemens``) using the
@@ -34,7 +34,7 @@ with its physical unit::
     >>> print(rates)
     [ 10.  20.  30.] Hz
 
-Brian will check the consistency of operations on units and raise an error for
+unitSI will check the consistency of operations on units and raise an error for
 dimensionality mismatches::
 
     >>> tau += 1  # ms? second?  # doctest: +ELLIPSIS +IGNORE_EXCEPTION_DETAIL
@@ -46,7 +46,7 @@ dimensionality mismatches::
     ...
     DimensionMismatchError: Cannot calculate 3. kg + 3. A, units do not match (units are kilogram and amp).
 
-Most Brian functions will also complain about non-specified or incorrect units::
+In Brian functions will also complain about non-specified or incorrect units::
 
     >>> G = NeuronGroup(10, 'dv/dt = -v/tau: volt', dt=0.5)   # doctest: +ELLIPSIS +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):
@@ -86,8 +86,8 @@ analysis functions that do not correctly work with units)
 
 Temperatures
 ------------
-Brian only supports temperatures defined in °K, using the provided ``kelvin``
-unit object. Other conventions such as °C, or °F are not compatible with Brian's
+unitSI only supports temperatures defined in °K, using the provided ``kelvin``
+unit object. Other conventions such as °C, or °F are not compatible with unitSI
 unit system, because they cannot be expressed as a multiplicative scaling of the
 SI base unit kelvin (their zero point is different). However, in biological
 experiments and modeling, temperatures are typically reported in °C. How to use
@@ -105,15 +105,15 @@ absolute temperatures
     Equations such as the `Goldman–Hodgkin–Katz voltage equation <https://en.wikipedia.org/wiki/Goldman_equation>`_
     have a factor that depends on the absolute temperature measured in Kelvin.
     To get this temperature from a temperature reported in °C, you can use the
-    ``zero_celsius`` constant from the `brian2.units.constants` package (see
+    ``zero_celsius`` constant from the `unitSI.constants` package (see
     below)::
 
-        from brian2.units.constants import zero_celsius
+        from  unitSI.constants import zero_celsius
 
         celsius_temp = 27
         abs_temp = celsius_temp*kelvin + zero_celsius
 
-.. note:: Earlier versions of Brian had a ``celsius`` unit which was in fact
+.. note:: Earlier versions of unitSI had a ``celsius`` unit which was in fact
           identical to ``kelvin``. While this gave the correct results for
           temperature differences, it did not correctly work for absolute
           temperatures. To avoid confusion and possible misinterpretation,
@@ -123,12 +123,12 @@ absolute temperatures
 
 Constants
 ---------
-The `brian2.units.constants` package provides a range of physical constants that
-can be useful for detailed biological models. Brian provides the following
+The `unitSI.constants` package provides a range of physical constants that
+can be useful for detailed biological models. UnitSI provides the following
 constants:
 
 ==================== ================== ======================= ==================================================================
-Constant             Symbol(s)          Brian name              Value
+Constant             Symbol(s)          unitSI name              Value
 ==================== ================== ======================= ==================================================================
 Avogadro constant    :math:`N_A, L`     ``avogadro_constant``   :math:`6.022140857\times 10^{23}\,\mathrm{mol}^{-1}`
 Boltzmann constant   :math:`k`          ``boltzmann_constant``  :math:`1.38064852\times 10^{-23}\,\mathrm{J}\,\mathrm{K}^{-1}`
@@ -143,14 +143,14 @@ Molar mass constant  :math:`M_u`        ``molar_mass_constant`` :math:`1\times 1
 ==================== ================== ======================= ==================================================================
 
 Note that these constants are not imported by default, you will have to
-explicitly import them from `brian2.units.constants`. During the import, you
+explicitly import them from `unitSI.constants`. During the import, you
 can also give them shorter names using Python's ``from ... import ... as ...``
 syntax. For example, to calculate the :math:`\frac{RT}{F}` factor that appears
 in the `Goldman–Hodgkin–Katz voltage equation <https://en.wikipedia.org/wiki/Goldman_equation>`_
 you can use::
 
-    from brian2 import *
-    from brian2.units.constants import zero_celsius, gas_constant as R, faraday_constant as F
+    from unitSI import *
+    from unitSI.constants import zero_celsius, gas_constant as R, faraday_constant as F
 
     celsius_temp = 27
     T = celsius_temp*kelvin + zero_celsius
@@ -163,7 +163,7 @@ you can use::
 
 Importing units
 ---------------
-Brian generates standard names for units, combining the unit name (e.g.
+unitSI generates standard names for units, combining the unit name (e.g.
 "siemens") with a prefixes (e.g. "m"), and also generates squared and cubed
 versions by appending a number. For example, the units "msiemens", "siemens2",
 "usiemens3" are all predefined. You can import these units from the package
@@ -171,8 +171,7 @@ versions by appending a number. For example, the units "msiemens", "siemens2",
 ``from brian2.units.allunits import *`` will result in everything from
 ``Ylumen3`` (cubed yotta lumen) to ``ymol`` (yocto mole) being imported.
 
-A better choice is normally to do ``from brian2.units import *`` or import
-everything ``from brian2 import *`` which only imports the units mentioned in
+A better choice is normally to do ``from unitSI import *`` which only imports the units mentioned in
 the introductory paragraph (base units, derived units, and some standard
 abbreviations).
 
