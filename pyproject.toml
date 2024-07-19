@@ -3,7 +3,7 @@ name = "unitSI"
 authors = [
     {name = 'Sorin Birchi'},
 ]
-requires-python = '>=3.11'
+requires-python = '>=3.10'
 dependencies = [
     'numpy>=1.23.5',
     'sympy>=1.2',
