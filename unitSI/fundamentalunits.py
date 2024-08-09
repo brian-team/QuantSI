@@ -1652,13 +1652,7 @@ class Quantity(np.ndarray):
             return super().__format__(format_spec)
 
     #### Mathematic methods ####
-
     cumsum = wrap_function_keep_dimensions(np.ndarray.cumsum)
-    diagonal = wrap_function_keep_dimensions(np.ndarray.diagonal)
-    max = wrap_function_keep_dimensions(np.ndarray.max)
-    mean = wrap_function_keep_dimensions(np.ndarray.mean)
-    min = wrap_function_keep_dimensions(np.ndarray.min)
-    ptp = wrap_function_keep_dimensions(np.ndarray.ptp)
 
     # To work around an issue in matplotlib 1.3.1 (see
     # https://github.com/matplotlib/matplotlib/pull/2591), we make `ravel`
@@ -1675,8 +1669,6 @@ class Quantity(np.ndarray):
     if use_matplotlib_units_fix:
 
         def ravel(self, *args, **kwds):
-            # Note that we don't use Brian's logging system here as we don't want
-            # the unit system to depend on other parts of Brian
             warn(
                 "As a workaround for a bug in matplotlib 1.3.1, calling "
                 '"ravel()" on a quantity will return unit-less values. If you '
@@ -1691,20 +1683,7 @@ class Quantity(np.ndarray):
         ravel._return_unit = 1
         ravel.__name__ = np.ndarray.ravel.__name__
         ravel.__doc__ = np.ndarray.ravel.__doc__
-    else:
-        ravel = wrap_function_keep_dimensions(np.ndarray.ravel)
-
-    round = wrap_function_keep_dimensions(np.ndarray.round)
-    std = wrap_function_keep_dimensions(np.ndarray.std)
-    sum = wrap_function_keep_dimensions(np.ndarray.sum)
-    trace = wrap_function_keep_dimensions(np.ndarray.trace)
-    var = wrap_function_change_dimensions(np.ndarray.var, lambda ar, d: d**2)
-    all = wrap_function_remove_dimensions(np.ndarray.all)
-    any = wrap_function_remove_dimensions(np.ndarray.any)
-    nonzero = wrap_function_remove_dimensions(np.ndarray.nonzero)
-    argmax = wrap_function_remove_dimensions(np.ndarray.argmax)
-    argmin = wrap_function_remove_dimensions(np.ndarray.argmin)
-    argsort = wrap_function_remove_dimensions(np.ndarray.argsort)
+    # argsort = wrap_function_remove_dimensions(np.ndarray.argsort)
 
     def fill(self, values):  # pylint: disable=C0111
         fail_for_dimension_mismatch(self, values, "fill")
