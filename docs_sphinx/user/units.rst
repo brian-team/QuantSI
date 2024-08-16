@@ -46,20 +46,12 @@ dimensionality mismatches::
     ...
     DimensionMismatchError: Cannot calculate 3. kg + 3. A, units do not match (units are kilogram and amp).
 
-In Brian functions will also complain about non-specified or incorrect units::
-
-    >>> G = NeuronGroup(10, 'dv/dt = -v/tau: volt', dt=0.5)   # doctest: +ELLIPSIS +IGNORE_EXCEPTION_DETAIL
-    Traceback (most recent call last):
-    ...
-    DimensionMismatchError: Function "__init__" expected a quantitity with unit second for argument "dt" but got 0.5 (unit is 1).
-
-Numpy functions have been overwritten to correctly work with units (see the
+Some Numpy functions have been overwritten to correctly work with units (see the
 :doc:`developer documentation <../developer/units>` for more details)::
 
-    >>> print(mean(rates))
-    20. Hz
-    >>> print(rates.repeat(2))
-    [ 10.  10.  20.  20.  30.  30.] Hz
+    >>> arr = np.array([[1, 2],[3,4]])*ms
+    >>> np.trace(arr)
+    5. * ms
 
 Removing units
 --------------
@@ -124,7 +116,7 @@ absolute temperatures
 Constants
 ---------
 The `unitSI.constants` package provides a range of physical constants that
-can be useful for detailed biological models. UnitSI provides the following
+can be useful for detailed biological models. unitSI provides the following
 constants:
 
 ==================== ================== ======================= ==================================================================
@@ -167,8 +159,8 @@ unitSI generates standard names for units, combining the unit name (e.g.
 "siemens") with a prefixes (e.g. "m"), and also generates squared and cubed
 versions by appending a number. For example, the units "msiemens", "siemens2",
 "usiemens3" are all predefined. You can import these units from the package
-``brian2.units.allunits`` -- accordingly, an
-``from brian2.units.allunits import *`` will result in everything from
+``unitSI.allunits`` -- accordingly, an
+``from unitSI.allunits import *`` will result in everything from
 ``Ylumen3`` (cubed yotta lumen) to ``ymol`` (yocto mole) being imported.
 
 A better choice is normally to do ``from unitSI import *`` which only imports the units mentioned in

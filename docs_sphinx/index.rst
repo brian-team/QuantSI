@@ -12,6 +12,7 @@ Welcome to unitSI's documentation!
          
    user/units
    developer/units
+   usage/usage
 
    modules
 

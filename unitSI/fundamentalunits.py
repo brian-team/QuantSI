@@ -247,7 +247,7 @@ def fail_for_dimension_mismatch(
             return dim1, dim2
 
         # We do another check here, this should allow Brian1 units to pass as
-        # having the same dimensions as a Brian2 unit
+        # having the same dimensions as a unitSI unit
         if dim1 == dim2:
             return dim1, dim2
 
@@ -656,7 +656,7 @@ def get_or_create_dimension(*args, **kwds):
     --------
     The following are all definitions of the dimensions of force
 
-    >>> from brian2 import *
+    >>> from unitSI import *
     >>> get_or_create_dimension(length=1, mass=1, time=-2)
     metre * kilogram * second ** -2
     >>> get_or_create_dimension(m=1, kg=1, s=-2)
@@ -879,7 +879,7 @@ def in_unit(x, u, precision=None):
 
     Examples
     --------
-    >>> from brian2 import *
+    >>> from unitSI import *
     >>> in_unit(3 * volt, mvolt)
     '3000. mV'
     >>> in_unit(123123 * msecond, second, 2)
@@ -925,7 +925,7 @@ def in_best_unit(x, precision=None):
 
     Examples
     --------
-    >>> from brian2.units import *
+    >>> from unitSI.allunits import *
     >>> in_best_unit(0.00123456 * volt)
     '1.23456 mV'
     >>> in_best_unit(0.00123456 * volt, 2)
@@ -970,7 +970,7 @@ def quantity_with_dimensions(floatval, dims):
 
     Examples
     --------
-    >>> from brian2 import *
+    >>> from unitSI import *
     >>> quantity_with_dimensions(0.001, volt.dim)
     1. * mvolt
 
@@ -1013,7 +1013,7 @@ class Quantity(np.ndarray):
 
     Examples
     --------
-    >>> from brian2 import *
+    >>> from unitSI import *
     >>> I = 3 * amp # I is a Quantity object
     >>> R = 2 * ohm # same for R
     >>> I * R
@@ -1280,7 +1280,7 @@ class Quantity(np.ndarray):
         --------
         All of these define an equivalent `Quantity` object:
 
-        >>> from brian2 import *
+        >>> from unitSI import *
         >>> Quantity.with_dimensions(2, get_or_create_dimension(length=1))
         2. * metre
         >>> Quantity.with_dimensions(2, length=1)
@@ -1357,8 +1357,8 @@ class Quantity(np.ndarray):
 
         Examples
         --------
-        >>> from brian2.units import *
-        >>> from brian2.units.stdunits import *
+        >>> from unitSI.allunits import *
+        >>> from unitSI.stdunits import *
         >>> x = 25.123456 * mV
         >>> x.in_unit(volt)
         '0.02512346 V'
@@ -1464,7 +1464,7 @@ class Quantity(np.ndarray):
 
         Examples
         --------
-        >>> from brian2.units import *
+        >>> from unitSI.allunits import *
 
         >>> x = 0.00123456 * volt
 
@@ -1653,6 +1653,7 @@ class Quantity(np.ndarray):
 
     #### Mathematic methods ####
     cumsum = wrap_function_keep_dimensions(np.ndarray.cumsum)
+    trace = wrap_function_keep_dimensions(np.trace)
 
     # To work around an issue in matplotlib 1.3.1 (see
     # https://github.com/matplotlib/matplotlib/pull/2591), we make `ravel`
@@ -1815,8 +1816,8 @@ class Unit(Quantity):
      purposes. So for example, to define the newton metre, you
      write
 
-     >>> from brian2 import *
-     >>> from brian2.units.allunits import newton
+     >>> from unitSI import *
+     >>> from unitSI.allunits import newton
      >>> Nm = newton * metre
 
      You can then do
@@ -2375,7 +2376,7 @@ def register_new_unit(u):
 
     Examples
     --------
-    >>> from brian2 import *
+    >>> from unitSI import *
     >>> 2.0*farad/metre**2
     2. * metre ** -4 * kilogram ** -1 * second ** 4 * amp ** 2
     >>> register_new_unit(pfarad / mmetre**2)
@@ -2447,7 +2448,7 @@ def check_units(**au):
 
     Examples
     --------
-    >>> from brian2.units import *
+    >>> from unitSI.allunits import *
     >>> @check_units(I=amp, R=ohm, wibble=metre, result=volt)
     ... def getvoltage(I, R, **k):
     ...     return I*R
@@ -2520,7 +2521,7 @@ def check_units(**au):
     >>> multiply_sum(3*nA, 4*mV, 5*nA)  # doctest: +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):
     ...
-    brian2.units.fundamentalunits.DimensionMismatchError: Function 'multiply_sum' expected the same arguments for arguments 'summand_1', 'summand_2', but argument 'summand_1' has unit V, while argument 'summand_2' has unit A.
+    unitSI.fundamentalunits.DimensionMismatchError: Function 'multiply_sum' expected the same arguments for arguments 'summand_1', 'summand_2', but argument 'summand_1' has unit V, while argument 'summand_2' has unit A.
 
     Raises
     ------

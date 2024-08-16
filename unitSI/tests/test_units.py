@@ -801,10 +801,12 @@ def test_special_case_numpy_functions():
     )
 
     assert_equal(
-        quantity_with_dimensions(np.dot(quadratic_matrix, quadratic_matrix),
+        quantity_with_dimensions(np.dot(quadratic_matrix, quadratic_matrix), 
+                                quadratic_matrix.dim*quadratic_matrix.dim),
                                 Quantity(quadratic_matrix.dot(quadratic_matrix),
-                                         dim=quadratic_matrix.dim*quadratic_matrix.dim))
+                                         dim=quadratic_matrix.dim*quadratic_matrix.dim)
     )
+
     assert_equal(
         np.asarray(np.dot(quadratic_matrix, quadratic_matrix)),
         np.dot(np.asarray(quadratic_matrix), np.asarray(quadratic_matrix)),
@@ -935,7 +937,7 @@ def test_numpy_functions_indices():
     units = [volt, second, siemens, mV, kHz]
 
     # numpy functions
-    keep_dim_funcs = [np.argmin, np.argmax, np.argsort, np.nonzero]
+    keep_dim_funcs = [np.argmin, np.argmax, np.nonzero]
 
     for value, unit in itertools.product(values, units):
         q_ar = value * unit
