@@ -6,8 +6,8 @@ import numpy as np
 import pytest
 from numpy.testing import assert_equal
 
-from unitSI.allunits import *
-from unitSI.fundamentalunits import (
+from QuantSI.allunits import *
+from QuantSI.fundamentalunits import (
     DIMENSIONLESS,
     UFUNCS_DIMENSIONLESS,
     UFUNCS_DIMENSIONLESS_TWOARGS,
@@ -27,20 +27,7 @@ from unitSI.fundamentalunits import (
     is_scalar_type,
     quantity_with_dimensions
 )
-from unitSI.stdunits import Hz, cm, kHz, mM, ms, mV, nA, nS
-
-# To work around an issue in matplotlib 1.3.1 (see
-# https://github.com/matplotlib/matplotlib/pull/2591), we make `ravel`
-# return a unitless array and emit a warning explaining the issue.
-use_matplotlib_units_fix = False
-try:
-    import matplotlib
-
-    if matplotlib.__version__ == "1.3.1":
-        use_matplotlib_units_fix = True
-except ImportError:
-    pass
-
+from QuantSI.stdunits import Hz, cm, kHz, mM, ms, mV, nA, nS
 
 def assert_quantity(q, values, unit):
     assert isinstance(q, Quantity) or (
@@ -767,7 +754,6 @@ def test_special_case_numpy_functions():
 
     quadratic_matrix = np.reshape(np.arange(9), (3, 3)) * mV
 
-    # Temporarily suppress warnings related to the matplotlib 1.3 bug
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         # Check that function and method do the same thing
@@ -824,11 +810,7 @@ def test_special_case_numpy_functions():
         np.asarray(quadratic_matrix).prod(axis=0),
     )
 
-    # Check for correct units
-    if use_matplotlib_units_fix:
-        assert have_same_dimensions(1, np.ravel(quadratic_matrix))
-    else:
-        assert have_same_dimensions(quadratic_matrix, np.ravel(quadratic_matrix))
+    assert have_same_dimensions(quadratic_matrix, np.ravel(quadratic_matrix))
     assert have_same_dimensions(quadratic_matrix, np.trace(quadratic_matrix))
     assert have_same_dimensions(quadratic_matrix, np.diagonal(quadratic_matrix))
     assert have_same_dimensions(
@@ -1198,7 +1180,7 @@ def test_switching_off_unit_checks():
     """
     Check switching off unit checks (used for external functions).
     """
-    import unitSI.fundamentalunits as fundamentalunits
+    import QuantSI.fundamentalunits as fundamentalunits
 
     x = 3 * second
     y = 5 * volt
@@ -1305,7 +1287,7 @@ def test_units_vs_quantities():
 
 
 def test_all_units_list():
-    from unitSI.allunits import all_units
+    from QuantSI.allunits import all_units
 
     assert meter in all_units
     assert volt in all_units
@@ -1316,7 +1298,7 @@ def test_all_units_list():
 
 
 def test_constants():
-    import unitSI.constants as constants
+    import QuantSI.constants as constants
 
     # Check that the expected names exist and have the correct dimensions
     assert constants.avogadro_constant.dim == (1 / mole).dim

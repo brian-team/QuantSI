@@ -1,10 +1,10 @@
 r"""
 A module providing some physical units as `Quantity` objects. Note that these
-units are not imported by wildcard imports (e.g. `from unitSI.constants import *`), they
+units are not imported by wildcard imports (e.g. `from QuantSI.constants import *`), they
 have to be imported explicitly. You can use ``import ... as ...`` to import them
 with shorter names, e.g.::
 
-    from unitSI.constants import faraday_constant as F
+    from QuantSI.constants import faraday_constant as F
 
 The available constants are:
 

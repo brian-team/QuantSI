@@ -53,11 +53,10 @@ For Astropy:
 For QuantSI:
 
     >>> from QuantSI import *
-    >>> 2.0*farad/metre**2
-    2. * metre ** -4 * kilogram ** -1 * second ** 4 * amp ** 2
-    >>> register_new_unit(pfarad / mmetre**2)
-    >>> 2.0*farad/metre**2
-    2000000. * pfarad / (mmetre ** 2)
+    >>> from QuantSI.allunits import newton
+    >>> Nm = newton*meter
+    >>> (1*Nm).in_unit(Nm)
+    '1. N m'
 
 
 Using Numpy functions with units:
@@ -119,4 +118,49 @@ Furthermore with this approach we only use radians so the conversion to degrees 
     np.float64(1.0)
     >>> print(90*radian)
     90.0
+
+Converting from units to standard classes in python or numpy arrays:
+
+For Pint:
+
+    >>> distance = 24.0 * ureg.meter
+    >>> distance_float = distance.magnitude
+    >>> print(distance_float)
+    24.0
+    # To convert to a numpy array
+    >>> distance_arr = [10,20,30] * ureg.meter
+    >>> distnace_arr_numpy = distance_arr.magnitude
+    >>> print(distance_arr_numpy)
+    array([10, 20, 30])
+
+For Astropy:
+
+    >>> distance = 24.0 * u.meter
+    >>> distance_float = distance.value
+    >>> print(distance_float)
+    24.0
+    # To convert to a numpy array
+    >>> distance_arr = [10,20,30] * u.meter
+    >>> distnace_arr_numpy = distance_arr.value
+    >>> print(distance_arr_numpy)
+    array([10, 20, 30])
+
+For QuantSI:
+    
+    >>> distance = 24.0 * si.meter
+    >>> distance_float = float(distance)
+    # Can convert to another types as well
+    >>> print(distance_float)
+    24.0
+    # To convert to a numpy array
+    >>> distance_arr = [10,20,30] * si.meter
+    >>> distnace_arr_numpy = np.asarray(distance_arr)
+    # np.array function can also be used
+    >>> print(distance_arr_numpy)
+    array([10, 20, 30])
+
+
+From a developer perspective, QuantSI and units from Astropy have a similar approach in their code. Both packages implement their functionality by 
+inheriting from numpy.ndarray in order to use numpy functions without including more wrapper functions. Instead, Pint wraps NumPy functions to ensure 
+they behave correctly with units, thus providing the expected behavior. 
   
