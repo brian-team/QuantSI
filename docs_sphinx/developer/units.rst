@@ -3,7 +3,7 @@ Units
 
 Casting rules
 -------------
-unitSI treats both scalars and arrays as dimensionless for unit checking
+QuantSI treats both scalars and arrays as dimensionless for unit checking
 and make all operations involving quantities return a quantity.::
 
     >>> 1 + 1*second   # doctest: +ELLIPSIS +IGNORE_EXCEPTION_DETAIL

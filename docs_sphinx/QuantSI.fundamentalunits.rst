@@ -1,7 +1,7 @@
-unitSI.unitsafefunctions module
+QuantSI.fundamentalunits module
 ===============================
 
-.. automodule:: unitSI.unitsafefunctions
+.. automodule:: QuantSI.fundamentalunits
    :members:
    :undoc-members:
    :show-inheritance:
