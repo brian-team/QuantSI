@@ -3,7 +3,7 @@ Units
 
 Casting rules
 -------------
-unitSI treats both scalars and arrays as dimensionless for unit checking
+QuantSI treats both scalars and arrays as dimensionless for unit checking
 and make all operations involving quantities return a quantity.::
 
     >>> 1 + 1*second   # doctest: +ELLIPSIS +IGNORE_EXCEPTION_DETAIL
@@ -40,45 +40,15 @@ Functions and units
 
 ndarray methods
 ~~~~~~~~~~~~~~~
-All methods that make sense on quantities should work, i.e. they check for the
+As far as the project has been able to test, all ndarray methods work well
+with quantities by default, i.e. they check for the
 correct units of their arguments and return quantities with units were
-appropriate. Most of the methods are overwritten using thin function wrappers:
+appropriate. The only two exceptions are ``cumsum`` and ``trace``, which are
+overwritten using a thin function wrapper:
 
 ``wrap_function_keep_dimension``:
 	Strips away the units before giving the array to the method of ``ndarray``,
-	then reattaches the unit to the result (examples: sum, mean, max)
-
-
-	arguments, the shape of the array, etc. (examples: sqrt, var, power)
-
-``wrap_function_dimensionless``:
-	Raises an error if the method is called on a quantity with dimensions (i.e.
-	it works on dimensionless quantities). 
-
-**List of methods**
-
-``all``, ``any``, ``argmax``, ``argsort``, ``clip``, ``compress``, ``conj``, ``conjugate``, 
-``copy``, ``cumsum``, ``diagonal``, ``dot``, ``dump``, ``dumps``, ``fill``, ``flatten``, ``getfield``, 
-``item``, ``itemset``, ``max``, ``mean``, ``min``, ``newbyteorder``, ``nonzero``, ``prod``, ``ptp``, 
-``put``, ``ravel``, ``repeat``, ``reshape``, ``round``, ``searchsorted``, ``setasflat``, ``setfield``, 
-``setflags``, ``sort``, ``squeeze``, ``std``, ``sum``, ``take``, ``tolist``, ``trace``, ``transpose``, 
-``var``, ``view``
-
-**Notes**
-
-* Methods directly working on the internal data buffer (``setfield``,
-  ``getfield``, ``newbyteorder``) ignore the dimensions of the quantity.
-* The type of a quantity cannot be int, therefore ``astype`` does not quite
-  work when trying to convert the array into integers.
-* ``choose`` is only defined for integer arrays and therefore does not work
-* ``tostring`` and ``tofile`` only return/save the pure array data without the
-  unit (but you can use ``dump`` or ``dumps`` to pickle a quantity array)
-* ``resize`` does not work: ``ValueError: cannot resize this array: it does not
-  own its data``
-* ``cumprod`` would result in different dimensions for different elements and is
-  therefore forbidden
-* ``item`` returns a pure Python float by definition
-* ``itemset`` does not check for units
+	then reattaches the unit to the result
 
 Numpy ufuncs
 ~~~~~~~~~~~~
@@ -136,19 +106,10 @@ Many numpy functions are functional versions of ndarray methods (e.g. ``mean``,
 ``sum``, ``clip``). They therefore work automatically when called on quantities,
 as numpy propagates the call to the respective method.
 
-There are some functions in numpy that do not propagate their call to the
-corresponding method (because they use np.asarray instead of np.asanyarray,
-which might actually be a bug in numpy): ``trace``, ``diagonal``, ``ravel``,
-``dot``. For these, wrapped functions in ``unitsafefunctions.py`` are provided.
-
-**Wrapped numpy functions in unitsafefunctions.py**
-
-These functions are thin wrappers around the numpy functions to correctly check
-for units and return quantities when appropriate:
-
-``log``, ``exp``, ``sin``, ``cos``, ``tan``, ``arcsin``, ``arccos``, ``arctan``, ``sinh``, 
-``cosh``, ``tanh``, ``arcsinh``, ``arccosh``, ``arctanh``, ``diagonal``, ``ravel``, ``trace``, 
-``dot``
+The only function in numpy that do not propagate its call to the
+corresponding method (because it uses np.asarray instead of np.asanyarray,
+which might actually be a bug in numpy) is ``trace``.
+For this, a wrapped function in ``fundamentalunits.py`` is provided.
          
 **numpy functions that work unchanged**
 

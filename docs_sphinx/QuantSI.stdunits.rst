@@ -1,7 +1,7 @@
-unitSI.constants module
+QuantSI.stdunits module
 =======================
 
-.. automodule:: unitSI.constants
+.. automodule:: QuantSI.stdunits
    :members:
    :undoc-members:
    :show-inheritance:

@@ -183,8 +183,6 @@ from .allunits import (
     Gwatt,
     Twatt,
 )
-from .unitsafefunctions import *
-from .unitsafefunctions import __all__ as unitsafefunctions_all
 
 from .fundamentalunits import *
 from .fundamentalunits import __all__ as fundamentalunits_all
@@ -371,6 +369,5 @@ __all__ = [
     "Gwatt",
     "Twatt",
 ]
-__all__.extend(unitsafefunctions_all)
 __all__.extend(fundamentalunits_all)
 __all__.extend(stdunits_all)

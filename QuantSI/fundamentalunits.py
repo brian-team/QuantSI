@@ -247,7 +247,7 @@ def fail_for_dimension_mismatch(
             return dim1, dim2
 
         # We do another check here, this should allow Brian1 units to pass as
-        # having the same dimensions as a Brian2 unit
+        # having the same dimensions as a QuantSI unit
         if dim1 == dim2:
             return dim1, dim2
 
@@ -656,7 +656,7 @@ def get_or_create_dimension(*args, **kwds):
     --------
     The following are all definitions of the dimensions of force
 
-    >>> from brian2 import *
+    >>> from QuantSI import *
     >>> get_or_create_dimension(length=1, mass=1, time=-2)
     metre * kilogram * second ** -2
     >>> get_or_create_dimension(m=1, kg=1, s=-2)
@@ -879,13 +879,13 @@ def in_unit(x, u, precision=None):
 
     Examples
     --------
-    >>> from brian2 import *
+    >>> from QuantSI import *
     >>> in_unit(3 * volt, mvolt)
     '3000. mV'
     >>> in_unit(123123 * msecond, second, 2)
     '123.12 s'
     >>> in_unit(10 * uA/cm**2, nA/um**2)
-    '1.00000000e-04 nA/(um^2)'
+    '1.e-04 nA/(um^2)'
     >>> in_unit(10 * mV, ohm * amp)
     '0.01 ohm A'
     >>> in_unit(10 * nS, ohm) # doctest: +NORMALIZE_WHITESPACE
@@ -925,7 +925,7 @@ def in_best_unit(x, precision=None):
 
     Examples
     --------
-    >>> from brian2.units import *
+    >>> from QuantSI.allunits import *
     >>> in_best_unit(0.00123456 * volt)
     '1.23456 mV'
     >>> in_best_unit(0.00123456 * volt, 2)
@@ -970,7 +970,7 @@ def quantity_with_dimensions(floatval, dims):
 
     Examples
     --------
-    >>> from brian2 import *
+    >>> from QuantSI import *
     >>> quantity_with_dimensions(0.001, volt.dim)
     1. * mvolt
 
@@ -1013,7 +1013,7 @@ class Quantity(np.ndarray):
 
     Examples
     --------
-    >>> from brian2 import *
+    >>> from QuantSI import *
     >>> I = 3 * amp # I is a Quantity object
     >>> R = 2 * ohm # same for R
     >>> I * R
@@ -1028,9 +1028,9 @@ class Quantity(np.ndarray):
     DimensionMismatchError: Addition, dimensions were (A) (m^2 kg s^-3 A^-2)
     >>> Is = np.array([1, 2, 3]) * amp
     >>> Is * R
-    array([ 2.,  4.,  6.]) * volt
+    array([2., 4., 6.]) * volt
     >>> np.asarray(Is * R) # gets rid of units
-    array([ 2.,  4.,  6.])
+    array([2., 4., 6.])
 
     See also
     --------
@@ -1280,7 +1280,7 @@ class Quantity(np.ndarray):
         --------
         All of these define an equivalent `Quantity` object:
 
-        >>> from brian2 import *
+        >>> from QuantSI import *
         >>> Quantity.with_dimensions(2, get_or_create_dimension(length=1))
         2. * metre
         >>> Quantity.with_dimensions(2, length=1)
@@ -1357,8 +1357,8 @@ class Quantity(np.ndarray):
 
         Examples
         --------
-        >>> from brian2.units import *
-        >>> from brian2.units.stdunits import *
+        >>> from QuantSI.allunits import *
+        >>> from QuantSI.stdunits import *
         >>> x = 25.123456 * mV
         >>> x.in_unit(volt)
         '0.02512346 V'
@@ -1464,7 +1464,7 @@ class Quantity(np.ndarray):
 
         Examples
         --------
-        >>> from brian2.units import *
+        >>> from QuantSI.allunits import *
 
         >>> x = 0.00123456 * volt
 
@@ -1652,59 +1652,8 @@ class Quantity(np.ndarray):
             return super().__format__(format_spec)
 
     #### Mathematic methods ####
-
     cumsum = wrap_function_keep_dimensions(np.ndarray.cumsum)
-    diagonal = wrap_function_keep_dimensions(np.ndarray.diagonal)
-    max = wrap_function_keep_dimensions(np.ndarray.max)
-    mean = wrap_function_keep_dimensions(np.ndarray.mean)
-    min = wrap_function_keep_dimensions(np.ndarray.min)
-    ptp = wrap_function_keep_dimensions(np.ndarray.ptp)
-
-    # To work around an issue in matplotlib 1.3.1 (see
-    # https://github.com/matplotlib/matplotlib/pull/2591), we make `ravel`
-    # return a unitless array and emit a warning explaining the issue.
-    use_matplotlib_units_fix = False
-    try:
-        import matplotlib
-
-        if matplotlib.__version__ == "1.3.1":
-            use_matplotlib_units_fix = True
-    except ImportError:
-        pass
-
-    if use_matplotlib_units_fix:
-
-        def ravel(self, *args, **kwds):
-            # Note that we don't use Brian's logging system here as we don't want
-            # the unit system to depend on other parts of Brian
-            warn(
-                "As a workaround for a bug in matplotlib 1.3.1, calling "
-                '"ravel()" on a quantity will return unit-less values. If you '
-                "get this warning during plotting, consider removing the units "
-                "before plotting, e.g. by dividing by the unit. If you are "
-                'explicitly calling "ravel()", consider using "flatten()" '
-                "instead."
-            )
-            return np.asarray(self).ravel(*args, **kwds)
-
-        ravel._arg_units = [None]
-        ravel._return_unit = 1
-        ravel.__name__ = np.ndarray.ravel.__name__
-        ravel.__doc__ = np.ndarray.ravel.__doc__
-    else:
-        ravel = wrap_function_keep_dimensions(np.ndarray.ravel)
-
-    round = wrap_function_keep_dimensions(np.ndarray.round)
-    std = wrap_function_keep_dimensions(np.ndarray.std)
-    sum = wrap_function_keep_dimensions(np.ndarray.sum)
-    trace = wrap_function_keep_dimensions(np.ndarray.trace)
-    var = wrap_function_change_dimensions(np.ndarray.var, lambda ar, d: d**2)
-    all = wrap_function_remove_dimensions(np.ndarray.all)
-    any = wrap_function_remove_dimensions(np.ndarray.any)
-    nonzero = wrap_function_remove_dimensions(np.ndarray.nonzero)
-    argmax = wrap_function_remove_dimensions(np.ndarray.argmax)
-    argmin = wrap_function_remove_dimensions(np.ndarray.argmin)
-    argsort = wrap_function_remove_dimensions(np.ndarray.argsort)
+    trace = wrap_function_keep_dimensions(np.trace)
 
     def fill(self, values):  # pylint: disable=C0111
         fail_for_dimension_mismatch(self, values, "fill")
@@ -1836,8 +1785,8 @@ class Unit(Quantity):
      purposes. So for example, to define the newton metre, you
      write
 
-     >>> from brian2 import *
-     >>> from brian2.units.allunits import newton
+     >>> from QuantSI import *
+     >>> from QuantSI.allunits import newton
      >>> Nm = newton * metre
 
      You can then do
@@ -2396,7 +2345,7 @@ def register_new_unit(u):
 
     Examples
     --------
-    >>> from brian2 import *
+    >>> from QuantSI import *
     >>> 2.0*farad/metre**2
     2. * metre ** -4 * kilogram ** -1 * second ** 4 * amp ** 2
     >>> register_new_unit(pfarad / mmetre**2)
@@ -2468,7 +2417,8 @@ def check_units(**au):
 
     Examples
     --------
-    >>> from brian2.units import *
+    >>> from QuantSI import mV, nA
+    >>> from QuantSI.allunits import *
     >>> @check_units(I=amp, R=ohm, wibble=metre, result=volt)
     ... def getvoltage(I, R, **k):
     ...     return I*R
@@ -2541,7 +2491,7 @@ def check_units(**au):
     >>> multiply_sum(3*nA, 4*mV, 5*nA)  # doctest: +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):
     ...
-    brian2.units.fundamentalunits.DimensionMismatchError: Function 'multiply_sum' expected the same arguments for arguments 'summand_1', 'summand_2', but argument 'summand_1' has unit V, while argument 'summand_2' has unit A.
+    QuantSI.fundamentalunits.DimensionMismatchError: Function 'multiply_sum' expected the same arguments for arguments 'summand_1', 'summand_2', but argument 'summand_1' has unit V, while argument 'summand_2' has unit A.
 
     Raises
     ------
