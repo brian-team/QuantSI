@@ -12,10 +12,8 @@ Welcome to QuantSI's documentation!
 
    user/units
    developer/units
-   usage/usage_comparison
-   
+   usage_comparison/usage_comparison
    modules
-
 
 
 Indices and tables

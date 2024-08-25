@@ -1,5 +1,5 @@
-Usage
-===== 
+Usage comparison
+================
 
 In this section, we will compare the usage of QuantSI with another packages.
 The comparation will be made with Pint and Astropy's units module.
