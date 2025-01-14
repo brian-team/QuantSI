@@ -1,17 +1,18 @@
 [project]
 name = "QuantSI"
+version = "0.1.0"
+description = "unit system as used by the Brian2 simulator"
 authors = [
-    {name = 'Sorin Birchi'},
+    {name = "Sorin Birchi"},
+    {name = "Marcel Stimberg"},
+    {name = "Dan Goodman"},
+    {name = "Romain Brette"},
 ]
-requires-python = '>=3.10'
-dependencies = [
-    'numpy>=1.23.5',
-    'sympy>=1.2',
-    'setuptools>=61'
-]
-dynamic = ["version", "readme"]
-description = 'unit system as used by the Brian2 simulator'
-keywords = ['computational neuroscience', 'simulation', 'system units']
+dependencies = ["numpy>=1.25", "sympy>=1.2"]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "GPLv3"}
+keywords = ['SI', 'SI units', 'unit system', 'physical quantities']
 classifiers = [
     'Development Status :: 4 - Beta',
     'Intended Audience :: Science/Research',
@@ -20,51 +21,22 @@ classifiers = [
     'Operating System :: OS Independent',
     'Programming Language :: Python',
     'Programming Language :: Python :: 3',
-    'Topic :: Scientific/Engineering :: Bio-Informatics'
+    'Topic :: Scientific/Engineering'
 ]
 
 [project.optional-dependencies]
-test = ['pytest', 'pytest-xdist>=1.22.3']
-docs = ['sphinx>=7', 'ipython>=5', 'sphinx-tabs']
-
-[project.urls]
-Documentation ='https://QuantSI.readthedocs.io/en/latest/'
-Source = 'https://github.com/brian-team/QuantSI'
-Tracker = 'https://github.com/brian-team/QuantSI/issues'
-
-[build-system]
-requires = [
-    "setuptools>=61",
-    "numpy>=2.0.0rc1",
-    "wheel",
-    "setuptools_scm[toml]>=6.2"
+test = [
+    "pytest>=8.3.4",
+    "pytest-xdist>=1.22.3",
 ]
-build-backend = "setuptools.build_meta"
+docs = [
+    "sphinx>=7",
+    "ipython>=5",
+    "sphinx-tabs>=3.4.7",
+]
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
 
-[tool.setuptools]
-zip-safe = false
-include-package-data = true
-
-[tool.setuptools.packages.find]
-include = ["QuantSI*"]
-
-[tool.setuptools.dynamic]
-readme = {file = 'README.md', content-type = "text/markdown"}
-
-[tool.setuptools_scm]
-version_scheme = 'post-release'
-local_scheme = 'no-local-version'
-write_to = 'QuantSI/_version.py'
-fallback_version = 'unknown'
-
-[tool.black]
-target-version = ['py310']
-include = '^/QuantSI/.*\.pyi?$'
-
-[tool.isort]
-atomic = true
-profile = "black"
-py_version = "311"
-skip_gitignore = true
-# NOTE: isort has no "include" option, only "skip".
-skip_glob = ["docs_sphinx/*"]
+[tool.pdm]
+distribution = true
