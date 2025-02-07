@@ -28,6 +28,7 @@ dynamic = ["version"]
 test = [
     "pytest>=8.3.4",
     "pytest-xdist>=1.22.3",
+    "pdm-backend>=2.4.3",
 ]
 docs = [
     "sphinx>=7",
@@ -47,3 +48,6 @@ tag_filter = "v*"
 version_format = "src.version_helper:format_version"
 write_to = "QuantSI/_version.py"
 write_template = "__version__ = '{}'"
+
+[tool.pytest.ini_options]
+addopts = "-ra"
