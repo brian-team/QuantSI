@@ -1,25 +1,25 @@
-name: Python package
+name: Tests
 
 on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    name: Run tests
+    runs-on: ubuntu-24.04
 
     steps:
     - name: Check out the repository
       uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
+    - name: Set up PDM
+      uses: pdm-project/setup-pdm@v4
       with:
-        python-version: '3.x'
+        python-version: 3.13
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install .[test]
+        pdm install -G test
 
     - name: Run tests
       run: |
-        pytest --doctest-modules
+        pdm run -v pytest --doctest-modules

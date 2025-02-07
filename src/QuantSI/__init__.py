@@ -3,6 +3,7 @@ The unit system.
 """
 
 # isort:skip_file
+from ._version import __version__
 
 from .allunits import (
     # basic units
