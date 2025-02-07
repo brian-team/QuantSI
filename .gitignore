@@ -161,3 +161,8 @@ cython_debug/
 
 # version
 _version.py
+
+# pdm
+pdm.lock
+.pdm-*/
+.pdm-*
