@@ -3,7 +3,7 @@ The unit system.
 """
 
 # isort:skip_file
-from ._version import __version__
+from ._version import __version__ as __version__
 
 from .allunits import (
     # basic units
@@ -185,12 +185,52 @@ from .allunits import (
     Twatt,
 )
 
-from .fundamentalunits import *
-from .fundamentalunits import __all__ as fundamentalunits_all
+from .fundamentalunits import (
+    DimensionMismatchError,
+    get_or_create_dimension,
+    get_dimensions,
+    is_dimensionless,
+    have_same_dimensions,
+    in_unit,
+    in_best_unit,
+    Quantity,
+    Unit,
+    register_new_unit,
+    check_units,
+    is_scalar_type,
+    get_unit,
+)
 
-from .stdunits import *
-from .stdunits import __all__ as stdunits_all
-
+from .stdunits import (
+    mV,
+    mA,
+    uA,
+    nA,
+    pA,
+    pF,
+    uF,
+    nF,
+    nS,
+    uS,
+    mS,
+    ms,
+    us,
+    Hz,
+    kHz,
+    MHz,
+    cm,
+    cm2,
+    cm3,
+    mm,
+    mm2,
+    mm3,
+    um,
+    um2,
+    um3,
+    mM,
+    uM,
+    nM,
+)
 
 __all__ = [
     "pamp",
@@ -369,6 +409,47 @@ __all__ = [
     "Mwatt",
     "Gwatt",
     "Twatt",
+    # from fundamentalunits
+    "DimensionMismatchError",
+    "get_or_create_dimension",
+    "get_dimensions",
+    "is_dimensionless",
+    "have_same_dimensions",
+    "in_unit",
+    "in_best_unit",
+    "Quantity",
+    "Unit",
+    "register_new_unit",
+    "check_units",
+    "is_scalar_type",
+    "get_unit",
+    # from stdunits
+    "mV",
+    "mA",
+    "uA",
+    "nA",
+    "pA",
+    "pF",
+    "uF",
+    "nF",
+    "nS",
+    "uS",
+    "mS",
+    "ms",
+    "us",
+    "Hz",
+    "kHz",
+    "MHz",
+    "cm",
+    "cm2",
+    "cm3",
+    "mm",
+    "mm2",
+    "mm3",
+    "um",
+    "um2",
+    "um3",
+    "mM",
+    "uM",
+    "nM",
 ]
-__all__.extend(fundamentalunits_all)
-__all__.extend(stdunits_all)
