@@ -1,5 +1,3 @@
-from pdm.backend.hooks.version import SCMVersion
-
 def format_version(version) -> str:
     """
     Format the version number of the package. This function is only supposed to be
