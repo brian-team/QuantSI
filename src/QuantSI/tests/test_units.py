@@ -6,7 +6,73 @@ import numpy as np
 import pytest
 from numpy.testing import assert_equal
 
-from QuantSI.allunits import *
+from QuantSI.allunits import (
+    metre,
+    meter,
+    kilogram,
+    kilogramme,
+    second,
+    amp,
+    kelvin,
+    mole,
+    candle,
+    radian,
+    steradian,
+    hertz,
+    newton,
+    pascal,
+    joule,
+    watt,
+    coulomb,
+    volt,
+    farad,
+    ohm,
+    siemens,
+    weber,
+    tesla,
+    henry,
+    lumen,
+    lux,
+    becquerel,
+    gray,
+    sievert,
+    katal,
+    gram,
+    gramme,
+    molar,
+    liter,
+    litre,
+    Yfarad,
+    Zfarad,
+    Efarad,
+    Pfarad,
+    Tfarad,
+    Gfarad,
+    Mfarad,
+    kfarad,
+    hfarad,
+    dafarad,
+    dfarad,
+    cfarad,
+    mfarad,
+    ufarad,
+    nfarad,
+    pfarad,
+    ffarad,
+    afarad,
+    zfarad,
+    yfarad,
+    cmetre2,
+    Yfarad3,
+    kgram,
+    metre2,
+    kmetre,
+    umetre,
+    meter3,
+    second3,
+    amp2,
+    mvolt,
+)
 from QuantSI.fundamentalunits import (
     DIMENSIONLESS,
     UFUNCS_DIMENSIONLESS,
@@ -27,7 +93,7 @@ from QuantSI.fundamentalunits import (
     is_scalar_type,
     quantity_with_dimensions
 )
-from QuantSI.stdunits import Hz, cm, kHz, mM, ms, mV, nA, nS
+from QuantSI.stdunits import Hz, cm, kHz, mM, ms, mV, nS
 
 def assert_quantity(q, values, unit):
     assert isinstance(q, Quantity) or (
@@ -129,7 +195,6 @@ def test_get_dimensions():
         get_or_create_dimension(42)
 
 
-
 def test_display():
     """
     Test displaying a quantity in different units
@@ -159,7 +224,6 @@ def test_pickling():
         assert_equal(unpickled, q)
 
 
-
 def test_dimension_singletons():
     # Make sure that Dimension objects are singletons, even when pickled
     volt_dim = get_or_create_dimension((2, 1, -3, -1, 0, 0, 0))
@@ -170,7 +234,6 @@ def test_dimension_singletons():
     unpickled_dim = pickle.loads(pickled_dim)
     assert unpickled_dim is volt_dim
     assert unpickled_dim is volt.dim
-
 
 
 def test_str_repr():
@@ -309,14 +372,12 @@ def test_str_repr():
         assert len(repr(error))
 
 
-
 def test_format_quantity():
     # Avoid that the default f-string (or .format call) discards units when used without
     # a format spec
     q = 0.5 * ms
     assert f"{q}" == f"{q!s}" == str(q)
     assert f"{q:g}" == f"{float(q)}"
-
 
 
 def test_slicing():
@@ -329,7 +390,6 @@ def test_slicing():
     assert_equal(quantity[0:1, 1:], np.asarray(quantity)[0:1, 1:] * volt)
     bool_matrix = np.array([[True, False, False], [False, False, True]])
     assert_equal(quantity[bool_matrix], np.asarray(quantity)[bool_matrix] * volt)
-
 
 
 def test_setting():
@@ -353,7 +413,6 @@ def test_setting():
         set_to_value(0, 1 * second)
     with pytest.raises(DimensionMismatchError):
         set_to_value((slice(2), slice(3)), np.ones((2, 3)))
-
 
 
 def test_multiplication_division():
@@ -397,7 +456,6 @@ def test_multiplication_division():
             "string" * q
         with pytest.raises(TypeError):
             q * "string"
-
 
 
 def test_addition_subtraction():
@@ -480,14 +538,12 @@ def test_addition_subtraction():
             "string" - q
 
 
-
 def test_unary_operations():
     from operator import neg, pos
 
     for op in [neg, pos]:
         for x in [2, np.array([2]), np.array([1, 2])]:
             assert_quantity(op(x * kilogram), op(x), kilogram)
-
 
 
 def test_binary_operations():
@@ -618,7 +674,6 @@ def test_binary_operations():
         assert np.all(-np.inf < value)
 
 
-
 def test_power():
     """
     Test raising quantities to a power.
@@ -636,7 +691,6 @@ def test_power():
             value ** (2 * mV)
         with pytest.raises(TypeError):
             value ** np.array([2, 3])
-
 
 
 def test_inplace_operations():
@@ -726,7 +780,6 @@ def test_inplace_operations():
     ]:
         with pytest.raises(TypeError):
             inplace_op(volt.dimensions)
-
 
 
 def test_unit_discarding_functions():
@@ -889,7 +942,7 @@ def test_numpy_functions_same_dimensions():
         q_ar = value * unit
         for func in keep_dim_funcs:
             test_ar = func(q_ar)
-            if not get_dimensions(test_ar) is q_ar.dim:
+            if get_dimensions(test_ar) is not q_ar.dim:
                 raise AssertionError(
                     f"'{func.__name__}' failed on {q_ar!r} -- dim was "
                     f"{q_ar.dim}, is now {get_dimensions(test_ar)}."
@@ -902,13 +955,12 @@ def test_numpy_functions_same_dimensions():
                     q_ar = value * unit
                 for func in builtins:
                     test_ar = func(q_ar)
-                if not get_dimensions(test_ar) is q_ar.dim:
+                if get_dimensions(test_ar) is not q_ar.dim:
                     raise AssertionError(
                         f"'{func.__name__}' failed on {q_ar!r} -- dim "
                         f"was {q_ar.dim}, is now "
                         f"{get_dimensions(test_ar)}"
                     )
-
 
 
 def test_numpy_functions_indices():
@@ -935,7 +987,6 @@ def test_numpy_functions_indices():
                     % func.__name__
                 ),
             )
-
 
 
 def test_numpy_functions_dimensionless():
@@ -985,7 +1036,6 @@ def test_numpy_functions_dimensionless():
                     eval(f"np.{ufunc}(value, value)", globals(), {"value": value})
 
 
-
 def test_numpy_functions_change_dimensions():
     """
     Test some numpy functions that change the dimensions of the quantity.
@@ -998,7 +1048,6 @@ def test_numpy_functions_change_dimensions():
         assert_quantity(
             np.reciprocal(value), np.reciprocal(np.array(value)), 1.0 / volt
         )
-
 
 
 def test_numpy_functions_typeerror():
@@ -1023,7 +1072,6 @@ def test_numpy_functions_typeerror():
                     eval(f"np.{ufunc}(value, value)", globals(), {"value": value})
 
 
-
 def test_numpy_functions_logical():
     """
     Assure that logical numpy functions work on all quantities and return
@@ -1043,7 +1091,6 @@ def test_numpy_functions_logical():
                 result_array = eval(f"np.{ufunc}(np.array(value1), np.array(value2))")
             assert not isinstance(result_units, Quantity)
             assert_equal(result_units, result_array)
-
 
 
 def test_arange_linspace():
@@ -1067,11 +1114,10 @@ def test_list():
     """
     values = [3 * mV, np.array([1, 2]) * mV, np.arange(12).reshape(4, 3) * mV]
     for value in values:
-        l = value.tolist()
-        from_list = Quantity(l)
+        value_list = value.tolist()
+        from_list = Quantity(value_list)
         assert have_same_dimensions(from_list, value)
         assert_equal(from_list, value)
-
 
 
 def test_check_units():
@@ -1140,7 +1186,6 @@ def test_check_units():
         c_function(False, 1)
 
 
-
 def test_get_unit():
     """
     Test get_unit
@@ -1155,7 +1200,6 @@ def test_get_unit():
         assert isinstance(unit, Unit)
         assert unit == expected_unit
         assert float(unit) == 1.0
-
 
 
 def test_get_best_unit():
@@ -1175,7 +1219,6 @@ def test_get_best_unit():
         assert str(expected_unit) in ar.in_best_unit()
 
 
-
 def test_switching_off_unit_checks():
     """
     Check switching off unit checks (used for external functions).
@@ -1192,7 +1235,6 @@ def test_switching_off_unit_checks():
     assert have_same_dimensions(x, y)
     assert x.has_same_dimensions(y)
     fundamentalunits.unit_checking = True
-
 
 
 def test_fail_for_dimension_mismatch():
@@ -1220,7 +1262,6 @@ def test_fail_for_dimension_mismatch():
         fail_for_dimension_mismatch(6 * volt, 5 * second)
 
 
-
 def test_deepcopy():
     d = {"x": 1 * second}
     from copy import deepcopy
@@ -1230,7 +1271,6 @@ def test_deepcopy():
     d_copy["x"] += 1 * second
     assert d_copy["x"] == 2 * second
     assert d["x"] == 1 * second
-
 
 
 def test_inplace_on_scalars():
@@ -1279,11 +1319,10 @@ def test_units_vs_quantities():
     # Using the unconventional type(x) == y since we want to test that
     # e.g. meter**2 stays a Unit and does not become a Quantity however Unit
     # inherits from Quantity and therefore both would pass the isinstance test
-    assert type(2 / meter) == Quantity
-    assert type(2 * meter) == Quantity
-    assert type(meter + meter) == Quantity
-    assert type(meter - meter) == Quantity
-
+    assert type(2 / meter) is Quantity
+    assert type(2 * meter) is Quantity
+    assert type(meter + meter) is Quantity
+    assert type(meter - meter) is Quantity
 
 
 def test_all_units_list():
@@ -1294,7 +1333,6 @@ def test_all_units_list():
     assert cm in all_units
     assert Hz in all_units
     assert all(isinstance(u, Unit) for u in all_units)
-
 
 
 def test_constants():
