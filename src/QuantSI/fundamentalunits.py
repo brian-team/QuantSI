@@ -526,12 +526,6 @@ class Dimension:
         return hash(self._dims)
 
     #### MAKE DIMENSION PICKABLE ####
-    def __getstate__(self):
-        return self._dims
-
-    def __setstate__(self, state):
-        self._dims = state
-
     def __reduce__(self):
         # Make sure that unpickling Dimension objects does not bypass the singleton system
         return (get_or_create_dimension, (self._dims,))
