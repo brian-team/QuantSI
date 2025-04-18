@@ -1889,55 +1889,18 @@ class Unit(Quantity):
         return u
 
     #### METHODS ####
-    def set_name(self, name):
-        """Sets the name for the unit.
-
-        .. deprecated:: 2.1
-            Create a new unit with `Unit.create` instead.
-        """
-        raise NotImplementedError(
-            "Setting the name for a unit after"
-            "its creation is no longer supported, use"
-            "'Unit.create' to create a new unit."
-        )
-
-    def set_display_name(self, name):
-        """Sets the display name for the unit.
-
-        .. deprecated:: 2.1
-            Create a new unit with `Unit.create` instead.
-        """
-        raise NotImplementedError(
-            "Setting the display name for a unit after"
-            "its creation is no longer supported, use"
-            "'Unit.create' to create a new unit."
-        )
-
-    def set_latex_name(self, name):
-        """Sets the LaTeX name for the unit.
-
-        .. deprecated:: 2.1
-            Create a new unit with `Unit.create` instead.
-        """
-        raise NotImplementedError(
-            "Setting the LaTeX name for a unit after"
-            "its creation is no longer supported, use"
-            "'Unit.create' to create a new unit."
-        )
 
     name = property(
-        fget=lambda self: self._name, fset=set_name, doc="The name of the unit"
+        fget=lambda self: self._name, doc="The name of the unit"
     )
 
     dispname = property(
         fget=lambda self: self._dispname,
-        fset=set_display_name,
         doc="The display name of the unit",
     )
 
     latexname = property(
         fget=lambda self: self._latexname,
-        fset=set_latex_name,
         doc="The LaTeX name of the unit",
     )
 
