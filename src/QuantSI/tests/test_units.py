@@ -944,16 +944,6 @@ def test_special_case_numpy_functions():
     with pytest.raises(TypeError):
         np.where(cond, ar1, ar1, ar2)
 
-    # Check setasflat (for numpy < 1.7)
-    if hasattr(Quantity, "setasflat"):
-        a = np.arange(10) * mV
-        b = np.ones(10).reshape(5, 2) * volt
-        c = np.ones(10).reshape(5, 2) * second
-        with pytest.raises(DimensionMismatchError):
-            a.setasflat(c)
-        a.setasflat(b)
-        assert_equal(a.flatten(), b.flatten())
-
     # Check cumprod
     a = np.arange(1, 10) * mV / mV
     assert_equal(a.cumprod(), np.asarray(a).cumprod())
