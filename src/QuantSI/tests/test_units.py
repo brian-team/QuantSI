@@ -72,6 +72,10 @@ from QuantSI.allunits import (
     second3,
     amp2,
     mvolt,
+    umetre3,
+    mmolar,
+    usiemens,
+    cmetre,
 )
 from QuantSI.fundamentalunits import (
     DIMENSIONLESS,
@@ -89,6 +93,7 @@ from QuantSI.fundamentalunits import (
     get_unit,
     have_same_dimensions,
     in_unit,
+    in_best_unit,
     is_dimensionless,
     is_scalar_type,
     quantity_with_dimensions
@@ -138,6 +143,8 @@ def test_construction():
     assert_quantity(q, np.array([1, 2, 3]), Unit(1))
     q = Quantity([])
     assert_quantity(q, np.array([]), Unit(1))
+    q = Quantity(3, force_quantity=True)
+    assert_quantity(q, np.array(3), Unit(1))
 
     # copying/referencing a quantity
     q1 = Quantity.with_dimensions(np.array([0.5, 1]), second=1)
@@ -152,6 +159,13 @@ def test_construction():
     q2[0] = 3 * second
     assert_equal(q1[0], 0.5 * second)
 
+    q1 = Quantity([0.5, 1], force_quantity=True)
+    q2 = Quantity(q1, dim=DIMENSIONLESS, copy=True)  # copy
+    assert_equal(q1, q2)
+    q2[0] = 3
+    assert_equal(q2[0], 3)
+    assert_equal(q1[0], 0.5)
+
     # Illegal constructor calls
     with pytest.raises(TypeError):
         Quantity([500 * ms, 1])
@@ -159,6 +173,12 @@ def test_construction():
         Quantity(["some", "nonsense"])
     with pytest.raises(DimensionMismatchError):
         Quantity([500 * ms, 1 * volt])
+
+def test_item():
+    q = Quantity([3])
+    assert q.item() == 3
+    q = Quantity.with_dimensions([3], second.dim)
+    assert_quantity(q.item(), 3, second)
 
 
 def test_get_dimensions():
@@ -168,6 +188,9 @@ def test_get_dimensions():
     q = 500 * ms
     assert get_dimensions(q) is get_or_create_dimension(q.dimensions._dims)
     assert get_dimensions(q) is q.dimensions
+    assert get_dimensions(q) is q.dim
+    assert q.dim is q.dim.dim
+    assert ms.dim is q.dim
     assert q.has_same_dimensions(3 * second)
     dims = q.dimensions
     assert_equal(dims.get_dimension("time"), 1.0)
@@ -216,6 +239,8 @@ def test_pickling():
         500 * mV / mV,
         np.arange(10) * mV,
         np.arange(12).reshape(4, 3) * mV / ms,
+        DIMENSIONLESS,
+        get_or_create_dimension(m=2, s=-1)
     ]:
         pickled = pickle.dumps(q)
         unpickled = pickle.loads(pickled)
@@ -333,6 +358,9 @@ def test_str_repr():
         5 * mole / liter,
         7 * liter / meter3,
         1 / second**2,
+        (volt/second) ** 2,
+        (volt/second) ** -1,
+        (volt/second) ** 0.5,
         volt**-2,
         (volt**2) ** -1,
         (1 / second) / meter,
@@ -367,6 +395,7 @@ def test_str_repr():
         DimensionMismatchError("A description"),
         DimensionMismatchError("A description", DIMENSIONLESS),
         DimensionMismatchError("A description", DIMENSIONLESS, second.dim),
+        DimensionMismatchError("A description", DIMENSIONLESS, second.dim, meter.dim),
     ]:
         assert len(str(error))
         assert len(repr(error))
@@ -378,6 +407,20 @@ def test_format_quantity():
     q = 0.5 * ms
     assert f"{q}" == f"{q!s}" == str(q)
     assert f"{q:g}" == f"{float(q)}"
+
+
+@pytest.mark.parametrize(
+    "dimension,expected_latex",
+    [
+        (DIMENSIONLESS, "1"),
+        (get_or_create_dimension(m=1), "m"),
+        (get_or_create_dimension(s=2), r"s^{2}"),
+        (get_or_create_dimension(m=2, s=-1), r"m^{2}\,s^{-1}"),
+    ],
+)
+def test_dimensions_latex(dimension, expected_latex):
+    assert dimension._latex() == expected_latex
+    assert dimension._repr_latex() == f"${expected_latex}$"
 
 
 def test_slicing():
@@ -731,9 +774,9 @@ def test_inplace_operations():
         q -= q2
 
     with pytest.raises(DimensionMismatchError):
-        illegal_add(1 * second)
+        illegal_sub(1 * second)
     with pytest.raises(DimensionMismatchError):
-        illegal_add(1)
+        illegal_sub(1)
 
     def illegal_pow(q2):
         q = np.arange(10) * volt
@@ -754,12 +797,8 @@ def test_inplace_operations():
         q.__imod__,
         q.__ipow__,
     ]:
-        try:
-            result = inplace_op("string")
-            # if it doesn't fail with an error, it should return NotImplemented
-            assert result == NotImplemented
-        except TypeError:
-            pass  # raised on numpy >= 0.10
+        with pytest.raises(TypeError):
+            inplace_op("string")            
 
     # make sure that inplace operations do not work on units/dimensions at all
     for inplace_op in [
@@ -776,11 +815,17 @@ def test_inplace_operations():
     for inplace_op in [
         volt.dimensions.__imul__,
         volt.dimensions.__itruediv__,
+        volt.dimensions.__ifloordiv__,
         volt.dimensions.__ipow__,
     ]:
         with pytest.raises(TypeError):
             inplace_op(volt.dimensions)
 
+def test_dimension_comparisons():
+    assert get_or_create_dimension(m=1) == meter.dim
+    assert get_or_create_dimension(m=2) != meter.dim
+    assert get_or_create_dimension(m=1) != second.dim
+    assert get_or_create_dimension(m=1) != "something else"
 
 def test_unit_discarding_functions():
     """
@@ -1000,7 +1045,7 @@ def test_numpy_functions_dimensionless():
         # ignore division by 0 warnings
         warnings.simplefilter("ignore", RuntimeWarning)
         for value in unitless_values:
-            for ufunc in UFUNCS_DIMENSIONLESS:
+            for ufunc in UFUNCS_DIMENSIONLESS:                
                 result_unitless = eval(f"np.{ufunc}(value)")
                 result_array = eval(f"np.{ufunc}(np.array(value))")
                 assert isinstance(
@@ -1092,6 +1137,54 @@ def test_numpy_functions_logical():
             assert not isinstance(result_units, Quantity)
             assert_equal(result_units, result_array)
 
+
+def test_numpy_methods():
+    # fill
+    q = np.arange(10)*mV
+    with pytest.raises(DimensionMismatchError):        
+        q.fill(3)
+    with pytest.raises(DimensionMismatchError):
+        q.fill(3*second)
+    q.fill(1*mV)
+    assert_equal(q, np.ones(10)*mV)
+
+    # clip
+    q = np.arange(10)*mV
+    with pytest.raises(DimensionMismatchError):
+        q.clip(np.ones(10), 10)
+    with pytest.raises(DimensionMismatchError):
+        q.clip(np.ones(10), 10*mV)
+    with pytest.raises(DimensionMismatchError):
+        q.clip(np.ones(10)*mV, 10)
+    with pytest.raises(DimensionMismatchError):
+        q.clip(np.ones(10)*ms, 10*ms)
+    assert_equal(q.clip(np.ones(10)*mV, 7*mV), np.arange(10).clip(np.ones(10), 7)*mV)
+
+    # dot 
+    a = np.array([1, 2, 3]) * mV
+    b = np.array([4, 5, 6]) * ms
+    expected_result = np.dot(np.asarray(a), np.asarray(b))
+    result = a.dot(b)
+    assert_quantity(result, expected_result, volt*second)
+
+    # searchsorted
+    a = np.arange(10)*mV
+    assert_equal(a.searchsorted(5*mV), np.arange(10).searchsorted(5))
+    with pytest.raises(DimensionMismatchError):
+        a.searchsorted(5)
+    with pytest.raises(DimensionMismatchError):
+        a.searchsorted(5*ms)
+
+    # prod
+    q = [[1, 2], [3, 4]]*mV
+    assert_quantity(q.prod(), float(24*mV**4), volt**4)
+    assert_quantity(q.prod(axis=0), np.array([3, 8]*mV**2), volt**2)
+
+    # cumprod
+    q_no_dim = Quantity(np.arange(1, 10), force_quantity=True)
+    assert_equal(q_no_dim.cumprod(), np.arange(1, 10).cumprod())
+    with pytest.raises(TypeError):
+        (np.arange(10)*mV).cumprod()        
 
 def test_arange_linspace():
     # Make sure units are checked
@@ -1213,28 +1306,13 @@ def test_get_best_unit():
         (np.arange(10) * mV, mV),
         ([0.001, 0.002, 0.003] * second, ms),
         (long_ar, nS),
+        ([0, 0, 0] * mV, volt),
+        (Quantity([1, 2, 3], force_quantity=True), Unit(1))
     ]
     for ar, expected_unit in values:
-        assert ar.get_best_unit() is expected_unit
+        assert ar.get_best_unit() == expected_unit
         assert str(expected_unit) in ar.in_best_unit()
-
-
-def test_switching_off_unit_checks():
-    """
-    Check switching off unit checks (used for external functions).
-    """
-    import QuantSI.fundamentalunits as fundamentalunits
-
-    x = 3 * second
-    y = 5 * volt
-    with pytest.raises(DimensionMismatchError):
-        x + y
-    fundamentalunits.unit_checking = False
-    # Now it should work
-    assert np.asarray(x + y) == np.array(8)
-    assert have_same_dimensions(x, y)
-    assert x.has_same_dimensions(y)
-    fundamentalunits.unit_checking = True
+        assert ar.in_best_unit() == in_best_unit(ar)
 
 
 def test_fail_for_dimension_mismatch():
@@ -1359,39 +1437,3 @@ def test_constants():
         np.asarray(constants.faraday_constant),
         np.asarray(constants.avogadro_constant * constants.elementary_charge),
     )
-
-
-if __name__ == "__main__":
-    test_construction()
-    test_get_dimensions()
-    test_display()
-    test_power()
-    test_pickling()
-    test_str_repr()
-    test_slicing()
-    test_setting()
-    test_multiplication_division()
-    test_addition_subtraction()
-    test_unary_operations()
-    test_binary_operations()
-    test_inplace_operations()
-    test_unit_discarding_functions()
-    test_special_case_numpy_functions()
-    test_numpy_functions_same_dimensions()
-    test_numpy_functions_indices()
-    test_numpy_functions_dimensionless()
-    test_numpy_functions_change_dimensions()
-    test_numpy_functions_typeerror()
-    test_numpy_functions_logical()
-    test_arange_linspace()
-    test_list()
-    test_check_units()
-    test_get_unit()
-    test_get_best_unit()
-    test_switching_off_unit_checks()
-    test_fail_for_dimension_mismatch()
-    test_deepcopy()
-    test_inplace_on_scalars()
-    test_units_vs_quantities()
-    test_all_units_list()
-    test_constants()
