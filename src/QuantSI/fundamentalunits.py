@@ -23,11 +23,8 @@ from typing import Callable
 from warnings import warn
 
 import numpy as np
+from numpy.exceptions import VisibleDeprecationWarning
 
-try:
-    from numpy.exceptions import VisibleDeprecationWarning  # numpy 2.x
-except ImportError:
-    from numpy import VisibleDeprecationWarning  # numpy 1.x
 
 from sympy import latex
 
@@ -244,11 +241,6 @@ def fail_for_dimension_mismatch(
         if (dim1 is DIMENSIONLESS and np.all(obj1 == 0)) or (
             dim2 is DIMENSIONLESS and np.all(obj2 == 0)
         ):
-            return dim1, dim2
-
-        # We do another check here, this should allow Brian1 units to pass as
-        # having the same dimensions as a QuantSI unit
-        if dim1 == dim2:
             return dim1, dim2
 
         if error_message is None:
