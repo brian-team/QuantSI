@@ -502,7 +502,7 @@ class Dimension:
     def __imul__(self, value):
         raise TypeError("Dimension object is immutable")
 
-    def __idiv__(self, value):
+    def __ifloordiv__(self, value):
         raise TypeError("Dimension object is immutable")
 
     def __itruediv__(self, value):
@@ -2130,9 +2130,6 @@ class Unit(Quantity):
         raise TypeError("Units cannot be modified in-place")
 
     def __imul__(self, other):
-        raise TypeError("Units cannot be modified in-place")
-
-    def __idiv__(self, other):
         raise TypeError("Units cannot be modified in-place")
 
     def __itruediv__(self, other):
