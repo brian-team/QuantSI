@@ -45,9 +45,6 @@ __all__ = [
 ]
 
 
-unit_checking = True
-
-
 def _flatten(iterable):
     """
     Flatten a given list `iterable`.
@@ -221,9 +218,6 @@ def fail_for_dimension_mismatch(
     Implements special checking for ``0``, treating it as having "any
     dimensions".
     """
-    if not unit_checking:
-        return None, None
-
     dim1 = get_dimensions(obj1)
     if obj2 is None:
         dim2 = DIMENSIONLESS
@@ -759,10 +753,6 @@ def have_same_dimensions(obj1, obj2):
     same : `bool`
         ``True`` if `obj1` and `obj2` have the same dimensions.
     """
-
-    if not unit_checking:
-        return True  # ignore units when unit checking is disabled
-
     # If dimensions are consistently created using get_or_create_dimensions,
     # the fast "is" comparison should always return the correct result.
     # To be safe, we also do an equals comparison in case it fails. This
@@ -1243,9 +1233,6 @@ class Quantity(np.ndarray):
         same : `bool`
             ``True`` if `other` has the same dimensions.
         """
-        if not unit_checking:
-            return True  # ignore units if unit checking is disabled
-
         other_dim = get_dimensions(other)
         return (self.dim is other_dim) or (self.dim == other_dim)
 
