@@ -72,10 +72,11 @@ from QuantSI.allunits import (
     second3,
     amp2,
     mvolt,
-    umetre3,
-    mmolar,
-    usiemens,
-    cmetre,
+    # These are used via eval
+    umetre3,  # noqa
+    mmolar,  # noqa
+    usiemens,  # noqa
+    cmetre,  # noqa
 )
 from QuantSI.fundamentalunits import (
     DIMENSIONLESS,
@@ -96,19 +97,19 @@ from QuantSI.fundamentalunits import (
     in_best_unit,
     is_dimensionless,
     is_scalar_type,
-    quantity_with_dimensions
+    quantity_with_dimensions,
 )
 from QuantSI.stdunits import Hz, cm, kHz, mM, ms, mV, nS
 
+
 def assert_quantity(q, values, unit):
     assert isinstance(q, Quantity) or (
-        have_same_dimensions(unit, 1)
-        and (values.shape == () or isinstance(q, np.ndarray))
+        have_same_dimensions(unit, 1) and (values.shape == () or isinstance(q, np.ndarray))
     ), q
     assert np.allclose(np.asarray(q), values)
-    assert have_same_dimensions(
-        q, unit
-    ), f"Dimension mismatch: ({get_dimensions(q)}) ({get_dimensions(unit)})"
+    assert have_same_dimensions(q, unit), (
+        f"Dimension mismatch: ({get_dimensions(q)}) ({get_dimensions(unit)})"
+    )
 
 
 def test_construction():
@@ -174,6 +175,7 @@ def test_construction():
     with pytest.raises(DimensionMismatchError):
         Quantity([500 * ms, 1 * volt])
 
+
 def test_item():
     q = Quantity([3])
     assert q.item() == 3
@@ -230,6 +232,7 @@ def test_display():
     # A bit artificial...
     assert_equal(in_unit(10.0, Unit(10.0, scale=1)), "1.0")
 
+
 def test_pickling():
     """
     Test pickling of units.
@@ -240,7 +243,7 @@ def test_pickling():
         np.arange(10) * mV,
         np.arange(12).reshape(4, 3) * mV / ms,
         DIMENSIONLESS,
-        get_or_create_dimension(m=2, s=-1)
+        get_or_create_dimension(m=2, s=-1),
     ]:
         pickled = pickle.dumps(q)
         unpickled = pickle.loads(pickled)
@@ -358,9 +361,9 @@ def test_str_repr():
         5 * mole / liter,
         7 * liter / meter3,
         1 / second**2,
-        (volt/second) ** 2,
-        (volt/second) ** -1,
-        (volt/second) ** 0.5,
+        (volt / second) ** 2,
+        (volt / second) ** -1,
+        (volt / second) ** 0.5,
         volt**-2,
         (volt**2) ** -1,
         (1 / second) / meter,
@@ -798,7 +801,7 @@ def test_inplace_operations():
         q.__ipow__,
     ]:
         with pytest.raises(TypeError):
-            inplace_op("string")            
+            inplace_op("string")
 
     # make sure that inplace operations do not work on units/dimensions at all
     for inplace_op in [
@@ -821,11 +824,13 @@ def test_inplace_operations():
         with pytest.raises(TypeError):
             inplace_op(volt.dimensions)
 
+
 def test_dimension_comparisons():
     assert get_or_create_dimension(m=1) == meter.dim
     assert get_or_create_dimension(m=2) != meter.dim
     assert get_or_create_dimension(m=1) != second.dim
     assert get_or_create_dimension(m=1) != "something else"
+
 
 def test_unit_discarding_functions():
     """
@@ -835,15 +840,18 @@ def test_unit_discarding_functions():
     values = [3 * mV, np.array([1, 2]) * mV, np.arange(12).reshape(3, 4) * mV]
     for value in values:
         assert_equal(np.sign(value), np.sign(np.asarray(value)))
-        assert_equal(np.zeros_like(value), 
-                    Quantity(np.zeros_like(np.asarray(value)),
-                            dim=value.dim))
-        assert_equal(np.ones_like(value), 
-                     Quantity(np.ones_like(np.asarray(value)),
-                            dim=value.dim))
+        assert_equal(
+            np.zeros_like(value),
+            Quantity(np.zeros_like(np.asarray(value)), dim=value.dim),
+        )
+        assert_equal(
+            np.ones_like(value),
+            Quantity(np.ones_like(np.asarray(value)), dim=value.dim),
+        )
         # Calling non-zero on a 0d array is deprecated, don't test it:
         if value.ndim > 0:
             assert_equal(np.nonzero(value), np.nonzero(np.asarray(value)))
+
 
 def test_special_case_numpy_functions():
     """
@@ -858,18 +866,21 @@ def test_special_case_numpy_functions():
         assert_equal(np.ravel(quadratic_matrix), quadratic_matrix.ravel())
         # Check that function gives the same result as on unitless arrays
         assert_equal(
-            np.asarray(np.ravel(quadratic_matrix)), np.ravel(np.asarray(quadratic_matrix))
+            np.asarray(np.ravel(quadratic_matrix)),
+            np.ravel(np.asarray(quadratic_matrix)),
         )
         # Check that the function gives the same results as the original numpy
         # function
         assert_equal(
-            np.ravel(np.asarray(quadratic_matrix)), np.ravel(np.asarray(quadratic_matrix))
+            np.ravel(np.asarray(quadratic_matrix)),
+            np.ravel(np.asarray(quadratic_matrix)),
         )
 
     # Do the same checks for diagonal, trace and dot
     assert_equal(np.diagonal(quadratic_matrix), quadratic_matrix.diagonal())
     assert_equal(
-        np.asarray(np.diagonal(quadratic_matrix)), np.diagonal(np.asarray(quadratic_matrix))
+        np.asarray(np.diagonal(quadratic_matrix)),
+        np.diagonal(np.asarray(quadratic_matrix)),
     )
     assert_equal(
         np.diagonal(np.asarray(quadratic_matrix)),
@@ -877,18 +888,18 @@ def test_special_case_numpy_functions():
     )
 
     assert_equal(np.trace(quadratic_matrix), quadratic_matrix.trace())
-    assert_equal(
-        np.asarray(np.trace(quadratic_matrix)), np.trace(np.asarray(quadratic_matrix))
-    )
-    assert_equal(
-        np.trace(np.asarray(quadratic_matrix)), np.trace(np.asarray(quadratic_matrix))
-    )
+    assert_equal(np.asarray(np.trace(quadratic_matrix)), np.trace(np.asarray(quadratic_matrix)))
+    assert_equal(np.trace(np.asarray(quadratic_matrix)), np.trace(np.asarray(quadratic_matrix)))
 
     assert_equal(
-        quantity_with_dimensions(np.dot(quadratic_matrix, quadratic_matrix), 
-                                quadratic_matrix.dim*quadratic_matrix.dim),
-                                Quantity(quadratic_matrix.dot(quadratic_matrix),
-                                         dim=quadratic_matrix.dim*quadratic_matrix.dim)
+        quantity_with_dimensions(
+            np.dot(quadratic_matrix, quadratic_matrix),
+            quadratic_matrix.dim * quadratic_matrix.dim,
+        ),
+        Quantity(
+            quadratic_matrix.dot(quadratic_matrix),
+            dim=quadratic_matrix.dim * quadratic_matrix.dim,
+        ),
     )
 
     assert_equal(
@@ -900,9 +911,7 @@ def test_special_case_numpy_functions():
         np.dot(np.asarray(quadratic_matrix), np.asarray(quadratic_matrix)),
     )
 
-    assert_equal(
-        np.asarray(quadratic_matrix.prod()), np.asarray(quadratic_matrix).prod()
-    )
+    assert_equal(np.asarray(quadratic_matrix.prod()), np.asarray(quadratic_matrix).prod())
     assert_equal(
         np.asarray(quadratic_matrix.prod(axis=0)),
         np.asarray(quadratic_matrix).prod(axis=0),
@@ -912,7 +921,11 @@ def test_special_case_numpy_functions():
     assert have_same_dimensions(quadratic_matrix, np.trace(quadratic_matrix))
     assert have_same_dimensions(quadratic_matrix, np.diagonal(quadratic_matrix))
     assert have_same_dimensions(
-        quadratic_matrix[0] ** 2, quantity_with_dimensions(np.dot(quadratic_matrix, quadratic_matrix), get_dimensions(quadratic_matrix)*get_dimensions(quadratic_matrix))
+        quadratic_matrix[0] ** 2,
+        quantity_with_dimensions(
+            np.dot(quadratic_matrix, quadratic_matrix),
+            get_dimensions(quadratic_matrix) * get_dimensions(quadratic_matrix),
+        ),
     )
     assert have_same_dimensions(
         quadratic_matrix.prod(axis=0), quadratic_matrix[0] ** quadratic_matrix.shape[0]
@@ -927,7 +940,8 @@ def test_special_case_numpy_functions():
 
     # dimensionless quantity
     assert_equal(
-        np.where(cond, ar1, ar2), np.asarray(np.where(cond, ar1 * mV / mV, ar2 * mV / mV))
+        np.where(cond, ar1, ar2),
+        np.asarray(np.where(cond, ar1 * mV / mV, ar2 * mV / mV)),
     )
 
     # quantity with dimensions
@@ -952,6 +966,7 @@ def test_special_case_numpy_functions():
 
 
 # Functions that should not change units
+
 
 def test_numpy_functions_same_dimensions():
     values = [np.array([1, 2]), np.ones((3, 3))]
@@ -1035,19 +1050,19 @@ def test_numpy_functions_dimensionless():
         # ignore division by 0 warnings
         warnings.simplefilter("ignore", RuntimeWarning)
         for value in unitless_values:
-            for ufunc in UFUNCS_DIMENSIONLESS:                
+            for ufunc in UFUNCS_DIMENSIONLESS:
                 result_unitless = eval(f"np.{ufunc}(value)")
                 result_array = eval(f"np.{ufunc}(np.array(value))")
-                assert isinstance(
-                    result_unitless, (np.ndarray, np.number)
-                ) and not isinstance(result_unitless, Quantity)
+                assert isinstance(result_unitless, (np.ndarray, np.number)) and not isinstance(
+                    result_unitless, Quantity
+                )
                 assert_equal(result_unitless, result_array)
             for ufunc in UFUNCS_DIMENSIONLESS_TWOARGS:
                 result_unitless = eval(f"np.{ufunc}(value, value)")
                 result_array = eval(f"np.{ufunc}(np.array(value), np.array(value))")
-                assert isinstance(
-                    result_unitless, (np.ndarray, np.number)
-                ) and not isinstance(result_unitless, Quantity)
+                assert isinstance(result_unitless, (np.ndarray, np.number)) and not isinstance(
+                    result_unitless, Quantity
+                )
                 assert_equal(result_unitless, result_array)
 
         for value, unitless_value in zip(unit_values, unitless_values):
@@ -1080,9 +1095,7 @@ def test_numpy_functions_change_dimensions():
         assert_quantity(np.var(value), np.var(np.array(value)), volt**2)
         assert_quantity(np.square(value), np.square(np.array(value)), volt**2)
         assert_quantity(np.sqrt(value), np.sqrt(np.array(value)), volt**0.5)
-        assert_quantity(
-            np.reciprocal(value), np.reciprocal(np.array(value)), 1.0 / volt
-        )
+        assert_quantity(np.reciprocal(value), np.reciprocal(np.array(value)), 1.0 / volt)
 
 
 def test_numpy_functions_typeerror():
@@ -1130,51 +1143,52 @@ def test_numpy_functions_logical():
 
 def test_numpy_methods():
     # fill
-    q = np.arange(10)*mV
-    with pytest.raises(DimensionMismatchError):        
+    q = np.arange(10) * mV
+    with pytest.raises(DimensionMismatchError):
         q.fill(3)
     with pytest.raises(DimensionMismatchError):
-        q.fill(3*second)
-    q.fill(1*mV)
-    assert_equal(q, np.ones(10)*mV)
+        q.fill(3 * second)
+    q.fill(1 * mV)
+    assert_equal(q, np.ones(10) * mV)
 
     # clip
-    q = np.arange(10)*mV
+    q = np.arange(10) * mV
     with pytest.raises(DimensionMismatchError):
         q.clip(np.ones(10), 10)
     with pytest.raises(DimensionMismatchError):
-        q.clip(np.ones(10), 10*mV)
+        q.clip(np.ones(10), 10 * mV)
     with pytest.raises(DimensionMismatchError):
-        q.clip(np.ones(10)*mV, 10)
+        q.clip(np.ones(10) * mV, 10)
     with pytest.raises(DimensionMismatchError):
-        q.clip(np.ones(10)*ms, 10*ms)
-    assert_equal(q.clip(np.ones(10)*mV, 7*mV), np.arange(10).clip(np.ones(10), 7)*mV)
+        q.clip(np.ones(10) * ms, 10 * ms)
+    assert_equal(q.clip(np.ones(10) * mV, 7 * mV), np.arange(10).clip(np.ones(10), 7) * mV)
 
-    # dot 
+    # dot
     a = np.array([1, 2, 3]) * mV
     b = np.array([4, 5, 6]) * ms
     expected_result = np.dot(np.asarray(a), np.asarray(b))
     result = a.dot(b)
-    assert_quantity(result, expected_result, volt*second)
+    assert_quantity(result, expected_result, volt * second)
 
     # searchsorted
-    a = np.arange(10)*mV
-    assert_equal(a.searchsorted(5*mV), np.arange(10).searchsorted(5))
+    a = np.arange(10) * mV
+    assert_equal(a.searchsorted(5 * mV), np.arange(10).searchsorted(5))
     with pytest.raises(DimensionMismatchError):
         a.searchsorted(5)
     with pytest.raises(DimensionMismatchError):
-        a.searchsorted(5*ms)
+        a.searchsorted(5 * ms)
 
     # prod
-    q = [[1, 2], [3, 4]]*mV
-    assert_quantity(q.prod(), float(24*mV**4), volt**4)
-    assert_quantity(q.prod(axis=0), np.array([3, 8]*mV**2), volt**2)
+    q = [[1, 2], [3, 4]] * mV
+    assert_quantity(q.prod(), float(24 * mV**4), volt**4)
+    assert_quantity(q.prod(axis=0), np.array([3, 8] * mV**2), volt**2)
 
     # cumprod
     q_no_dim = Quantity(np.arange(1, 10), force_quantity=True)
     assert_equal(q_no_dim.cumprod(), np.arange(1, 10).cumprod())
     with pytest.raises(TypeError):
-        (np.arange(10)*mV).cumprod()        
+        (np.arange(10) * mV).cumprod()
+
 
 def test_arange_linspace():
     # Make sure units are checked
@@ -1190,6 +1204,7 @@ def test_arange_linspace():
         np.arange(1 * mV, 5 * mV, step=1 * ms)
     with pytest.raises(DimensionMismatchError):
         np.arange(1 * ms, 5 * mV)
+
 
 def test_list():
     """
@@ -1297,7 +1312,7 @@ def test_get_best_unit():
         ([0.001, 0.002, 0.003] * second, ms),
         (long_ar, nS),
         ([0, 0, 0] * mV, volt),
-        (Quantity([1, 2, 3], force_quantity=True), Unit(1))
+        (Quantity([1, 2, 3], force_quantity=True), Unit(1)),
     ]
     for ar, expected_unit in values:
         assert ar.get_best_unit() == expected_unit
@@ -1418,7 +1433,7 @@ def test_constants():
     assert constants.molar_mass_constant.dim == (kilogram / mole).dim
     assert constants.zero_celsius.dim == kelvin.dim
 
-    #Check the consistency between a few constants
+    # Check the consistency between a few constants
     np.allclose(
         np.asarray(constants.gas_constant),
         np.asarray(constants.avogadro_constant * constants.boltzmann_constant),
