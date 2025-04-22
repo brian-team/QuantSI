@@ -20,6 +20,10 @@ jobs:
       run: |
         pdm install -G test
 
+    # Update output format to enable automatic inline annotations.
+    - name: Run Ruff
+      run: ruff check --output-format=github .
+
     - name: Run tests
       run: |
         pdm run -v pytest --cov=QuantSI --cov-report lcov --doctest-modules
