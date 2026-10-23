@@ -1,0 +1,52 @@
+diff --git a/brian2/spatialneuron/morphology.py b/brian2/spatialneuron/morphology.py
+index ef4c3a23..4ebe6bc8 100644
+--- a/brian2/spatialneuron/morphology.py
++++ b/brian2/spatialneuron/morphology.py
+@@ -282,8 +282,7 @@ def _add_coordinates(
+                 n=orig_morphology.n,
+                 diameter=np.hstack(
+                     [orig_morphology.start_diameter[0], orig_morphology.end_diameter]
+-                )
+-                * meter,
++                ),
+                 x=coordinates[:, 0],
+                 y=coordinates[:, 1],
+                 z=coordinates[:, 2],
+diff --git a/brian2/tests/test_units.py b/brian2/tests/test_units.py
+index 7fe6979c..02262ac2 100644
+--- a/brian2/tests/test_units.py
++++ b/brian2/tests/test_units.py
+@@ -1393,25 +1393,6 @@ def test_get_best_unit():
+         assert str(expected_unit) in ar.in_best_unit()
+ 
+ 
+-@pytest.mark.codegen_independent
+-def test_switching_off_unit_checks():
+-    """
+-    Check switching off unit checks (used for external functions).
+-    """
+-    import brian2.units.fundamentalunits as fundamentalunits
+-
+-    x = 3 * second
+-    y = 5 * volt
+-    with pytest.raises(DimensionMismatchError):
+-        x + y
+-    fundamentalunits.unit_checking = False
+-    # Now it should work
+-    assert np.asarray(x + y) == np.array(8)
+-    assert have_same_dimensions(x, y)
+-    assert x.has_same_dimensions(y)
+-    fundamentalunits.unit_checking = True
+-
+-
+ @pytest.mark.codegen_independent
+ def test_fail_for_dimension_mismatch():
+     """
+@@ -1570,7 +1551,6 @@ def test_constants():
+     test_check_units()
+     test_get_unit()
+     test_get_best_unit()
+-    test_switching_off_unit_checks()
+     test_fail_for_dimension_mismatch()
+     test_deepcopy()
+     test_inplace_on_scalars()

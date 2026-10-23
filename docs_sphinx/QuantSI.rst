@@ -1,14 +1,6 @@
 QuantSI package
 ===============
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 2
-
-   QuantSI.tests
-
 Submodules
 ----------
 

@@ -11,7 +11,12 @@ Welcome to QuantSI's documentation!
    :caption: Contents:
 
    user/units
+   user/naming
+   user/numpy
+   user/text
    developer/units
+   developer/architecture
+   developer/performance
    usage_comparison/usage_comparison
    modules
 

@@ -1,14 +1,14 @@
 [project]
 name = "QuantSI"
-description = "unit system as used by the Brian2 simulator"
+description = "Pragmatic dimensional checking for NumPy-based SI calculations"
 authors = [
     {name = "Sorin Birchi"},
     {name = "Marcel Stimberg"},
     {name = "Dan Goodman"},
     {name = "Romain Brette"},
 ]
-dependencies = ["numpy>=1.25", "sympy>=1.2"]
-requires-python = ">=3.10"
+dependencies = ["numpy>=2.3"]
+requires-python = ">=3.13"
 readme = "README.md"
 license = {text = "GPLv3"}
 keywords = ['SI', 'SI units', 'unit system', 'physical quantities']
@@ -30,7 +30,10 @@ test = [
     "pytest-xdist>=1.22.3",
     "pdm-backend>=2.4.3",
     "pytest-cov>=6.1.1",
-    "ruff>=0.11.6",
+    "pytest-benchmark>=5.1",
+    "sympy>=1.2",  # only to test that SymPy can still print quantities
+    "mypy>=1.15",
+    "ruff>=0.16,<0.17",
     "pre-commit>=4.2.0",
 ]
 docs = [
@@ -53,11 +56,49 @@ write_to = "QuantSI/_version.py"
 write_template = "__version__ = '{}'"
 
 [tool.pytest.ini_options]
-addopts = "-ra"
+minversion = "8.3"
+testpaths = ["tests", "src/QuantSI"]
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--strict-config",
+    "--doctest-modules",
+    "--benchmark-disable",  # run each benchmark once, as a plain test
+    "-m",
+    "not perf_guard",  # run explicitly with: pytest -m perf_guard
+]
+markers = [
+    "perf_guard: compares QuantSI overhead with plain NumPy (select with -m perf_guard)",
+]
+xfail_strict = true
+# Treat warnings as errors, so that deprecations show up early. A test that
+# expects a warning can allow it with @pytest.mark.filterwarnings.
+filterwarnings = ["error"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py310"
+target-version = "py313"
+extend-exclude = ["src/QuantSI/allunits.py"]  # generated file, not edited by hand
+
+[tool.ruff.lint]
+# List the rules ourselves, so that a new Ruff release can't change what CI checks.
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.ruff.lint.isort]
+# Keep explicit re-exports ("import x as x") together in one statement.
+combine-as-imports = true
 
 [tool.ruff.format]
 docstring-code-format = true
+
+[tool.mypy]
+# Type-check the package and the typing examples, not the test suite.
+files = ["src/QuantSI", "tests/typing_examples.py"]
+warn_unused_ignores = true
+warn_redundant_casts = true
+
+[[tool.mypy.overrides]]
+# Generated, and full of unit arithmetic that NumPy's type stubs type as plain
+# arrays; its names still get their types (Unit) from Unit.create.
+module = ["QuantSI.allunits", "QuantSI.constants"]
+ignore_errors = true

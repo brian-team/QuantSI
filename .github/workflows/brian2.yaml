@@ -1,0 +1,44 @@
+name: Brian2
+
+on: [push, pull_request]
+
+jobs:
+  brian2:
+    name: Brian2's test suite with this QuantSI
+    runs-on: ubuntu-24.04
+
+    steps:
+    - name: Check out QuantSI
+      uses: actions/checkout@v7
+      with:
+        path: QuantSI
+        fetch-depth: 0  # the version number comes from the git history
+
+    - name: Check out Brian2
+      uses: actions/checkout@v7
+      with:
+        repository: brian-team/brian2
+        path: brian2
+        fetch-depth: 0  # Brian2 also gets its version number from its git tags
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+
+    - name: Install Brian2 and this QuantSI
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install ./QuantSI -e "./brian2[test]"
+
+    # What the companion change in Brian2 does: brian2.units re-exports QuantSI,
+    # plus the few changes in Brian2 that QuantSI's fixes need (see the patch).
+    - name: Make brian2.units use QuantSI
+      run: |
+        python QuantSI/tools/brian2/make_facade.py brian2
+        git -C brian2 apply ../QuantSI/tools/brian2/brian2-companion.patch
+
+    - name: Run Brian2's tests (without code generation, and with the numpy target)
+      working-directory: brian2
+      run: |
+        python -c "import brian2, sys; sys.exit(0 if brian2.test('numpy', test_codegen_independent=True) else 1)"

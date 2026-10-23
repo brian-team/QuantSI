@@ -4,8 +4,20 @@ on: [push, pull_request]
 
 jobs:
   test:
-    name: Run tests
+    name: Python ${{ matrix.python-version }} with ${{ matrix.numpy }}
     runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # The oldest versions QuantSI supports (see pyproject.toml).
+          - python-version: "3.13"
+            numpy: "numpy==2.3.*"
+          # Also test current NumPy on both Python versions.
+          - python-version: "3.13"
+            numpy: "numpy"
+          - python-version: "3.14"
+            numpy: "numpy"
 
     steps:
     - name: Check out the repository
@@ -14,21 +26,27 @@ jobs:
     - name: Set up PDM
       uses: pdm-project/setup-pdm@v4
       with:
-        python-version: 3.13
+        python-version: ${{ matrix.python-version }}
 
     - name: Install dependencies
       run: |
         pdm install -G test
+        pdm run python -m ensurepip --upgrade
+        pdm run python -m pip install "${{ matrix.numpy }}"
 
     # Update output format to enable automatic inline annotations.
     - name: Run Ruff
       run: pdm run ruff check --output-format=github .
 
+    - name: Check types
+      run: pdm run mypy
+
     - name: Run tests
       run: |
-        pdm run -v pytest --cov=QuantSI --cov-report lcov --doctest-modules
+        pdm run -v pytest --cov=QuantSI --cov-report=term-missing --cov-report=lcov --cov-fail-under=100
 
     - name: Publish coverage
+      if: matrix.python-version == '3.13' && matrix.numpy == 'numpy'
       uses: coverallsapp/github-action@5cbfd81b66ca5d10c19b062c04de0199c215fb6e  # v2.3.7
       with:
         format: lcov
